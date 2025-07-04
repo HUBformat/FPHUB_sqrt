@@ -23,61 +23,84 @@ module FPHUB_sqrt #(
 );
 
     logic [1:0]   S   [N];
-    logic [31:0]  F1  [N];
-    logic [31:0]  F_1 [N];
-    logic [31:0]  W   [N];
-    logic [31:0]  W2  [N];
+    logic [24:0]  F1  [N];
+    logic [24:0]  F_1 [N];
+    logic [24:0]  W   [N];
+    logic [24:0]  W2;
 
-    int iter_count;
+    logic x_sign;
+
+    logic [7:0] x_exponent, res_exponent;
+    assign x_exponent = x[30:23];
+
+    logic [22:0] x_mantissa;
+    assign x_mantissa = x[22:0];
+
+    logic [24:0] x_HUB;
+    assign x_HUB = {1'b0, x_mantissa, 1'b1}; // IEEE MSB, mantissa, HUB ILSB
+
+    int j;
 
     logic [3:0] W_MSB;
-    assign W_MSB = (W << 1)[31:28][iter_count]; //TODO: comprobar que esté bien
+    
+    assign W2 = W[j] << 1;
+    
+    assign W_MSB = W2[24:21]; //TODO: comprobar que esté bien
+    
 
-    always_ff @(posedge clk or nege rst_l) begin
+    always_ff @(posedge clk or negedge rst_l) begin
 
         if(!rst_l) begin
-            iter_count <= '0;
+            j <= '0;
+            res <= '0;
+            finish <= 1'b0;
+            computing <= 1'b0;
+            res_exponent <= '0;
         
         end
 
         else begin
             if (start) begin
+                res_exponent <= x_exponent >> 1;         
                 S[0]   <= 2'b00;
                 W[0]   <= x;
-                F1[0]  <= {4'b1111, 28'd0};
-                F_1[0] <= {4'b1111, 28'd0};
-                F1[1]  <= {5'b11011, 27'd0};
-                F_1[1] <= {5'b00011, 27'd0};
+                F1[0]  <= {4'b1111, 21'd0};
+                F_1[0] <= {4'b1111, 21'd0};
+                F1[1]  <= {5'b11011, 20'd0};
+                F_1[1] <= {5'b00011, 20'd0};
                 S[1] <= 2'b01; // TODO: siempre 1?
-                W[1] <=   (x << 1) + ({4'b1111, 28'd0};) //TODO cambiar F en la suma del algoritmo general
-                iter_count <= 1;
+                W[1] <=   (x_HUB << 1) + ({4'b1111, 21'd0}); //TODO cambiar F en la suma del algoritmo general
+                j <= 1;
+                computing <= 1'b1;
             end 
-            else if (iter_count < N) begin
-                iter_count <= iter_count + 1;
+            else if (computing && j < N) begin
+                j <= j + 1;
 
                 if(W_MSB == 4'b1111) begin
-                    S[iter_count+1] <= 2'b00;
-                    W[iter_count+1] <= (W[iter_count] << 1) ; // +0
-                    // Start: ($clog2(F1[iter_count] & (-F1[iter_count])) +2)
-                    // upper_len: 32 - ($clog2(F1[iter_count] & (-F1[iter_count])) +2)
-                    F1[iter_count+1]  <= {(F1[iter_count >> ($clog2(F1[iter_count] & (-F1[iter_count])) +2)]) $ ((1 << (32 - ($clog2(F1[iter_count] & (-F1[iter_count])) +2)))), 3'b111, '0}; //TODO: comprobar
-                    F_1[iter_count+1] <= {(F_1[iter_count >> ($clog2(F_1[iter_count] & (-F_1[iter_count])) +2)]) $ ((1 << (32 - ($clog2(F_1[iter_count] & (-F_1[iter_count])) +2)))), 3'b111, '0}; //TODO: comprobar
+                    S[j+1] <= 2'b00;
+                    W[j+1] <= (W[j] << 1) ; // +0
+
+                    F1[j+1] <=  {3'b110, 3'b111, '0};
+                    F_1[j+1] <= {3'b000, 3'b111, '0};
+
+                    
                 end
 
                 else if (W_MSB < 4'b1000 ) begin
-                    S[iter_count+1] <= 2'b01;
-                    W[iter_count+1] <= (W[iter_count] << 1) + F1[iter_count];
+                    S[j+1] <= 2'b01;
+                    W[j+1] <= (W[j] << 1) + F1[j];
 
-                    F1[iter_count+1]  <= {(F1[iter_count >> ($clog2(F1[iter_count] & (-F1[iter_count])) +2)]) $ ((1 << (32 - ($clog2(F1[iter_count] & (-F1[iter_count])) +2)))), 3'b011, '0}; //TODO: comprobar
-                    F_1[iter_count+1] <= {~(F1[iter_count >> ($clog2(F1[iter_count] & (-F1[iter_count])) +2)]) $ ((1 << (32 - ($clog2(F1[iter_count] & (-F1[iter_count])) +2)))), 3'b011, '0}; //TODO: comprobar
+                    F1[j+1] <=  {3'b110, 3'b011, 19'd0};
+                    F_1[j+1] <= {3'b001, 3'b011, 19'd0};
+
                 end
 
                 else begin
-                    S[iter_count+1] <= 2'b11;
-                    W[iter_count +1] <= (W[iter_count] << 1) + F_1[iter_count];
+                    S[j+1] <= 2'b11;
+                    W[j +1] <= (W[j] << 1) + F_1[j];
 
-                    F1[iter_count+1]  <= {~(F_1[iter_count >> ($clog2(F_1[iter_count] & (-F_1[iter_count])) +2)]) $ ((1 << (32 - ($clog2(F_1[iter_count] & (-F_1[iter_count])) +2)))), 3'b011, '0}; //TODO: comprobar
-                    F_1[iter_count+1] <= {(F_1[iter_count >> ($clog2(F_1[iter_count] & (-F_1[iter_count])) +2)]) $ ((1 << (32 - ($clog2(F_1[iter_count] & (-F_1[iter_count])) +2)))), 3'b011, '0}; //TODO: comprobar
+                    F1[j+1]  <= {3'b111, 3'b011, 19'd0};
+                    F_1[j+1] <= {3'b000, 3'b011, 19'd0};
                 end
             end
         end
