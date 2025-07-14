@@ -23,8 +23,8 @@ module FPHUB_sqrt #(
 );
 
     logic [1:0]   S   [N];
-    logic [24:0]  F1  [N];
-    logic [24:0]  F_1 [N];
+    logic [M+2:0]  F1  [N];
+    logic [M+2:0]  F_1 [N];
     logic [24:0]  W   [N];
     logic [24:0]  W2;
 
@@ -64,10 +64,10 @@ module FPHUB_sqrt #(
                 res_exponent <= x_exponent >> 1;         
                 S[0]   <= 2'b00;
                 W[0]   <= x;
-                F1[0]  <= {4'b1111, 21'd0};
-                F_1[0] <= {4'b1111, 21'd0};
-                F1[1]  <= {5'b11011, 20'd0};
-                F_1[1] <= {5'b00011, 20'd0};
+                F1[0]  <= {4'b1111, 23'd0};
+                F_1[0] <= {4'b1111, 23'd0};
+                F1[1]  <= {5'b11011, 22'd0};
+                F_1[1] <= {5'b00011, 22'd0};
                 S[1] <= 2'b01; // TODO: siempre 1?
                 W[1] <=   (x_HUB << 1) + ({4'b1111, 21'd0}); //TODO cambiar F en la suma del algoritmo general
                 j <= 1;
@@ -79,10 +79,37 @@ module FPHUB_sqrt #(
                 if(W_MSB == 4'b1111) begin
                     S[j+1] <= 2'b00;
                     W[j+1] <= (W[j] << 1) ; // +0
+                    
+                    for (int k = 0; k <= j+1; k++) begin
+                        F1[j+1][M+2 - k] <= F1[j][M+2 - k];
+                        F_1[j+1][M+2 - k] <= F_1[j][M+2 - k];
+                    end
 
+                    // asegurar rango
+                    F1[j+1][M-j-2 -: 3] <= 3'b111;
+                    F_1[j+1][M-j-2 -: 3] <= 3'b111;
+
+                    for (int k = 0; k <= (M-j-3); k++) begin
+                        F1[j+1][k] <= 1'b0;
+                        F_1[j+1][k] <= 1'b0;
+                    end
+
+                    /*
+                    F1[j+1][M+2 -: (j+2)] <= F1[j][M+2 -: (j+2)];
+                    F1[j+1][M-j-2 -: 3]   <= 3'b111;
+                    F1[j+1][0 +: (M-j-3+1)] <= '0;
+                    */
+
+                    /*
+                    F1[j+1][M+2:M+1-j] <= F1[j][M+2:M+1-j];
+                    F1[j+1][M-j-2] <= 3'b111;
+                    F1[j+1][M-j-3:0] <= '0;
+                    */
+
+                    /*
                     F1[j+1] <=  {3'b110, 3'b111, '0};
                     F_1[j+1] <= {3'b000, 3'b111, '0};
-
+                    */
                     
                 end
 
@@ -90,8 +117,19 @@ module FPHUB_sqrt #(
                     S[j+1] <= 2'b01;
                     W[j+1] <= (W[j] << 1) + F1[j];
 
-                    F1[j+1] <=  {3'b110, 3'b011, 19'd0};
-                    F_1[j+1] <= {3'b001, 3'b011, 19'd0};
+                    for (int k = 0; k <= j+1; k++) begin
+                        F1[j+1][M+2 - k] <= F1[j][M+2 - k];
+                        F_1[j+1][M+2 - k] <= ~F1[j][M+2 - k]; //TODO: revisar
+                    end
+
+                    // asegurar rango
+                    F1[j+1][M-j-2 -: 3] <= 3'b011;
+                    F_1[j+1][M-j-2 -: 3] <= 3'b011;
+
+                    for (int k = 0; k <= (M-j-3); k++) begin
+                        F1[j+1][k] <= 1'b0;
+                        F_1[j+1][k] <= 1'b0;
+                    end
 
                 end
 
@@ -99,8 +137,19 @@ module FPHUB_sqrt #(
                     S[j+1] <= 2'b11;
                     W[j +1] <= (W[j] << 1) + F_1[j];
 
-                    F1[j+1]  <= {3'b111, 3'b011, 19'd0};
-                    F_1[j+1] <= {3'b000, 3'b011, 19'd0};
+                    for (int k = 0; k <= j+1; k++) begin
+                        F1[j+1][M+2 - k] <= ~F_1[j][M+2 - k];
+                        F_1[j+1][M+2 - k] <= F_1[j][M+2 - k];
+                    end
+
+                    // asegurar rango
+                    F1[j+1][M-j-2 -: 3] <= 3'b011;
+                    F_1[j+1][M-j-2 -: 3] <= 3'b011;
+
+                    for (int k = 0; k <= (M-j-3); k++) begin
+                        F1[j+1][k] <= 1'b0;
+                        F_1[j+1][k] <= 1'b0;
+                    end
                 end
             end
         end
