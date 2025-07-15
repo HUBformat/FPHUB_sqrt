@@ -30,7 +30,7 @@ module sqrt_tb;
     
     #1
     start = 1;
-    x = {1'b0, 1'b1, 30'b0};
+    x = 32'h41100000;
     
     #2
     start=0;

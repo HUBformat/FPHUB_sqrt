@@ -1,7 +1,7 @@
 module FPHUB_sqrt #(
     parameter int   M = 23,
     parameter int   E = 8,
-    parameter int   N = 31, 
+    parameter int   N = 31, //TODO 31 ò 32?
     localparam int  T = M+E,
     localparam int  EXP_BIAS = 1 << (E - 1),
     localparam int  EXP_BIAS_LOW = EXP_BIAS -1,
@@ -37,7 +37,7 @@ module FPHUB_sqrt #(
     assign x_mantissa = x[22:0];
 
     logic [24:0] x_HUB;
-    assign x_HUB = {1'b0, x_mantissa, 1'b1}; // IEEE MSB, mantissa, HUB ILSB
+    assign x_HUB = {1'b1, x_mantissa, 1'b1}; // IEEE MSB, mantissa, HUB ILSB
 
     int j;
 
@@ -46,6 +46,8 @@ module FPHUB_sqrt #(
     assign W2 = W[j] << 1;
     
     assign W_MSB = W2[24:21]; //TODO: comprobar que esté bien
+
+    logic [N*2:0] q;
     
 
     always_ff @(posedge clk or negedge rst_l) begin
@@ -64,12 +66,13 @@ module FPHUB_sqrt #(
                 res_exponent <= x_exponent >> 1;         
                 S[0]   <= 2'b00;
                 W[0]   <= x;
-                F1[0]  <= {4'b1111, 23'd0};
-                F_1[0] <= {4'b1111, 23'd0};
-                F1[1]  <= {5'b11011, 22'd0};
-                F_1[1] <= {5'b00011, 22'd0};
+                F1[0]  <= {4'b1111, 22'd0};
+                F_1[0] <= {4'b1111, 22'd0};
+                F1[1]  <= {5'b11011, 21'd0};
+                F_1[1] <= {5'b00011, 21'd0};
                 S[1] <= 2'b01; // TODO: siempre 1?
                 W[1] <=   (x_HUB << 1) + ({4'b1111, 21'd0}); //TODO cambiar F en la suma del algoritmo general
+                q[N*2:N*2-4] <= 5'b00001;
                 j <= 1;
                 computing <= 1'b1;
             end 
@@ -78,7 +81,10 @@ module FPHUB_sqrt #(
 
                 if(W_MSB == 4'b1111) begin
                     S[j+1] <= 2'b00;
-                    W[j+1] <= (W[j] << 1) ; // +0
+                    // 0 00 01   00    XX
+                    // 62 60 58   56   54 
+                   // q[j+1] 
+                    W[j+1] <= (W[j] << 1) ; // +0 
                     
                     for (int k = 0; k <= j+1; k++) begin
                         F1[j+1][M+2 - k] <= F1[j][M+2 - k];
@@ -105,17 +111,12 @@ module FPHUB_sqrt #(
                     F1[j+1][M-j-2] <= 3'b111;
                     F1[j+1][M-j-3:0] <= '0;
                     */
-
-                    /*
-                    F1[j+1] <=  {3'b110, 3'b111, '0};
-                    F_1[j+1] <= {3'b000, 3'b111, '0};
-                    */
                     
                 end
 
                 else if (W_MSB < 4'b1000 ) begin
                     S[j+1] <= 2'b01;
-                    W[j+1] <= (W[j] << 1) + F1[j];
+                    W[j+1] <= (W[j] << 1) + F1[j]; // TODO: revisar: W -> Compl2, F1 -> signed digit
 
                     for (int k = 0; k <= j+1; k++) begin
                         F1[j+1][M+2 - k] <= F1[j][M+2 - k];
@@ -135,7 +136,7 @@ module FPHUB_sqrt #(
 
                 else begin
                     S[j+1] <= 2'b11;
-                    W[j +1] <= (W[j] << 1) + F_1[j];
+                    W[j +1] <= (W[j] << 1) + F_1[j]; // TODO: revisar: W -> Compl2, F1 -> signed digit
 
                     for (int k = 0; k <= j+1; k++) begin
                         F1[j+1][M+2 - k] <= ~F_1[j][M+2 - k];
@@ -151,6 +152,8 @@ module FPHUB_sqrt #(
                         F_1[j+1][k] <= 1'b0;
                     end
                 end
+            end else begin // Terminación
+                
             end
         end
 
