@@ -44,60 +44,62 @@ void VFPHUB_sqrt::traceInitSub0(void* userp, VerilatedVcd* tracep) {
     if (false && tracep && c) {}  // Prevent unused
     // Body
     {
-        tracep->declBit(c+114,"clk", false,-1);
-        tracep->declBit(c+115,"rst_l", false,-1);
-        tracep->declBit(c+116,"start", false,-1);
-        tracep->declBus(c+117,"x", false,-1, 31,0);
-        tracep->declBus(c+118,"res", false,-1, 31,0);
-        tracep->declBit(c+119,"finish", false,-1);
-        tracep->declBit(c+120,"computing", false,-1);
-        tracep->declBus(c+124,"FPHUB_sqrt M", false,-1, 31,0);
-        tracep->declBus(c+125,"FPHUB_sqrt E", false,-1, 31,0);
-        tracep->declBus(c+126,"FPHUB_sqrt N", false,-1, 31,0);
-        tracep->declBus(c+126,"FPHUB_sqrt T", false,-1, 31,0);
-        tracep->declBus(c+127,"FPHUB_sqrt EXP_BIAS", false,-1, 31,0);
-        tracep->declBus(c+128,"FPHUB_sqrt EXP_BIAS_LOW", false,-1, 31,0);
-        tracep->declBus(c+129,"FPHUB_sqrt special_case", false,-1, 31,0);
-        tracep->declBus(c+130,"FPHUB_sqrt sign_mantissa_bit", false,-1, 31,0);
-        tracep->declBus(c+130,"FPHUB_sqrt one_implicit_bit", false,-1, 31,0);
-        tracep->declBus(c+130,"FPHUB_sqrt ilsb_bit", false,-1, 31,0);
-        tracep->declBus(c+130,"FPHUB_sqrt extra_int_bit", false,-1, 31,0);
-        tracep->declBus(c+130,"FPHUB_sqrt extra_bit_x_gt_d", false,-1, 31,0);
-        tracep->declBus(c+131,"FPHUB_sqrt extra_bits_mantissa", false,-1, 31,0);
-        tracep->declBit(c+114,"FPHUB_sqrt clk", false,-1);
-        tracep->declBit(c+115,"FPHUB_sqrt rst_l", false,-1);
-        tracep->declBit(c+116,"FPHUB_sqrt start", false,-1);
-        tracep->declBus(c+117,"FPHUB_sqrt x", false,-1, 31,0);
-        tracep->declBus(c+118,"FPHUB_sqrt res", false,-1, 31,0);
-        tracep->declBit(c+119,"FPHUB_sqrt finish", false,-1);
-        tracep->declBit(c+120,"FPHUB_sqrt computing", false,-1);
+        tracep->declBit(c+174,"clk", false,-1);
+        tracep->declBit(c+175,"rst_l", false,-1);
+        tracep->declBit(c+176,"start", false,-1);
+        tracep->declBus(c+177,"x", false,-1, 31,0);
+        tracep->declBus(c+178,"res", false,-1, 31,0);
+        tracep->declBit(c+179,"finish", false,-1);
+        tracep->declBit(c+180,"computing", false,-1);
+        tracep->declBus(c+184,"FPHUB_sqrt M", false,-1, 31,0);
+        tracep->declBus(c+185,"FPHUB_sqrt E", false,-1, 31,0);
+        tracep->declBus(c+186,"FPHUB_sqrt N", false,-1, 31,0);
+        tracep->declBus(c+186,"FPHUB_sqrt T", false,-1, 31,0);
+        tracep->declBus(c+187,"FPHUB_sqrt EXP_BIAS", false,-1, 31,0);
+        tracep->declBus(c+188,"FPHUB_sqrt EXP_BIAS_LOW", false,-1, 31,0);
+        tracep->declBus(c+189,"FPHUB_sqrt special_case", false,-1, 31,0);
+        tracep->declBus(c+190,"FPHUB_sqrt sign_mantissa_bit", false,-1, 31,0);
+        tracep->declBus(c+190,"FPHUB_sqrt one_implicit_bit", false,-1, 31,0);
+        tracep->declBus(c+190,"FPHUB_sqrt ilsb_bit", false,-1, 31,0);
+        tracep->declBus(c+190,"FPHUB_sqrt extra_int_bit", false,-1, 31,0);
+        tracep->declBus(c+190,"FPHUB_sqrt extra_bit_x_gt_d", false,-1, 31,0);
+        tracep->declBus(c+191,"FPHUB_sqrt extra_bits_mantissa", false,-1, 31,0);
+        tracep->declBit(c+174,"FPHUB_sqrt clk", false,-1);
+        tracep->declBit(c+175,"FPHUB_sqrt rst_l", false,-1);
+        tracep->declBit(c+176,"FPHUB_sqrt start", false,-1);
+        tracep->declBus(c+177,"FPHUB_sqrt x", false,-1, 31,0);
+        tracep->declBus(c+178,"FPHUB_sqrt res", false,-1, 31,0);
+        tracep->declBit(c+179,"FPHUB_sqrt finish", false,-1);
+        tracep->declBit(c+180,"FPHUB_sqrt computing", false,-1);
         tracep->declQuad(c+1,"FPHUB_sqrt S", false,-1, 62,0);
         {int i; for (i=0; i<31; i++) {
-                tracep->declBus(c+3+i*1,"FPHUB_sqrt F1", true,(i+0), 25,0);}}
+                tracep->declBus(c+3+i*1,"FPHUB_sqrt F1", true,(i+0), 28,0);}}
         {int i; for (i=0; i<31; i++) {
-                tracep->declBus(c+34+i*1,"FPHUB_sqrt F_1", true,(i+0), 25,0);}}
+                tracep->declBus(c+34+i*1,"FPHUB_sqrt F_1", true,(i+0), 28,0);}}
         {int i; for (i=0; i<31; i++) {
-                tracep->declBus(c+65+i*1,"FPHUB_sqrt W", true,(i+0), 24,0);}}
-        tracep->declBus(c+96,"FPHUB_sqrt W2", false,-1, 24,0);
-        tracep->declBit(c+132,"FPHUB_sqrt x_sign", false,-1);
-        tracep->declBus(c+121,"FPHUB_sqrt x_exponent", false,-1, 7,0);
-        tracep->declBus(c+97,"FPHUB_sqrt res_exponent", false,-1, 7,0);
-        tracep->declBus(c+122,"FPHUB_sqrt x_mantissa", false,-1, 22,0);
-        tracep->declBus(c+123,"FPHUB_sqrt x_HUB", false,-1, 24,0);
-        tracep->declBus(c+98,"FPHUB_sqrt j", false,-1, 31,0);
-        tracep->declBus(c+99,"FPHUB_sqrt W_MSB", false,-1, 3,0);
-        tracep->declArray(c+100,"FPHUB_sqrt q", false,-1, 64,0);
-        tracep->declBus(c+103,"FPHUB_sqrt posiv", false,-1, 31,0);
-        tracep->declBus(c+104,"FPHUB_sqrt neg", false,-1, 31,0);
-        tracep->declBus(c+105,"FPHUB_sqrt root", false,-1, 31,0);
-        tracep->declBus(c+106,"FPHUB_sqrt state", false,-1, 1,0);
-        tracep->declBus(c+107,"FPHUB_sqrt unnamedblk1 k", false,-1, 31,0);
-        tracep->declBus(c+108,"FPHUB_sqrt unnamedblk2 k", false,-1, 31,0);
-        tracep->declBus(c+109,"FPHUB_sqrt unnamedblk3 k", false,-1, 31,0);
-        tracep->declBus(c+110,"FPHUB_sqrt unnamedblk4 k", false,-1, 31,0);
-        tracep->declBus(c+111,"FPHUB_sqrt unnamedblk5 k", false,-1, 31,0);
-        tracep->declBus(c+112,"FPHUB_sqrt unnamedblk6 k", false,-1, 31,0);
-        tracep->declBus(c+113,"FPHUB_sqrt unnamedblk7 i", false,-1, 31,0);
+                tracep->declBus(c+65+i*1,"FPHUB_sqrt W", true,(i+0), 28,0);}}
+        {int i; for (i=0; i<31; i++) {
+                tracep->declBus(c+96+i*1,"FPHUB_sqrt W2", true,(i+0), 28,0);}}
+        {int i; for (i=0; i<31; i++) {
+                tracep->declBus(c+127+i*1,"FPHUB_sqrt WC", true,(i+0), 28,0);}}
+        tracep->declBit(c+192,"FPHUB_sqrt x_sign", false,-1);
+        tracep->declBus(c+181,"FPHUB_sqrt x_exponent", false,-1, 7,0);
+        tracep->declBus(c+158,"FPHUB_sqrt res_exponent", false,-1, 7,0);
+        tracep->declBus(c+182,"FPHUB_sqrt x_mantissa", false,-1, 22,0);
+        tracep->declBus(c+183,"FPHUB_sqrt x_HUB", false,-1, 28,0);
+        tracep->declBus(c+159,"FPHUB_sqrt j", false,-1, 31,0);
+        tracep->declBus(c+160,"FPHUB_sqrt W_MSB", false,-1, 3,0);
+        tracep->declArray(c+161,"FPHUB_sqrt q", false,-1, 64,0);
+        tracep->declBus(c+164,"FPHUB_sqrt posiv", false,-1, 31,0);
+        tracep->declBus(c+165,"FPHUB_sqrt neg", false,-1, 31,0);
+        tracep->declBus(c+166,"FPHUB_sqrt root", false,-1, 31,0);
+        tracep->declBus(c+167,"FPHUB_sqrt unnamedblk1 k", false,-1, 31,0);
+        tracep->declBus(c+168,"FPHUB_sqrt unnamedblk2 k", false,-1, 31,0);
+        tracep->declBus(c+169,"FPHUB_sqrt unnamedblk3 k", false,-1, 31,0);
+        tracep->declBus(c+170,"FPHUB_sqrt unnamedblk4 k", false,-1, 31,0);
+        tracep->declBus(c+171,"FPHUB_sqrt unnamedblk5 k", false,-1, 31,0);
+        tracep->declBus(c+172,"FPHUB_sqrt unnamedblk6 k", false,-1, 31,0);
+        tracep->declBus(c+173,"FPHUB_sqrt unnamedblk7 i", false,-1, 31,0);
     }
 }
 
@@ -127,154 +129,203 @@ void VFPHUB_sqrt::traceFullSub0(void* userp, VerilatedVcd* tracep) {
     // Body
     {
         tracep->fullQData(oldp+1,(vlTOPp->FPHUB_sqrt__DOT__S),63);
-        tracep->fullIData(oldp+3,(vlTOPp->FPHUB_sqrt__DOT__F1[0]),26);
-        tracep->fullIData(oldp+4,(vlTOPp->FPHUB_sqrt__DOT__F1[1]),26);
-        tracep->fullIData(oldp+5,(vlTOPp->FPHUB_sqrt__DOT__F1[2]),26);
-        tracep->fullIData(oldp+6,(vlTOPp->FPHUB_sqrt__DOT__F1[3]),26);
-        tracep->fullIData(oldp+7,(vlTOPp->FPHUB_sqrt__DOT__F1[4]),26);
-        tracep->fullIData(oldp+8,(vlTOPp->FPHUB_sqrt__DOT__F1[5]),26);
-        tracep->fullIData(oldp+9,(vlTOPp->FPHUB_sqrt__DOT__F1[6]),26);
-        tracep->fullIData(oldp+10,(vlTOPp->FPHUB_sqrt__DOT__F1[7]),26);
-        tracep->fullIData(oldp+11,(vlTOPp->FPHUB_sqrt__DOT__F1[8]),26);
-        tracep->fullIData(oldp+12,(vlTOPp->FPHUB_sqrt__DOT__F1[9]),26);
-        tracep->fullIData(oldp+13,(vlTOPp->FPHUB_sqrt__DOT__F1[10]),26);
-        tracep->fullIData(oldp+14,(vlTOPp->FPHUB_sqrt__DOT__F1[11]),26);
-        tracep->fullIData(oldp+15,(vlTOPp->FPHUB_sqrt__DOT__F1[12]),26);
-        tracep->fullIData(oldp+16,(vlTOPp->FPHUB_sqrt__DOT__F1[13]),26);
-        tracep->fullIData(oldp+17,(vlTOPp->FPHUB_sqrt__DOT__F1[14]),26);
-        tracep->fullIData(oldp+18,(vlTOPp->FPHUB_sqrt__DOT__F1[15]),26);
-        tracep->fullIData(oldp+19,(vlTOPp->FPHUB_sqrt__DOT__F1[16]),26);
-        tracep->fullIData(oldp+20,(vlTOPp->FPHUB_sqrt__DOT__F1[17]),26);
-        tracep->fullIData(oldp+21,(vlTOPp->FPHUB_sqrt__DOT__F1[18]),26);
-        tracep->fullIData(oldp+22,(vlTOPp->FPHUB_sqrt__DOT__F1[19]),26);
-        tracep->fullIData(oldp+23,(vlTOPp->FPHUB_sqrt__DOT__F1[20]),26);
-        tracep->fullIData(oldp+24,(vlTOPp->FPHUB_sqrt__DOT__F1[21]),26);
-        tracep->fullIData(oldp+25,(vlTOPp->FPHUB_sqrt__DOT__F1[22]),26);
-        tracep->fullIData(oldp+26,(vlTOPp->FPHUB_sqrt__DOT__F1[23]),26);
-        tracep->fullIData(oldp+27,(vlTOPp->FPHUB_sqrt__DOT__F1[24]),26);
-        tracep->fullIData(oldp+28,(vlTOPp->FPHUB_sqrt__DOT__F1[25]),26);
-        tracep->fullIData(oldp+29,(vlTOPp->FPHUB_sqrt__DOT__F1[26]),26);
-        tracep->fullIData(oldp+30,(vlTOPp->FPHUB_sqrt__DOT__F1[27]),26);
-        tracep->fullIData(oldp+31,(vlTOPp->FPHUB_sqrt__DOT__F1[28]),26);
-        tracep->fullIData(oldp+32,(vlTOPp->FPHUB_sqrt__DOT__F1[29]),26);
-        tracep->fullIData(oldp+33,(vlTOPp->FPHUB_sqrt__DOT__F1[30]),26);
-        tracep->fullIData(oldp+34,(vlTOPp->FPHUB_sqrt__DOT__F_1[0]),26);
-        tracep->fullIData(oldp+35,(vlTOPp->FPHUB_sqrt__DOT__F_1[1]),26);
-        tracep->fullIData(oldp+36,(vlTOPp->FPHUB_sqrt__DOT__F_1[2]),26);
-        tracep->fullIData(oldp+37,(vlTOPp->FPHUB_sqrt__DOT__F_1[3]),26);
-        tracep->fullIData(oldp+38,(vlTOPp->FPHUB_sqrt__DOT__F_1[4]),26);
-        tracep->fullIData(oldp+39,(vlTOPp->FPHUB_sqrt__DOT__F_1[5]),26);
-        tracep->fullIData(oldp+40,(vlTOPp->FPHUB_sqrt__DOT__F_1[6]),26);
-        tracep->fullIData(oldp+41,(vlTOPp->FPHUB_sqrt__DOT__F_1[7]),26);
-        tracep->fullIData(oldp+42,(vlTOPp->FPHUB_sqrt__DOT__F_1[8]),26);
-        tracep->fullIData(oldp+43,(vlTOPp->FPHUB_sqrt__DOT__F_1[9]),26);
-        tracep->fullIData(oldp+44,(vlTOPp->FPHUB_sqrt__DOT__F_1[10]),26);
-        tracep->fullIData(oldp+45,(vlTOPp->FPHUB_sqrt__DOT__F_1[11]),26);
-        tracep->fullIData(oldp+46,(vlTOPp->FPHUB_sqrt__DOT__F_1[12]),26);
-        tracep->fullIData(oldp+47,(vlTOPp->FPHUB_sqrt__DOT__F_1[13]),26);
-        tracep->fullIData(oldp+48,(vlTOPp->FPHUB_sqrt__DOT__F_1[14]),26);
-        tracep->fullIData(oldp+49,(vlTOPp->FPHUB_sqrt__DOT__F_1[15]),26);
-        tracep->fullIData(oldp+50,(vlTOPp->FPHUB_sqrt__DOT__F_1[16]),26);
-        tracep->fullIData(oldp+51,(vlTOPp->FPHUB_sqrt__DOT__F_1[17]),26);
-        tracep->fullIData(oldp+52,(vlTOPp->FPHUB_sqrt__DOT__F_1[18]),26);
-        tracep->fullIData(oldp+53,(vlTOPp->FPHUB_sqrt__DOT__F_1[19]),26);
-        tracep->fullIData(oldp+54,(vlTOPp->FPHUB_sqrt__DOT__F_1[20]),26);
-        tracep->fullIData(oldp+55,(vlTOPp->FPHUB_sqrt__DOT__F_1[21]),26);
-        tracep->fullIData(oldp+56,(vlTOPp->FPHUB_sqrt__DOT__F_1[22]),26);
-        tracep->fullIData(oldp+57,(vlTOPp->FPHUB_sqrt__DOT__F_1[23]),26);
-        tracep->fullIData(oldp+58,(vlTOPp->FPHUB_sqrt__DOT__F_1[24]),26);
-        tracep->fullIData(oldp+59,(vlTOPp->FPHUB_sqrt__DOT__F_1[25]),26);
-        tracep->fullIData(oldp+60,(vlTOPp->FPHUB_sqrt__DOT__F_1[26]),26);
-        tracep->fullIData(oldp+61,(vlTOPp->FPHUB_sqrt__DOT__F_1[27]),26);
-        tracep->fullIData(oldp+62,(vlTOPp->FPHUB_sqrt__DOT__F_1[28]),26);
-        tracep->fullIData(oldp+63,(vlTOPp->FPHUB_sqrt__DOT__F_1[29]),26);
-        tracep->fullIData(oldp+64,(vlTOPp->FPHUB_sqrt__DOT__F_1[30]),26);
-        tracep->fullIData(oldp+65,(vlTOPp->FPHUB_sqrt__DOT__W[0]),25);
-        tracep->fullIData(oldp+66,(vlTOPp->FPHUB_sqrt__DOT__W[1]),25);
-        tracep->fullIData(oldp+67,(vlTOPp->FPHUB_sqrt__DOT__W[2]),25);
-        tracep->fullIData(oldp+68,(vlTOPp->FPHUB_sqrt__DOT__W[3]),25);
-        tracep->fullIData(oldp+69,(vlTOPp->FPHUB_sqrt__DOT__W[4]),25);
-        tracep->fullIData(oldp+70,(vlTOPp->FPHUB_sqrt__DOT__W[5]),25);
-        tracep->fullIData(oldp+71,(vlTOPp->FPHUB_sqrt__DOT__W[6]),25);
-        tracep->fullIData(oldp+72,(vlTOPp->FPHUB_sqrt__DOT__W[7]),25);
-        tracep->fullIData(oldp+73,(vlTOPp->FPHUB_sqrt__DOT__W[8]),25);
-        tracep->fullIData(oldp+74,(vlTOPp->FPHUB_sqrt__DOT__W[9]),25);
-        tracep->fullIData(oldp+75,(vlTOPp->FPHUB_sqrt__DOT__W[10]),25);
-        tracep->fullIData(oldp+76,(vlTOPp->FPHUB_sqrt__DOT__W[11]),25);
-        tracep->fullIData(oldp+77,(vlTOPp->FPHUB_sqrt__DOT__W[12]),25);
-        tracep->fullIData(oldp+78,(vlTOPp->FPHUB_sqrt__DOT__W[13]),25);
-        tracep->fullIData(oldp+79,(vlTOPp->FPHUB_sqrt__DOT__W[14]),25);
-        tracep->fullIData(oldp+80,(vlTOPp->FPHUB_sqrt__DOT__W[15]),25);
-        tracep->fullIData(oldp+81,(vlTOPp->FPHUB_sqrt__DOT__W[16]),25);
-        tracep->fullIData(oldp+82,(vlTOPp->FPHUB_sqrt__DOT__W[17]),25);
-        tracep->fullIData(oldp+83,(vlTOPp->FPHUB_sqrt__DOT__W[18]),25);
-        tracep->fullIData(oldp+84,(vlTOPp->FPHUB_sqrt__DOT__W[19]),25);
-        tracep->fullIData(oldp+85,(vlTOPp->FPHUB_sqrt__DOT__W[20]),25);
-        tracep->fullIData(oldp+86,(vlTOPp->FPHUB_sqrt__DOT__W[21]),25);
-        tracep->fullIData(oldp+87,(vlTOPp->FPHUB_sqrt__DOT__W[22]),25);
-        tracep->fullIData(oldp+88,(vlTOPp->FPHUB_sqrt__DOT__W[23]),25);
-        tracep->fullIData(oldp+89,(vlTOPp->FPHUB_sqrt__DOT__W[24]),25);
-        tracep->fullIData(oldp+90,(vlTOPp->FPHUB_sqrt__DOT__W[25]),25);
-        tracep->fullIData(oldp+91,(vlTOPp->FPHUB_sqrt__DOT__W[26]),25);
-        tracep->fullIData(oldp+92,(vlTOPp->FPHUB_sqrt__DOT__W[27]),25);
-        tracep->fullIData(oldp+93,(vlTOPp->FPHUB_sqrt__DOT__W[28]),25);
-        tracep->fullIData(oldp+94,(vlTOPp->FPHUB_sqrt__DOT__W[29]),25);
-        tracep->fullIData(oldp+95,(vlTOPp->FPHUB_sqrt__DOT__W[30]),25);
-        tracep->fullIData(oldp+96,((0x1ffffffU & ((
-                                                   (0x1eU 
-                                                    >= 
-                                                    (0x1fU 
-                                                     & vlTOPp->FPHUB_sqrt__DOT__j))
-                                                    ? 
-                                                   vlTOPp->FPHUB_sqrt__DOT__W
-                                                   [
-                                                   (0x1fU 
-                                                    & vlTOPp->FPHUB_sqrt__DOT__j)]
-                                                    : 0U) 
-                                                  << 1U))),25);
-        tracep->fullCData(oldp+97,(vlTOPp->FPHUB_sqrt__DOT__res_exponent),8);
-        tracep->fullIData(oldp+98,(vlTOPp->FPHUB_sqrt__DOT__j),32);
-        tracep->fullCData(oldp+99,((0xfU & (((0x1eU 
-                                              >= (0x1fU 
-                                                  & vlTOPp->FPHUB_sqrt__DOT__j))
-                                              ? vlTOPp->FPHUB_sqrt__DOT__W
-                                             [(0x1fU 
-                                               & vlTOPp->FPHUB_sqrt__DOT__j)]
-                                              : 0U) 
-                                            >> 0x14U))),4);
-        tracep->fullWData(oldp+100,(vlTOPp->FPHUB_sqrt__DOT__q),65);
-        tracep->fullIData(oldp+103,(vlTOPp->FPHUB_sqrt__DOT__posiv),32);
-        tracep->fullIData(oldp+104,(vlTOPp->FPHUB_sqrt__DOT__neg),32);
-        tracep->fullIData(oldp+105,(vlTOPp->FPHUB_sqrt__DOT__root),32);
-        tracep->fullCData(oldp+106,(vlTOPp->FPHUB_sqrt__DOT__state),2);
-        tracep->fullIData(oldp+107,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k),32);
-        tracep->fullIData(oldp+108,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk2__DOT__k),32);
-        tracep->fullIData(oldp+109,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k),32);
-        tracep->fullIData(oldp+110,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk4__DOT__k),32);
-        tracep->fullIData(oldp+111,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk5__DOT__k),32);
-        tracep->fullIData(oldp+112,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk6__DOT__k),32);
-        tracep->fullIData(oldp+113,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk7__DOT__i),32);
-        tracep->fullBit(oldp+114,(vlTOPp->clk));
-        tracep->fullBit(oldp+115,(vlTOPp->rst_l));
-        tracep->fullBit(oldp+116,(vlTOPp->start));
-        tracep->fullIData(oldp+117,(vlTOPp->x),32);
-        tracep->fullIData(oldp+118,(vlTOPp->res),32);
-        tracep->fullBit(oldp+119,(vlTOPp->finish));
-        tracep->fullBit(oldp+120,(vlTOPp->computing));
-        tracep->fullCData(oldp+121,((0xffU & (vlTOPp->x 
+        tracep->fullIData(oldp+3,(vlTOPp->FPHUB_sqrt__DOT__F1[0]),29);
+        tracep->fullIData(oldp+4,(vlTOPp->FPHUB_sqrt__DOT__F1[1]),29);
+        tracep->fullIData(oldp+5,(vlTOPp->FPHUB_sqrt__DOT__F1[2]),29);
+        tracep->fullIData(oldp+6,(vlTOPp->FPHUB_sqrt__DOT__F1[3]),29);
+        tracep->fullIData(oldp+7,(vlTOPp->FPHUB_sqrt__DOT__F1[4]),29);
+        tracep->fullIData(oldp+8,(vlTOPp->FPHUB_sqrt__DOT__F1[5]),29);
+        tracep->fullIData(oldp+9,(vlTOPp->FPHUB_sqrt__DOT__F1[6]),29);
+        tracep->fullIData(oldp+10,(vlTOPp->FPHUB_sqrt__DOT__F1[7]),29);
+        tracep->fullIData(oldp+11,(vlTOPp->FPHUB_sqrt__DOT__F1[8]),29);
+        tracep->fullIData(oldp+12,(vlTOPp->FPHUB_sqrt__DOT__F1[9]),29);
+        tracep->fullIData(oldp+13,(vlTOPp->FPHUB_sqrt__DOT__F1[10]),29);
+        tracep->fullIData(oldp+14,(vlTOPp->FPHUB_sqrt__DOT__F1[11]),29);
+        tracep->fullIData(oldp+15,(vlTOPp->FPHUB_sqrt__DOT__F1[12]),29);
+        tracep->fullIData(oldp+16,(vlTOPp->FPHUB_sqrt__DOT__F1[13]),29);
+        tracep->fullIData(oldp+17,(vlTOPp->FPHUB_sqrt__DOT__F1[14]),29);
+        tracep->fullIData(oldp+18,(vlTOPp->FPHUB_sqrt__DOT__F1[15]),29);
+        tracep->fullIData(oldp+19,(vlTOPp->FPHUB_sqrt__DOT__F1[16]),29);
+        tracep->fullIData(oldp+20,(vlTOPp->FPHUB_sqrt__DOT__F1[17]),29);
+        tracep->fullIData(oldp+21,(vlTOPp->FPHUB_sqrt__DOT__F1[18]),29);
+        tracep->fullIData(oldp+22,(vlTOPp->FPHUB_sqrt__DOT__F1[19]),29);
+        tracep->fullIData(oldp+23,(vlTOPp->FPHUB_sqrt__DOT__F1[20]),29);
+        tracep->fullIData(oldp+24,(vlTOPp->FPHUB_sqrt__DOT__F1[21]),29);
+        tracep->fullIData(oldp+25,(vlTOPp->FPHUB_sqrt__DOT__F1[22]),29);
+        tracep->fullIData(oldp+26,(vlTOPp->FPHUB_sqrt__DOT__F1[23]),29);
+        tracep->fullIData(oldp+27,(vlTOPp->FPHUB_sqrt__DOT__F1[24]),29);
+        tracep->fullIData(oldp+28,(vlTOPp->FPHUB_sqrt__DOT__F1[25]),29);
+        tracep->fullIData(oldp+29,(vlTOPp->FPHUB_sqrt__DOT__F1[26]),29);
+        tracep->fullIData(oldp+30,(vlTOPp->FPHUB_sqrt__DOT__F1[27]),29);
+        tracep->fullIData(oldp+31,(vlTOPp->FPHUB_sqrt__DOT__F1[28]),29);
+        tracep->fullIData(oldp+32,(vlTOPp->FPHUB_sqrt__DOT__F1[29]),29);
+        tracep->fullIData(oldp+33,(vlTOPp->FPHUB_sqrt__DOT__F1[30]),29);
+        tracep->fullIData(oldp+34,(vlTOPp->FPHUB_sqrt__DOT__F_1[0]),29);
+        tracep->fullIData(oldp+35,(vlTOPp->FPHUB_sqrt__DOT__F_1[1]),29);
+        tracep->fullIData(oldp+36,(vlTOPp->FPHUB_sqrt__DOT__F_1[2]),29);
+        tracep->fullIData(oldp+37,(vlTOPp->FPHUB_sqrt__DOT__F_1[3]),29);
+        tracep->fullIData(oldp+38,(vlTOPp->FPHUB_sqrt__DOT__F_1[4]),29);
+        tracep->fullIData(oldp+39,(vlTOPp->FPHUB_sqrt__DOT__F_1[5]),29);
+        tracep->fullIData(oldp+40,(vlTOPp->FPHUB_sqrt__DOT__F_1[6]),29);
+        tracep->fullIData(oldp+41,(vlTOPp->FPHUB_sqrt__DOT__F_1[7]),29);
+        tracep->fullIData(oldp+42,(vlTOPp->FPHUB_sqrt__DOT__F_1[8]),29);
+        tracep->fullIData(oldp+43,(vlTOPp->FPHUB_sqrt__DOT__F_1[9]),29);
+        tracep->fullIData(oldp+44,(vlTOPp->FPHUB_sqrt__DOT__F_1[10]),29);
+        tracep->fullIData(oldp+45,(vlTOPp->FPHUB_sqrt__DOT__F_1[11]),29);
+        tracep->fullIData(oldp+46,(vlTOPp->FPHUB_sqrt__DOT__F_1[12]),29);
+        tracep->fullIData(oldp+47,(vlTOPp->FPHUB_sqrt__DOT__F_1[13]),29);
+        tracep->fullIData(oldp+48,(vlTOPp->FPHUB_sqrt__DOT__F_1[14]),29);
+        tracep->fullIData(oldp+49,(vlTOPp->FPHUB_sqrt__DOT__F_1[15]),29);
+        tracep->fullIData(oldp+50,(vlTOPp->FPHUB_sqrt__DOT__F_1[16]),29);
+        tracep->fullIData(oldp+51,(vlTOPp->FPHUB_sqrt__DOT__F_1[17]),29);
+        tracep->fullIData(oldp+52,(vlTOPp->FPHUB_sqrt__DOT__F_1[18]),29);
+        tracep->fullIData(oldp+53,(vlTOPp->FPHUB_sqrt__DOT__F_1[19]),29);
+        tracep->fullIData(oldp+54,(vlTOPp->FPHUB_sqrt__DOT__F_1[20]),29);
+        tracep->fullIData(oldp+55,(vlTOPp->FPHUB_sqrt__DOT__F_1[21]),29);
+        tracep->fullIData(oldp+56,(vlTOPp->FPHUB_sqrt__DOT__F_1[22]),29);
+        tracep->fullIData(oldp+57,(vlTOPp->FPHUB_sqrt__DOT__F_1[23]),29);
+        tracep->fullIData(oldp+58,(vlTOPp->FPHUB_sqrt__DOT__F_1[24]),29);
+        tracep->fullIData(oldp+59,(vlTOPp->FPHUB_sqrt__DOT__F_1[25]),29);
+        tracep->fullIData(oldp+60,(vlTOPp->FPHUB_sqrt__DOT__F_1[26]),29);
+        tracep->fullIData(oldp+61,(vlTOPp->FPHUB_sqrt__DOT__F_1[27]),29);
+        tracep->fullIData(oldp+62,(vlTOPp->FPHUB_sqrt__DOT__F_1[28]),29);
+        tracep->fullIData(oldp+63,(vlTOPp->FPHUB_sqrt__DOT__F_1[29]),29);
+        tracep->fullIData(oldp+64,(vlTOPp->FPHUB_sqrt__DOT__F_1[30]),29);
+        tracep->fullIData(oldp+65,(vlTOPp->FPHUB_sqrt__DOT__W[0]),29);
+        tracep->fullIData(oldp+66,(vlTOPp->FPHUB_sqrt__DOT__W[1]),29);
+        tracep->fullIData(oldp+67,(vlTOPp->FPHUB_sqrt__DOT__W[2]),29);
+        tracep->fullIData(oldp+68,(vlTOPp->FPHUB_sqrt__DOT__W[3]),29);
+        tracep->fullIData(oldp+69,(vlTOPp->FPHUB_sqrt__DOT__W[4]),29);
+        tracep->fullIData(oldp+70,(vlTOPp->FPHUB_sqrt__DOT__W[5]),29);
+        tracep->fullIData(oldp+71,(vlTOPp->FPHUB_sqrt__DOT__W[6]),29);
+        tracep->fullIData(oldp+72,(vlTOPp->FPHUB_sqrt__DOT__W[7]),29);
+        tracep->fullIData(oldp+73,(vlTOPp->FPHUB_sqrt__DOT__W[8]),29);
+        tracep->fullIData(oldp+74,(vlTOPp->FPHUB_sqrt__DOT__W[9]),29);
+        tracep->fullIData(oldp+75,(vlTOPp->FPHUB_sqrt__DOT__W[10]),29);
+        tracep->fullIData(oldp+76,(vlTOPp->FPHUB_sqrt__DOT__W[11]),29);
+        tracep->fullIData(oldp+77,(vlTOPp->FPHUB_sqrt__DOT__W[12]),29);
+        tracep->fullIData(oldp+78,(vlTOPp->FPHUB_sqrt__DOT__W[13]),29);
+        tracep->fullIData(oldp+79,(vlTOPp->FPHUB_sqrt__DOT__W[14]),29);
+        tracep->fullIData(oldp+80,(vlTOPp->FPHUB_sqrt__DOT__W[15]),29);
+        tracep->fullIData(oldp+81,(vlTOPp->FPHUB_sqrt__DOT__W[16]),29);
+        tracep->fullIData(oldp+82,(vlTOPp->FPHUB_sqrt__DOT__W[17]),29);
+        tracep->fullIData(oldp+83,(vlTOPp->FPHUB_sqrt__DOT__W[18]),29);
+        tracep->fullIData(oldp+84,(vlTOPp->FPHUB_sqrt__DOT__W[19]),29);
+        tracep->fullIData(oldp+85,(vlTOPp->FPHUB_sqrt__DOT__W[20]),29);
+        tracep->fullIData(oldp+86,(vlTOPp->FPHUB_sqrt__DOT__W[21]),29);
+        tracep->fullIData(oldp+87,(vlTOPp->FPHUB_sqrt__DOT__W[22]),29);
+        tracep->fullIData(oldp+88,(vlTOPp->FPHUB_sqrt__DOT__W[23]),29);
+        tracep->fullIData(oldp+89,(vlTOPp->FPHUB_sqrt__DOT__W[24]),29);
+        tracep->fullIData(oldp+90,(vlTOPp->FPHUB_sqrt__DOT__W[25]),29);
+        tracep->fullIData(oldp+91,(vlTOPp->FPHUB_sqrt__DOT__W[26]),29);
+        tracep->fullIData(oldp+92,(vlTOPp->FPHUB_sqrt__DOT__W[27]),29);
+        tracep->fullIData(oldp+93,(vlTOPp->FPHUB_sqrt__DOT__W[28]),29);
+        tracep->fullIData(oldp+94,(vlTOPp->FPHUB_sqrt__DOT__W[29]),29);
+        tracep->fullIData(oldp+95,(vlTOPp->FPHUB_sqrt__DOT__W[30]),29);
+        tracep->fullIData(oldp+96,(vlTOPp->FPHUB_sqrt__DOT__W2[0]),29);
+        tracep->fullIData(oldp+97,(vlTOPp->FPHUB_sqrt__DOT__W2[1]),29);
+        tracep->fullIData(oldp+98,(vlTOPp->FPHUB_sqrt__DOT__W2[2]),29);
+        tracep->fullIData(oldp+99,(vlTOPp->FPHUB_sqrt__DOT__W2[3]),29);
+        tracep->fullIData(oldp+100,(vlTOPp->FPHUB_sqrt__DOT__W2[4]),29);
+        tracep->fullIData(oldp+101,(vlTOPp->FPHUB_sqrt__DOT__W2[5]),29);
+        tracep->fullIData(oldp+102,(vlTOPp->FPHUB_sqrt__DOT__W2[6]),29);
+        tracep->fullIData(oldp+103,(vlTOPp->FPHUB_sqrt__DOT__W2[7]),29);
+        tracep->fullIData(oldp+104,(vlTOPp->FPHUB_sqrt__DOT__W2[8]),29);
+        tracep->fullIData(oldp+105,(vlTOPp->FPHUB_sqrt__DOT__W2[9]),29);
+        tracep->fullIData(oldp+106,(vlTOPp->FPHUB_sqrt__DOT__W2[10]),29);
+        tracep->fullIData(oldp+107,(vlTOPp->FPHUB_sqrt__DOT__W2[11]),29);
+        tracep->fullIData(oldp+108,(vlTOPp->FPHUB_sqrt__DOT__W2[12]),29);
+        tracep->fullIData(oldp+109,(vlTOPp->FPHUB_sqrt__DOT__W2[13]),29);
+        tracep->fullIData(oldp+110,(vlTOPp->FPHUB_sqrt__DOT__W2[14]),29);
+        tracep->fullIData(oldp+111,(vlTOPp->FPHUB_sqrt__DOT__W2[15]),29);
+        tracep->fullIData(oldp+112,(vlTOPp->FPHUB_sqrt__DOT__W2[16]),29);
+        tracep->fullIData(oldp+113,(vlTOPp->FPHUB_sqrt__DOT__W2[17]),29);
+        tracep->fullIData(oldp+114,(vlTOPp->FPHUB_sqrt__DOT__W2[18]),29);
+        tracep->fullIData(oldp+115,(vlTOPp->FPHUB_sqrt__DOT__W2[19]),29);
+        tracep->fullIData(oldp+116,(vlTOPp->FPHUB_sqrt__DOT__W2[20]),29);
+        tracep->fullIData(oldp+117,(vlTOPp->FPHUB_sqrt__DOT__W2[21]),29);
+        tracep->fullIData(oldp+118,(vlTOPp->FPHUB_sqrt__DOT__W2[22]),29);
+        tracep->fullIData(oldp+119,(vlTOPp->FPHUB_sqrt__DOT__W2[23]),29);
+        tracep->fullIData(oldp+120,(vlTOPp->FPHUB_sqrt__DOT__W2[24]),29);
+        tracep->fullIData(oldp+121,(vlTOPp->FPHUB_sqrt__DOT__W2[25]),29);
+        tracep->fullIData(oldp+122,(vlTOPp->FPHUB_sqrt__DOT__W2[26]),29);
+        tracep->fullIData(oldp+123,(vlTOPp->FPHUB_sqrt__DOT__W2[27]),29);
+        tracep->fullIData(oldp+124,(vlTOPp->FPHUB_sqrt__DOT__W2[28]),29);
+        tracep->fullIData(oldp+125,(vlTOPp->FPHUB_sqrt__DOT__W2[29]),29);
+        tracep->fullIData(oldp+126,(vlTOPp->FPHUB_sqrt__DOT__W2[30]),29);
+        tracep->fullIData(oldp+127,(vlTOPp->FPHUB_sqrt__DOT__WC[0]),29);
+        tracep->fullIData(oldp+128,(vlTOPp->FPHUB_sqrt__DOT__WC[1]),29);
+        tracep->fullIData(oldp+129,(vlTOPp->FPHUB_sqrt__DOT__WC[2]),29);
+        tracep->fullIData(oldp+130,(vlTOPp->FPHUB_sqrt__DOT__WC[3]),29);
+        tracep->fullIData(oldp+131,(vlTOPp->FPHUB_sqrt__DOT__WC[4]),29);
+        tracep->fullIData(oldp+132,(vlTOPp->FPHUB_sqrt__DOT__WC[5]),29);
+        tracep->fullIData(oldp+133,(vlTOPp->FPHUB_sqrt__DOT__WC[6]),29);
+        tracep->fullIData(oldp+134,(vlTOPp->FPHUB_sqrt__DOT__WC[7]),29);
+        tracep->fullIData(oldp+135,(vlTOPp->FPHUB_sqrt__DOT__WC[8]),29);
+        tracep->fullIData(oldp+136,(vlTOPp->FPHUB_sqrt__DOT__WC[9]),29);
+        tracep->fullIData(oldp+137,(vlTOPp->FPHUB_sqrt__DOT__WC[10]),29);
+        tracep->fullIData(oldp+138,(vlTOPp->FPHUB_sqrt__DOT__WC[11]),29);
+        tracep->fullIData(oldp+139,(vlTOPp->FPHUB_sqrt__DOT__WC[12]),29);
+        tracep->fullIData(oldp+140,(vlTOPp->FPHUB_sqrt__DOT__WC[13]),29);
+        tracep->fullIData(oldp+141,(vlTOPp->FPHUB_sqrt__DOT__WC[14]),29);
+        tracep->fullIData(oldp+142,(vlTOPp->FPHUB_sqrt__DOT__WC[15]),29);
+        tracep->fullIData(oldp+143,(vlTOPp->FPHUB_sqrt__DOT__WC[16]),29);
+        tracep->fullIData(oldp+144,(vlTOPp->FPHUB_sqrt__DOT__WC[17]),29);
+        tracep->fullIData(oldp+145,(vlTOPp->FPHUB_sqrt__DOT__WC[18]),29);
+        tracep->fullIData(oldp+146,(vlTOPp->FPHUB_sqrt__DOT__WC[19]),29);
+        tracep->fullIData(oldp+147,(vlTOPp->FPHUB_sqrt__DOT__WC[20]),29);
+        tracep->fullIData(oldp+148,(vlTOPp->FPHUB_sqrt__DOT__WC[21]),29);
+        tracep->fullIData(oldp+149,(vlTOPp->FPHUB_sqrt__DOT__WC[22]),29);
+        tracep->fullIData(oldp+150,(vlTOPp->FPHUB_sqrt__DOT__WC[23]),29);
+        tracep->fullIData(oldp+151,(vlTOPp->FPHUB_sqrt__DOT__WC[24]),29);
+        tracep->fullIData(oldp+152,(vlTOPp->FPHUB_sqrt__DOT__WC[25]),29);
+        tracep->fullIData(oldp+153,(vlTOPp->FPHUB_sqrt__DOT__WC[26]),29);
+        tracep->fullIData(oldp+154,(vlTOPp->FPHUB_sqrt__DOT__WC[27]),29);
+        tracep->fullIData(oldp+155,(vlTOPp->FPHUB_sqrt__DOT__WC[28]),29);
+        tracep->fullIData(oldp+156,(vlTOPp->FPHUB_sqrt__DOT__WC[29]),29);
+        tracep->fullIData(oldp+157,(vlTOPp->FPHUB_sqrt__DOT__WC[30]),29);
+        tracep->fullCData(oldp+158,(vlTOPp->FPHUB_sqrt__DOT__res_exponent),8);
+        tracep->fullIData(oldp+159,(vlTOPp->FPHUB_sqrt__DOT__j),32);
+        tracep->fullCData(oldp+160,((0xfU & (((0x1eU 
+                                               >= (0x1fU 
+                                                   & vlTOPp->FPHUB_sqrt__DOT__j))
+                                               ? vlTOPp->FPHUB_sqrt__DOT__W2
+                                              [(0x1fU 
+                                                & vlTOPp->FPHUB_sqrt__DOT__j)]
+                                               : 0U) 
+                                             >> 0x19U))),4);
+        tracep->fullWData(oldp+161,(vlTOPp->FPHUB_sqrt__DOT__q),65);
+        tracep->fullIData(oldp+164,(vlTOPp->FPHUB_sqrt__DOT__posiv),32);
+        tracep->fullIData(oldp+165,(vlTOPp->FPHUB_sqrt__DOT__neg),32);
+        tracep->fullIData(oldp+166,(vlTOPp->FPHUB_sqrt__DOT__root),32);
+        tracep->fullIData(oldp+167,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k),32);
+        tracep->fullIData(oldp+168,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk2__DOT__k),32);
+        tracep->fullIData(oldp+169,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k),32);
+        tracep->fullIData(oldp+170,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk4__DOT__k),32);
+        tracep->fullIData(oldp+171,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk5__DOT__k),32);
+        tracep->fullIData(oldp+172,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk6__DOT__k),32);
+        tracep->fullIData(oldp+173,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk7__DOT__i),32);
+        tracep->fullBit(oldp+174,(vlTOPp->clk));
+        tracep->fullBit(oldp+175,(vlTOPp->rst_l));
+        tracep->fullBit(oldp+176,(vlTOPp->start));
+        tracep->fullIData(oldp+177,(vlTOPp->x),32);
+        tracep->fullIData(oldp+178,(vlTOPp->res),32);
+        tracep->fullBit(oldp+179,(vlTOPp->finish));
+        tracep->fullBit(oldp+180,(vlTOPp->computing));
+        tracep->fullCData(oldp+181,((0xffU & (vlTOPp->x 
                                               >> 0x17U))),8);
-        tracep->fullIData(oldp+122,((0x7fffffU & vlTOPp->x)),23);
-        tracep->fullIData(oldp+123,((0x1000001U | (0xfffffeU 
+        tracep->fullIData(oldp+182,((0x7fffffU & vlTOPp->x)),23);
+        tracep->fullIData(oldp+183,((0x1000001U | (0xfffffeU 
                                                    & (vlTOPp->x 
-                                                      << 1U)))),25);
-        tracep->fullIData(oldp+124,(0x17U),32);
-        tracep->fullIData(oldp+125,(8U),32);
-        tracep->fullIData(oldp+126,(0x1fU),32);
-        tracep->fullIData(oldp+127,(0x80U),32);
-        tracep->fullIData(oldp+128,(0x7fU),32);
-        tracep->fullIData(oldp+129,(7U),32);
-        tracep->fullIData(oldp+130,(1U),32);
-        tracep->fullIData(oldp+131,(5U),32);
-        tracep->fullBit(oldp+132,(vlTOPp->FPHUB_sqrt__DOT__x_sign));
+                                                      << 1U)))),29);
+        tracep->fullIData(oldp+184,(0x17U),32);
+        tracep->fullIData(oldp+185,(8U),32);
+        tracep->fullIData(oldp+186,(0x1fU),32);
+        tracep->fullIData(oldp+187,(0x80U),32);
+        tracep->fullIData(oldp+188,(0x7fU),32);
+        tracep->fullIData(oldp+189,(7U),32);
+        tracep->fullIData(oldp+190,(1U),32);
+        tracep->fullIData(oldp+191,(5U),32);
+        tracep->fullBit(oldp+192,(vlTOPp->FPHUB_sqrt__DOT__x_sign));
     }
 }

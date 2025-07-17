@@ -19,6 +19,7 @@ int main(int argc, char **argv) {
     top->rst_l = 0;
     top->start = 0;
     top->x = 0;
+    
 
     // Clocking and simulation loop
     while (!Verilated::gotFinish() && main_time < 1000) {
@@ -34,7 +35,7 @@ int main(int argc, char **argv) {
 
         if (main_time == 8) {
             top->start = 1;
-            top->x = 0x41100000; // 9.0 in IEEE 754
+            top->x = 0x3f370000;
         }
 
         if (main_time == 12) {

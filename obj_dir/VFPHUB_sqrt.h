@@ -36,8 +36,6 @@ VL_MODULE(VFPHUB_sqrt) {
     // Internals; generally not touched by application code
     CData/*0:0*/ FPHUB_sqrt__DOT__x_sign;
     CData/*7:0*/ FPHUB_sqrt__DOT__res_exponent;
-    CData/*1:0*/ FPHUB_sqrt__DOT__state;
-    IData/*24:0*/ FPHUB_sqrt__DOT__W2;
     IData/*31:0*/ FPHUB_sqrt__DOT__j;
     WData/*64:0*/ FPHUB_sqrt__DOT__q[3];
     IData/*31:0*/ FPHUB_sqrt__DOT__posiv;
@@ -51,38 +49,46 @@ VL_MODULE(VFPHUB_sqrt) {
     IData/*31:0*/ FPHUB_sqrt__DOT__unnamedblk6__DOT__k;
     IData/*31:0*/ FPHUB_sqrt__DOT__unnamedblk7__DOT__i;
     QData/*62:0*/ FPHUB_sqrt__DOT__S;
-    IData/*25:0*/ FPHUB_sqrt__DOT__F1[31];
-    IData/*25:0*/ FPHUB_sqrt__DOT__F_1[31];
-    IData/*24:0*/ FPHUB_sqrt__DOT__W[31];
+    IData/*28:0*/ FPHUB_sqrt__DOT__F1[31];
+    IData/*28:0*/ FPHUB_sqrt__DOT__F_1[31];
+    IData/*28:0*/ FPHUB_sqrt__DOT__W[31];
+    IData/*28:0*/ FPHUB_sqrt__DOT__W2[31];
+    IData/*28:0*/ FPHUB_sqrt__DOT__WC[31];
     
     // LOCAL VARIABLES
     // Internals; generally not touched by application code
     CData/*1:0*/ FPHUB_sqrt__DOT____Vlvbound1;
-    CData/*0:0*/ FPHUB_sqrt__DOT____Vlvbound3;
-    CData/*0:0*/ FPHUB_sqrt__DOT____Vlvbound4;
-    CData/*2:0*/ FPHUB_sqrt__DOT____Vlvbound5;
-    CData/*2:0*/ FPHUB_sqrt__DOT____Vlvbound6;
-    CData/*0:0*/ FPHUB_sqrt__DOT____Vlvbound7;
-    CData/*0:0*/ FPHUB_sqrt__DOT____Vlvbound8;
-    CData/*1:0*/ FPHUB_sqrt__DOT____Vlvbound9;
-    CData/*0:0*/ FPHUB_sqrt__DOT____Vlvbound11;
-    CData/*0:0*/ FPHUB_sqrt__DOT____Vlvbound12;
-    CData/*2:0*/ FPHUB_sqrt__DOT____Vlvbound13;
-    CData/*2:0*/ FPHUB_sqrt__DOT____Vlvbound14;
+    CData/*0:0*/ FPHUB_sqrt__DOT____Vlvbound5;
+    CData/*0:0*/ FPHUB_sqrt__DOT____Vlvbound6;
+    CData/*2:0*/ FPHUB_sqrt__DOT____Vlvbound7;
+    CData/*2:0*/ FPHUB_sqrt__DOT____Vlvbound8;
+    CData/*0:0*/ FPHUB_sqrt__DOT____Vlvbound9;
+    CData/*0:0*/ FPHUB_sqrt__DOT____Vlvbound10;
+    CData/*1:0*/ FPHUB_sqrt__DOT____Vlvbound11;
     CData/*0:0*/ FPHUB_sqrt__DOT____Vlvbound15;
     CData/*0:0*/ FPHUB_sqrt__DOT____Vlvbound16;
-    CData/*1:0*/ FPHUB_sqrt__DOT____Vlvbound17;
+    CData/*2:0*/ FPHUB_sqrt__DOT____Vlvbound17;
+    CData/*2:0*/ FPHUB_sqrt__DOT____Vlvbound18;
     CData/*0:0*/ FPHUB_sqrt__DOT____Vlvbound19;
     CData/*0:0*/ FPHUB_sqrt__DOT____Vlvbound20;
-    CData/*2:0*/ FPHUB_sqrt__DOT____Vlvbound21;
-    CData/*2:0*/ FPHUB_sqrt__DOT____Vlvbound22;
-    CData/*0:0*/ FPHUB_sqrt__DOT____Vlvbound23;
-    CData/*0:0*/ FPHUB_sqrt__DOT____Vlvbound24;
+    CData/*1:0*/ FPHUB_sqrt__DOT____Vlvbound21;
+    CData/*0:0*/ FPHUB_sqrt__DOT____Vlvbound25;
+    CData/*0:0*/ FPHUB_sqrt__DOT____Vlvbound26;
+    CData/*2:0*/ FPHUB_sqrt__DOT____Vlvbound27;
+    CData/*2:0*/ FPHUB_sqrt__DOT____Vlvbound28;
+    CData/*0:0*/ FPHUB_sqrt__DOT____Vlvbound29;
+    CData/*0:0*/ FPHUB_sqrt__DOT____Vlvbound30;
     CData/*0:0*/ __Vclklast__TOP__clk;
     CData/*0:0*/ __Vclklast__TOP__rst_l;
-    IData/*24:0*/ FPHUB_sqrt__DOT____Vlvbound2;
-    IData/*24:0*/ FPHUB_sqrt__DOT____Vlvbound10;
-    IData/*24:0*/ FPHUB_sqrt__DOT____Vlvbound18;
+    IData/*28:0*/ FPHUB_sqrt__DOT____Vlvbound2;
+    IData/*28:0*/ FPHUB_sqrt__DOT____Vlvbound3;
+    IData/*28:0*/ FPHUB_sqrt__DOT____Vlvbound4;
+    IData/*28:0*/ FPHUB_sqrt__DOT____Vlvbound12;
+    IData/*28:0*/ FPHUB_sqrt__DOT____Vlvbound13;
+    IData/*28:0*/ FPHUB_sqrt__DOT____Vlvbound14;
+    IData/*28:0*/ FPHUB_sqrt__DOT____Vlvbound22;
+    IData/*28:0*/ FPHUB_sqrt__DOT____Vlvbound23;
+    IData/*28:0*/ FPHUB_sqrt__DOT____Vlvbound24;
     CData/*0:0*/ __Vm_traceActivity[2];
     
     // INTERNAL VARIABLES
@@ -130,7 +136,6 @@ VL_MODULE(VFPHUB_sqrt) {
     static void _eval_initial(VFPHUB_sqrt__Syms* __restrict vlSymsp) VL_ATTR_COLD;
     static void _eval_settle(VFPHUB_sqrt__Syms* __restrict vlSymsp) VL_ATTR_COLD;
     static void _sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict vlSymsp);
-    static void _settle__TOP__2(VFPHUB_sqrt__Syms* __restrict vlSymsp) VL_ATTR_COLD;
   private:
     static void traceChgSub0(void* userp, VerilatedVcd* tracep);
     static void traceChgTop0(void* userp, VerilatedVcd* tracep);
