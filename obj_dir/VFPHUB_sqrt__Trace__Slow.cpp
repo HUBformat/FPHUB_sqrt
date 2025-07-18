@@ -44,33 +44,33 @@ void VFPHUB_sqrt::traceInitSub0(void* userp, VerilatedVcd* tracep) {
     if (false && tracep && c) {}  // Prevent unused
     // Body
     {
-        tracep->declBit(c+174,"clk", false,-1);
-        tracep->declBit(c+175,"rst_l", false,-1);
-        tracep->declBit(c+176,"start", false,-1);
-        tracep->declBus(c+177,"x", false,-1, 31,0);
-        tracep->declBus(c+178,"res", false,-1, 31,0);
-        tracep->declBit(c+179,"finish", false,-1);
-        tracep->declBit(c+180,"computing", false,-1);
-        tracep->declBus(c+184,"FPHUB_sqrt M", false,-1, 31,0);
-        tracep->declBus(c+185,"FPHUB_sqrt E", false,-1, 31,0);
-        tracep->declBus(c+186,"FPHUB_sqrt N", false,-1, 31,0);
-        tracep->declBus(c+186,"FPHUB_sqrt T", false,-1, 31,0);
-        tracep->declBus(c+187,"FPHUB_sqrt EXP_BIAS", false,-1, 31,0);
-        tracep->declBus(c+188,"FPHUB_sqrt EXP_BIAS_LOW", false,-1, 31,0);
-        tracep->declBus(c+189,"FPHUB_sqrt special_case", false,-1, 31,0);
-        tracep->declBus(c+190,"FPHUB_sqrt sign_mantissa_bit", false,-1, 31,0);
-        tracep->declBus(c+190,"FPHUB_sqrt one_implicit_bit", false,-1, 31,0);
-        tracep->declBus(c+190,"FPHUB_sqrt ilsb_bit", false,-1, 31,0);
-        tracep->declBus(c+190,"FPHUB_sqrt extra_int_bit", false,-1, 31,0);
-        tracep->declBus(c+190,"FPHUB_sqrt extra_bit_x_gt_d", false,-1, 31,0);
-        tracep->declBus(c+191,"FPHUB_sqrt extra_bits_mantissa", false,-1, 31,0);
-        tracep->declBit(c+174,"FPHUB_sqrt clk", false,-1);
-        tracep->declBit(c+175,"FPHUB_sqrt rst_l", false,-1);
-        tracep->declBit(c+176,"FPHUB_sqrt start", false,-1);
-        tracep->declBus(c+177,"FPHUB_sqrt x", false,-1, 31,0);
-        tracep->declBus(c+178,"FPHUB_sqrt res", false,-1, 31,0);
-        tracep->declBit(c+179,"FPHUB_sqrt finish", false,-1);
-        tracep->declBit(c+180,"FPHUB_sqrt computing", false,-1);
+        tracep->declBit(c+206,"clk", false,-1);
+        tracep->declBit(c+207,"rst_l", false,-1);
+        tracep->declBit(c+208,"start", false,-1);
+        tracep->declBus(c+209,"x", false,-1, 31,0);
+        tracep->declBus(c+210,"res", false,-1, 31,0);
+        tracep->declBit(c+211,"finish", false,-1);
+        tracep->declBit(c+212,"computing", false,-1);
+        tracep->declBus(c+216,"FPHUB_sqrt M", false,-1, 31,0);
+        tracep->declBus(c+217,"FPHUB_sqrt E", false,-1, 31,0);
+        tracep->declBus(c+218,"FPHUB_sqrt N", false,-1, 31,0);
+        tracep->declBus(c+218,"FPHUB_sqrt T", false,-1, 31,0);
+        tracep->declBus(c+219,"FPHUB_sqrt EXP_BIAS", false,-1, 31,0);
+        tracep->declBus(c+220,"FPHUB_sqrt EXP_BIAS_LOW", false,-1, 31,0);
+        tracep->declBus(c+221,"FPHUB_sqrt special_case", false,-1, 31,0);
+        tracep->declBus(c+222,"FPHUB_sqrt sign_mantissa_bit", false,-1, 31,0);
+        tracep->declBus(c+222,"FPHUB_sqrt one_implicit_bit", false,-1, 31,0);
+        tracep->declBus(c+222,"FPHUB_sqrt ilsb_bit", false,-1, 31,0);
+        tracep->declBus(c+222,"FPHUB_sqrt extra_int_bit", false,-1, 31,0);
+        tracep->declBus(c+222,"FPHUB_sqrt extra_bit_x_gt_d", false,-1, 31,0);
+        tracep->declBus(c+223,"FPHUB_sqrt extra_bits_mantissa", false,-1, 31,0);
+        tracep->declBit(c+206,"FPHUB_sqrt clk", false,-1);
+        tracep->declBit(c+207,"FPHUB_sqrt rst_l", false,-1);
+        tracep->declBit(c+208,"FPHUB_sqrt start", false,-1);
+        tracep->declBus(c+209,"FPHUB_sqrt x", false,-1, 31,0);
+        tracep->declBus(c+210,"FPHUB_sqrt res", false,-1, 31,0);
+        tracep->declBit(c+211,"FPHUB_sqrt finish", false,-1);
+        tracep->declBit(c+212,"FPHUB_sqrt computing", false,-1);
         tracep->declQuad(c+1,"FPHUB_sqrt S", false,-1, 62,0);
         {int i; for (i=0; i<31; i++) {
                 tracep->declBus(c+3+i*1,"FPHUB_sqrt F1", true,(i+0), 28,0);}}
@@ -82,24 +82,27 @@ void VFPHUB_sqrt::traceInitSub0(void* userp, VerilatedVcd* tracep) {
                 tracep->declBus(c+96+i*1,"FPHUB_sqrt W2", true,(i+0), 28,0);}}
         {int i; for (i=0; i<31; i++) {
                 tracep->declBus(c+127+i*1,"FPHUB_sqrt WC", true,(i+0), 28,0);}}
-        tracep->declBit(c+192,"FPHUB_sqrt x_sign", false,-1);
-        tracep->declBus(c+181,"FPHUB_sqrt x_exponent", false,-1, 7,0);
+        tracep->declBit(c+224,"FPHUB_sqrt x_sign", false,-1);
+        tracep->declBus(c+213,"FPHUB_sqrt x_exponent", false,-1, 7,0);
         tracep->declBus(c+158,"FPHUB_sqrt res_exponent", false,-1, 7,0);
-        tracep->declBus(c+182,"FPHUB_sqrt x_mantissa", false,-1, 22,0);
-        tracep->declBus(c+183,"FPHUB_sqrt x_HUB", false,-1, 28,0);
+        tracep->declBus(c+214,"FPHUB_sqrt x_mantissa", false,-1, 22,0);
+        tracep->declBus(c+215,"FPHUB_sqrt x_HUB", false,-1, 28,0);
         tracep->declBus(c+159,"FPHUB_sqrt j", false,-1, 31,0);
         tracep->declBus(c+160,"FPHUB_sqrt W_MSB", false,-1, 3,0);
         tracep->declArray(c+161,"FPHUB_sqrt q", false,-1, 64,0);
         tracep->declBus(c+164,"FPHUB_sqrt posiv", false,-1, 31,0);
         tracep->declBus(c+165,"FPHUB_sqrt neg", false,-1, 31,0);
         tracep->declBus(c+166,"FPHUB_sqrt root", false,-1, 31,0);
-        tracep->declBus(c+167,"FPHUB_sqrt unnamedblk1 k", false,-1, 31,0);
-        tracep->declBus(c+168,"FPHUB_sqrt unnamedblk2 k", false,-1, 31,0);
-        tracep->declBus(c+169,"FPHUB_sqrt unnamedblk3 k", false,-1, 31,0);
-        tracep->declBus(c+170,"FPHUB_sqrt unnamedblk4 k", false,-1, 31,0);
-        tracep->declBus(c+171,"FPHUB_sqrt unnamedblk5 k", false,-1, 31,0);
-        tracep->declBus(c+172,"FPHUB_sqrt unnamedblk6 k", false,-1, 31,0);
-        tracep->declBus(c+173,"FPHUB_sqrt unnamedblk7 i", false,-1, 31,0);
+        {int i; for (i=0; i<31; i++) {
+                tracep->declBus(c+167+i*1,"FPHUB_sqrt y_test", true,(i+0), 3,0);}}
+        tracep->declBit(c+198,"FPHUB_sqrt chivato", false,-1);
+        tracep->declBus(c+199,"FPHUB_sqrt unnamedblk1 k", false,-1, 31,0);
+        tracep->declBus(c+200,"FPHUB_sqrt unnamedblk2 k", false,-1, 31,0);
+        tracep->declBus(c+201,"FPHUB_sqrt unnamedblk3 k", false,-1, 31,0);
+        tracep->declBus(c+202,"FPHUB_sqrt unnamedblk4 k", false,-1, 31,0);
+        tracep->declBus(c+203,"FPHUB_sqrt unnamedblk5 k", false,-1, 31,0);
+        tracep->declBus(c+204,"FPHUB_sqrt unnamedblk6 k", false,-1, 31,0);
+        tracep->declBus(c+205,"FPHUB_sqrt unnamedblk7 i", false,-1, 31,0);
     }
 }
 
@@ -298,34 +301,66 @@ void VFPHUB_sqrt::traceFullSub0(void* userp, VerilatedVcd* tracep) {
         tracep->fullIData(oldp+164,(vlTOPp->FPHUB_sqrt__DOT__posiv),32);
         tracep->fullIData(oldp+165,(vlTOPp->FPHUB_sqrt__DOT__neg),32);
         tracep->fullIData(oldp+166,(vlTOPp->FPHUB_sqrt__DOT__root),32);
-        tracep->fullIData(oldp+167,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k),32);
-        tracep->fullIData(oldp+168,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk2__DOT__k),32);
-        tracep->fullIData(oldp+169,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k),32);
-        tracep->fullIData(oldp+170,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk4__DOT__k),32);
-        tracep->fullIData(oldp+171,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk5__DOT__k),32);
-        tracep->fullIData(oldp+172,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk6__DOT__k),32);
-        tracep->fullIData(oldp+173,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk7__DOT__i),32);
-        tracep->fullBit(oldp+174,(vlTOPp->clk));
-        tracep->fullBit(oldp+175,(vlTOPp->rst_l));
-        tracep->fullBit(oldp+176,(vlTOPp->start));
-        tracep->fullIData(oldp+177,(vlTOPp->x),32);
-        tracep->fullIData(oldp+178,(vlTOPp->res),32);
-        tracep->fullBit(oldp+179,(vlTOPp->finish));
-        tracep->fullBit(oldp+180,(vlTOPp->computing));
-        tracep->fullCData(oldp+181,((0xffU & (vlTOPp->x 
+        tracep->fullCData(oldp+167,(vlTOPp->FPHUB_sqrt__DOT__y_test[0]),4);
+        tracep->fullCData(oldp+168,(vlTOPp->FPHUB_sqrt__DOT__y_test[1]),4);
+        tracep->fullCData(oldp+169,(vlTOPp->FPHUB_sqrt__DOT__y_test[2]),4);
+        tracep->fullCData(oldp+170,(vlTOPp->FPHUB_sqrt__DOT__y_test[3]),4);
+        tracep->fullCData(oldp+171,(vlTOPp->FPHUB_sqrt__DOT__y_test[4]),4);
+        tracep->fullCData(oldp+172,(vlTOPp->FPHUB_sqrt__DOT__y_test[5]),4);
+        tracep->fullCData(oldp+173,(vlTOPp->FPHUB_sqrt__DOT__y_test[6]),4);
+        tracep->fullCData(oldp+174,(vlTOPp->FPHUB_sqrt__DOT__y_test[7]),4);
+        tracep->fullCData(oldp+175,(vlTOPp->FPHUB_sqrt__DOT__y_test[8]),4);
+        tracep->fullCData(oldp+176,(vlTOPp->FPHUB_sqrt__DOT__y_test[9]),4);
+        tracep->fullCData(oldp+177,(vlTOPp->FPHUB_sqrt__DOT__y_test[10]),4);
+        tracep->fullCData(oldp+178,(vlTOPp->FPHUB_sqrt__DOT__y_test[11]),4);
+        tracep->fullCData(oldp+179,(vlTOPp->FPHUB_sqrt__DOT__y_test[12]),4);
+        tracep->fullCData(oldp+180,(vlTOPp->FPHUB_sqrt__DOT__y_test[13]),4);
+        tracep->fullCData(oldp+181,(vlTOPp->FPHUB_sqrt__DOT__y_test[14]),4);
+        tracep->fullCData(oldp+182,(vlTOPp->FPHUB_sqrt__DOT__y_test[15]),4);
+        tracep->fullCData(oldp+183,(vlTOPp->FPHUB_sqrt__DOT__y_test[16]),4);
+        tracep->fullCData(oldp+184,(vlTOPp->FPHUB_sqrt__DOT__y_test[17]),4);
+        tracep->fullCData(oldp+185,(vlTOPp->FPHUB_sqrt__DOT__y_test[18]),4);
+        tracep->fullCData(oldp+186,(vlTOPp->FPHUB_sqrt__DOT__y_test[19]),4);
+        tracep->fullCData(oldp+187,(vlTOPp->FPHUB_sqrt__DOT__y_test[20]),4);
+        tracep->fullCData(oldp+188,(vlTOPp->FPHUB_sqrt__DOT__y_test[21]),4);
+        tracep->fullCData(oldp+189,(vlTOPp->FPHUB_sqrt__DOT__y_test[22]),4);
+        tracep->fullCData(oldp+190,(vlTOPp->FPHUB_sqrt__DOT__y_test[23]),4);
+        tracep->fullCData(oldp+191,(vlTOPp->FPHUB_sqrt__DOT__y_test[24]),4);
+        tracep->fullCData(oldp+192,(vlTOPp->FPHUB_sqrt__DOT__y_test[25]),4);
+        tracep->fullCData(oldp+193,(vlTOPp->FPHUB_sqrt__DOT__y_test[26]),4);
+        tracep->fullCData(oldp+194,(vlTOPp->FPHUB_sqrt__DOT__y_test[27]),4);
+        tracep->fullCData(oldp+195,(vlTOPp->FPHUB_sqrt__DOT__y_test[28]),4);
+        tracep->fullCData(oldp+196,(vlTOPp->FPHUB_sqrt__DOT__y_test[29]),4);
+        tracep->fullCData(oldp+197,(vlTOPp->FPHUB_sqrt__DOT__y_test[30]),4);
+        tracep->fullBit(oldp+198,(vlTOPp->FPHUB_sqrt__DOT__chivato));
+        tracep->fullIData(oldp+199,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k),32);
+        tracep->fullIData(oldp+200,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk2__DOT__k),32);
+        tracep->fullIData(oldp+201,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k),32);
+        tracep->fullIData(oldp+202,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk4__DOT__k),32);
+        tracep->fullIData(oldp+203,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk5__DOT__k),32);
+        tracep->fullIData(oldp+204,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk6__DOT__k),32);
+        tracep->fullIData(oldp+205,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk7__DOT__i),32);
+        tracep->fullBit(oldp+206,(vlTOPp->clk));
+        tracep->fullBit(oldp+207,(vlTOPp->rst_l));
+        tracep->fullBit(oldp+208,(vlTOPp->start));
+        tracep->fullIData(oldp+209,(vlTOPp->x),32);
+        tracep->fullIData(oldp+210,(vlTOPp->res),32);
+        tracep->fullBit(oldp+211,(vlTOPp->finish));
+        tracep->fullBit(oldp+212,(vlTOPp->computing));
+        tracep->fullCData(oldp+213,((0xffU & (vlTOPp->x 
                                               >> 0x17U))),8);
-        tracep->fullIData(oldp+182,((0x7fffffU & vlTOPp->x)),23);
-        tracep->fullIData(oldp+183,((0x1000001U | (0xfffffeU 
+        tracep->fullIData(oldp+214,((0x7fffffU & vlTOPp->x)),23);
+        tracep->fullIData(oldp+215,((0x1000001U | (0xfffffeU 
                                                    & (vlTOPp->x 
                                                       << 1U)))),29);
-        tracep->fullIData(oldp+184,(0x17U),32);
-        tracep->fullIData(oldp+185,(8U),32);
-        tracep->fullIData(oldp+186,(0x1fU),32);
-        tracep->fullIData(oldp+187,(0x80U),32);
-        tracep->fullIData(oldp+188,(0x7fU),32);
-        tracep->fullIData(oldp+189,(7U),32);
-        tracep->fullIData(oldp+190,(1U),32);
-        tracep->fullIData(oldp+191,(5U),32);
-        tracep->fullBit(oldp+192,(vlTOPp->FPHUB_sqrt__DOT__x_sign));
+        tracep->fullIData(oldp+216,(0x17U),32);
+        tracep->fullIData(oldp+217,(8U),32);
+        tracep->fullIData(oldp+218,(0x1fU),32);
+        tracep->fullIData(oldp+219,(0x80U),32);
+        tracep->fullIData(oldp+220,(0x7fU),32);
+        tracep->fullIData(oldp+221,(7U),32);
+        tracep->fullIData(oldp+222,(1U),32);
+        tracep->fullIData(oldp+223,(5U),32);
+        tracep->fullBit(oldp+224,(vlTOPp->FPHUB_sqrt__DOT__x_sign));
     }
 }

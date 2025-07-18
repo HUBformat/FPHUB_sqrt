@@ -51,6 +51,8 @@ module FPHUB_sqrt #(
     logic [N*2+2:0] q;
     logic [31:0] posiv, neg;
     logic [31:0] root;
+    logic [3:0] y_test [N];
+    logic chivato;
     
 
     always_ff @(posedge clk or negedge rst_l) begin
@@ -61,6 +63,7 @@ module FPHUB_sqrt #(
             finish <= 1'b0;
             computing <= 1'b0;
             res_exponent <= '0;
+            chivato <= 1'b0;
         
         end
 
@@ -76,71 +79,66 @@ module FPHUB_sqrt #(
                 F_1[1] = {6'b000011, 23'd0};
                 S[60:59] <= 2'b01; // TODO: siempre 1?
                 W[1] <=   (x_HUB << 1) ^ ({5'b01111, 24'd0}); // xor
-                WC[1] <= ((x_HUB << 1) & ({5'b01111, 24'd0})) << 1; 
+                WC[1] <= ((x_HUB << 1) & ({5'b01111, 24'd0})) << 2; 
                 W2[0] <= x_HUB << 1;
                 W2[1] <= ((x_HUB << 1) ^ ({5'b01111, 24'd0})) << 1;
+                y_test[0] = 4'b0000; 
+                y_test[1] = 4'b0000; 
                // q[N*2:N*2-4] = 5'b00001;
                 j <= 1;
                 computing <= 1'b1;
             end 
             else if (computing && j < N) begin
                 j <= j + 1;
-                
+                y_test[j+1] <= W2[j][28:25] + WC[j][28:25]; 
 
-                if(W2[j][28:25] == 4'b1111) begin
+                if((W2[j][28:25] + WC[j][28:25]) == 4'b1111) begin //TODO Overflow? creo que no importa
                     S[2*N -(2*j +3) +: 2] <= 2'b00;
                     // 00 00 01   00    XX
                     // 61 59 57   55   53
                    // q[j+1] 
-                    W[j+1] <= (W[j] << 1) ; // +0 
+                    W[j+1] <= (W[j] << 1); // +0 
+                   // W[j+1][28] <= 1'b0;
                     WC[j+1] <= '0;
                     W2[j+1] <= (W[j] << 2); 
-                    for (int k = 0; k <= j+1; k++) begin
-                        F1[j+1][M+2 - k] = F1[j][M+2 - k];
-                        F_1[j+1][M+2 - k] = F_1[j][M+2 - k];
+
+                    for (int k = 0; k <= j+2; k++) begin
+                        F1[j+1][23+5 - k] = F1[j][23+5 - k];
+                        F_1[j+1][23+5 - k] = F_1[j][23+5 - k];
                     end
 
                     // asegurar rango
-                    F1[j+1][M-j-2 -: 3] = 3'b111;
-                    F_1[j+1][M-j-2 -: 3] = 3'b111;
+                    F1[j+1][28-j-5 +: 3] = 3'b111;
+                    F_1[j+1][28-j-5 +: 3] = 3'b111;
 
-                    for (int k = 0; k <= (M-j-3); k++) begin
+                    for (int k = 0; k <= (28-j-6); k++) begin
                         F1[j+1][k] = 1'b0;
                         F_1[j+1][k] = 1'b0;
                     end
-
-                    /*
-                    F1[j+1][M+2 -: (j+2)] <= F1[j][M+2 -: (j+2)];
-                    F1[j+1][M-j-2 -: 3]   <= 3'b111;
-                    F1[j+1][0 +: (M-j-3+1)] <= '0;
-                    */
-
-                    /*
-                    F1[j+1][M+2:M+1-j] <= F1[j][M+2:M+1-j];
-                    F1[j+1][M-j-2] <= 3'b111;
-                    F1[j+1][M-j-3:0] <= '0;
-                    */
                     
                 end
 
-                else if (W2[j][28:25] < 4'b1000 ) begin
+                else if ((W2[j][28:25] + WC[j][28:25]) < 4'b1000 ) begin
+                    chivato <= 1'b1;
+                    
                     S[2*N -(2*j +3) +: 2] <= 2'b01;
 
                     W[j+1] <= (W[j] << 1) ^ F1[j] ^ WC[j]; // TODO: revisar: W -> Compl2, F1 -> signed digit
-                    WC[j+1] <= (((W[j] << 1) & F1[j]) | (W[j] << 1 & WC[j]) | (F1[j] & WC[j])) << 1;
-                    
+                    //W[j+1][28] <= 1'b0;
+                    WC[j+1] <= (((W[j] << 1) & F1[j]) | (W[j] << 1 & WC[j]) | (F1[j] & WC[j])) << 2;
+
                     W2[j+1] <=  ((W[j] << 1) ^ F1[j] ^ WC[j])  << 1; 
 
-                    for (int k = 0; k <= j+1; k++) begin
-                        F1[j+1][M+2 - k] = F1[j][M+2 - k];
-                        F_1[j+1][M+2 - k] = ~F1[j][M+2 - k]; //TODO: revisar
+                    for (int k = 0; k <= j+2; k++) begin // cambiado j+1 por j+2
+                        F1[j+1][23+5 - k] = F1[j][23+5 - k];
+                        F_1[j+1][23+5 - k] = ~F1[j][23+5 - k]; //TODO: revisar
                     end
 
                     // asegurar rango
-                    F1[j+1][M-j-2 -: 3] = 3'b011;
-                    F_1[j+1][M-j-2 -: 3] = 3'b011;
+                    F1[j+1][28-j-5 +: 3] = 3'b011;
+                    F_1[j+1][28-j-5 +: 3] = 3'b011;
 
-                    for (int k = 0; k <= (M-j-3); k++) begin
+                    for (int k = 0; k <= (28-j-6); k++) begin
                         F1[j+1][k] = 1'b0;
                         F_1[j+1][k] = 1'b0;
                     end
@@ -151,24 +149,32 @@ module FPHUB_sqrt #(
                     S[2*N -(2*j +3) +: 2] <= 2'b11;
 
                     W[j+1] <= (W[j] << 1) ^ F_1[j] ^ WC[j]; // TODO: revisar: W -> Compl2, F1 -> signed digit
-                    WC[j+1] <= (((W[j] << 1) & F_1[j]) | (W[j] << 1 & WC[j]) | (F_1[j] & WC[j])) << 1;
+                  //  W[j+1][28] <= 1'b0;
+                    WC[j+1] <= (((W[j] << 1) & F_1[j]) | (W[j] << 1 & WC[j]) | (F_1[j] & WC[j])) << 2;
 
-                    W2[j +1] <=  ((W[j] << 1) ^ F_1[j] ^ WC[j]) << 1;
 
-                    for (int k = 0; k <= j+1; k++) begin
-                        F1[j+1][M+2 - k] = ~F_1[j][M+2 - k];
-                        F_1[j+1][M+2 - k] = F_1[j][M+2 - k];
+                    W2[j+1] <=  ((W[j] << 1) ^ F_1[j] ^ WC[j]) << 1;
+
+                    for (int k = 0; k <= j+2; k++) begin
+                        F1[j+1][23+5 - k] = ~F_1[j][23+5 - k];
+                        F_1[j+1][23+5 - k] = F_1[j][23+5 - k];
                     end
 
                     // asegurar rango
-                    F1[j+1][M-j-2 -: 3] = 3'b011;
-                    F_1[j+1][M-j-2 -: 3] = 3'b011;
+                    F1[j+1][28-j-5 +: 3] = 3'b011;
+                    F_1[j+1][28-j-5 +: 3] = 3'b011;
 
-                    for (int k = 0; k <= (M-j-3); k++) begin
+                    for (int k = 0; k <= (28-j-6); k++) begin
                         F1[j+1][k] = 1'b0;
                         F_1[j+1][k] = 1'b0;
                     end
                 end
+
+                F1[j+1][28] <= 1'b0; // test: forzar el bit MSB a 0
+                F_1[j+1][28] <= 1'b0; // test: forzar el bit MSB a 0
+
+
+               // WC[j+1][28:27] <= 2'b00; // test, dos bits MSB de WC siempre 0
             end else if (computing)begin // Terminación
                 q = {2'b00, S};
 

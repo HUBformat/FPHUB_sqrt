@@ -36,6 +36,7 @@ int main(int argc, char **argv) {
         if (main_time == 8) {
             top->start = 1;
             top->x = 0x3f370000;
+            //top->x = 0x41100000;
         }
 
         if (main_time == 12) {

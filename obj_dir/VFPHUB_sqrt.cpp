@@ -74,6 +74,9 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
     CData/*0:0*/ __Vdlyvset__FPHUB_sqrt__DOT__W2__v0;
     CData/*0:0*/ __Vdly__computing;
     CData/*0:0*/ __Vdlyvset__FPHUB_sqrt__DOT__W__v1;
+    CData/*4:0*/ __Vdlyvdim0__FPHUB_sqrt__DOT__y_test__v0;
+    CData/*3:0*/ __Vdlyvval__FPHUB_sqrt__DOT__y_test__v0;
+    CData/*0:0*/ __Vdlyvset__FPHUB_sqrt__DOT__y_test__v0;
     CData/*4:0*/ __Vdlyvdim0__FPHUB_sqrt__DOT__W__v2;
     CData/*0:0*/ __Vdlyvset__FPHUB_sqrt__DOT__W__v2;
     CData/*4:0*/ __Vdlyvdim0__FPHUB_sqrt__DOT__WC__v2;
@@ -92,6 +95,14 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
     CData/*0:0*/ __Vdlyvset__FPHUB_sqrt__DOT__WC__v4;
     CData/*4:0*/ __Vdlyvdim0__FPHUB_sqrt__DOT__W2__v4;
     CData/*0:0*/ __Vdlyvset__FPHUB_sqrt__DOT__W2__v4;
+    CData/*4:0*/ __Vdlyvdim0__FPHUB_sqrt__DOT__F1__v0;
+    CData/*4:0*/ __Vdlyvlsb__FPHUB_sqrt__DOT__F1__v0;
+    CData/*0:0*/ __Vdlyvval__FPHUB_sqrt__DOT__F1__v0;
+    CData/*0:0*/ __Vdlyvset__FPHUB_sqrt__DOT__F1__v0;
+    CData/*4:0*/ __Vdlyvdim0__FPHUB_sqrt__DOT__F_1__v0;
+    CData/*4:0*/ __Vdlyvlsb__FPHUB_sqrt__DOT__F_1__v0;
+    CData/*0:0*/ __Vdlyvval__FPHUB_sqrt__DOT__F_1__v0;
+    CData/*0:0*/ __Vdlyvset__FPHUB_sqrt__DOT__F_1__v0;
     IData/*28:0*/ __Vdlyvval__FPHUB_sqrt__DOT__W__v0;
     IData/*28:0*/ __Vdlyvval__FPHUB_sqrt__DOT__W2__v0;
     IData/*31:0*/ __Vdly__FPHUB_sqrt__DOT__j;
@@ -113,6 +124,15 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
     __Vdly__computing = vlTOPp->computing;
     __Vdly__FPHUB_sqrt__DOT__j = vlTOPp->FPHUB_sqrt__DOT__j;
     __Vdly__FPHUB_sqrt__DOT__S = vlTOPp->FPHUB_sqrt__DOT__S;
+    __Vdlyvset__FPHUB_sqrt__DOT__y_test__v0 = 0U;
+    __Vdlyvset__FPHUB_sqrt__DOT__F_1__v0 = 0U;
+    __Vdlyvset__FPHUB_sqrt__DOT__F1__v0 = 0U;
+    if (vlTOPp->rst_l) {
+        if (vlTOPp->start) {
+            vlTOPp->FPHUB_sqrt__DOT__y_test[0U] = 0U;
+            vlTOPp->FPHUB_sqrt__DOT__y_test[1U] = 0U;
+        }
+    }
     __Vdlyvset__FPHUB_sqrt__DOT__WC__v2 = 0U;
     __Vdlyvset__FPHUB_sqrt__DOT__WC__v3 = 0U;
     __Vdlyvset__FPHUB_sqrt__DOT__WC__v4 = 0U;
@@ -157,11 +177,11 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                          & (vlTOPp->x 
                                                             << 2U)))));
             __Vdlyvset__FPHUB_sqrt__DOT__W__v1 = 1U;
-            __Vdlyvval__FPHUB_sqrt__DOT__WC__v1 = (0x1e000000U 
-                                                   & (0x4000004U 
-                                                      | (0x3fffff8U 
+            __Vdlyvval__FPHUB_sqrt__DOT__WC__v1 = (0x1c000000U 
+                                                   & (0x8000008U 
+                                                      | (0x7fffff0U 
                                                          & (vlTOPp->x 
-                                                            << 3U))));
+                                                            << 4U))));
             __Vdlyvval__FPHUB_sqrt__DOT__W2__v1 = (0x1fffffffU 
                                                    & (0x1e000000U 
                                                       ^ 
@@ -173,12 +193,34 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
             if (((IData)(vlTOPp->computing) & VL_GTS_III(1,32,32, 0x1fU, vlTOPp->FPHUB_sqrt__DOT__j))) {
                 __Vdly__FPHUB_sqrt__DOT__j = ((IData)(1U) 
                                               + vlTOPp->FPHUB_sqrt__DOT__j);
-                if ((0xfU == (0xfU & (((0x1eU >= (0x1fU 
-                                                  & vlTOPp->FPHUB_sqrt__DOT__j))
-                                        ? vlTOPp->FPHUB_sqrt__DOT__W2
-                                       [(0x1fU & vlTOPp->FPHUB_sqrt__DOT__j)]
-                                        : 0U) >> 0x19U)))) {
-                    vlTOPp->FPHUB_sqrt__DOT____Vlvbound1 = 0U;
+                vlTOPp->FPHUB_sqrt__DOT____Vlvbound1 
+                    = (0xfU & ((((0x1eU >= (0x1fU & vlTOPp->FPHUB_sqrt__DOT__j))
+                                  ? vlTOPp->FPHUB_sqrt__DOT__W2
+                                 [(0x1fU & vlTOPp->FPHUB_sqrt__DOT__j)]
+                                  : 0U) >> 0x19U) + 
+                               (((0x1eU >= (0x1fU & vlTOPp->FPHUB_sqrt__DOT__j))
+                                  ? vlTOPp->FPHUB_sqrt__DOT__WC
+                                 [(0x1fU & vlTOPp->FPHUB_sqrt__DOT__j)]
+                                  : 0U) >> 0x19U)));
+                if ((0x1eU >= (0x1fU & ((IData)(1U) 
+                                        + vlTOPp->FPHUB_sqrt__DOT__j)))) {
+                    __Vdlyvval__FPHUB_sqrt__DOT__y_test__v0 
+                        = vlTOPp->FPHUB_sqrt__DOT____Vlvbound1;
+                    __Vdlyvset__FPHUB_sqrt__DOT__y_test__v0 = 1U;
+                    __Vdlyvdim0__FPHUB_sqrt__DOT__y_test__v0 
+                        = (0x1fU & ((IData)(1U) + vlTOPp->FPHUB_sqrt__DOT__j));
+                }
+                if ((0xfU == (0xfU & ((((0x1eU >= (0x1fU 
+                                                   & vlTOPp->FPHUB_sqrt__DOT__j))
+                                         ? vlTOPp->FPHUB_sqrt__DOT__W2
+                                        [(0x1fU & vlTOPp->FPHUB_sqrt__DOT__j)]
+                                         : 0U) >> 0x19U) 
+                                      + (((0x1eU >= 
+                                           (0x1fU & vlTOPp->FPHUB_sqrt__DOT__j))
+                                           ? vlTOPp->FPHUB_sqrt__DOT__WC
+                                          [(0x1fU & vlTOPp->FPHUB_sqrt__DOT__j)]
+                                           : 0U) >> 0x19U))))) {
+                    vlTOPp->FPHUB_sqrt__DOT____Vlvbound2 = 0U;
                     if ((0x3eU >= (0x3fU & ((IData)(0x3eU) 
                                             - ((IData)(3U) 
                                                + VL_MULS_III(6,32,32, (IData)(2U), vlTOPp->FPHUB_sqrt__DOT__j)))))) {
@@ -189,13 +231,13 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                    + 
                                                    VL_MULS_III(6,32,32, (IData)(2U), vlTOPp->FPHUB_sqrt__DOT__j)))))) 
                                 & __Vdly__FPHUB_sqrt__DOT__S) 
-                               | ((QData)((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound1)) 
+                               | ((QData)((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound2)) 
                                   << (0x3fU & ((IData)(0x3eU) 
                                                - ((IData)(3U) 
                                                   + 
                                                   VL_MULS_III(6,32,32, (IData)(2U), vlTOPp->FPHUB_sqrt__DOT__j))))));
                     }
-                    vlTOPp->FPHUB_sqrt__DOT____Vlvbound2 
+                    vlTOPp->FPHUB_sqrt__DOT____Vlvbound3 
                         = (0x1fffffffU & (((0x1eU >= 
                                             (0x1fU 
                                              & vlTOPp->FPHUB_sqrt__DOT__j))
@@ -206,23 +248,23 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                     if ((0x1eU >= (0x1fU & ((IData)(1U) 
                                             + vlTOPp->FPHUB_sqrt__DOT__j)))) {
                         __Vdlyvval__FPHUB_sqrt__DOT__W__v2 
-                            = vlTOPp->FPHUB_sqrt__DOT____Vlvbound2;
+                            = vlTOPp->FPHUB_sqrt__DOT____Vlvbound3;
                         __Vdlyvset__FPHUB_sqrt__DOT__W__v2 = 1U;
                         __Vdlyvdim0__FPHUB_sqrt__DOT__W__v2 
                             = (0x1fU & ((IData)(1U) 
                                         + vlTOPp->FPHUB_sqrt__DOT__j));
                     }
-                    vlTOPp->FPHUB_sqrt__DOT____Vlvbound3 = 0U;
+                    vlTOPp->FPHUB_sqrt__DOT____Vlvbound4 = 0U;
                     if ((0x1eU >= (0x1fU & ((IData)(1U) 
                                             + vlTOPp->FPHUB_sqrt__DOT__j)))) {
                         __Vdlyvval__FPHUB_sqrt__DOT__WC__v2 
-                            = vlTOPp->FPHUB_sqrt__DOT____Vlvbound3;
+                            = vlTOPp->FPHUB_sqrt__DOT____Vlvbound4;
                         __Vdlyvset__FPHUB_sqrt__DOT__WC__v2 = 1U;
                         __Vdlyvdim0__FPHUB_sqrt__DOT__WC__v2 
                             = (0x1fU & ((IData)(1U) 
                                         + vlTOPp->FPHUB_sqrt__DOT__j));
                     }
-                    vlTOPp->FPHUB_sqrt__DOT____Vlvbound4 
+                    vlTOPp->FPHUB_sqrt__DOT____Vlvbound5 
                         = (0x1fffffffU & (((0x1eU >= 
                                             (0x1fU 
                                              & vlTOPp->FPHUB_sqrt__DOT__j))
@@ -233,7 +275,7 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                     if ((0x1eU >= (0x1fU & ((IData)(1U) 
                                             + vlTOPp->FPHUB_sqrt__DOT__j)))) {
                         __Vdlyvval__FPHUB_sqrt__DOT__W2__v2 
-                            = vlTOPp->FPHUB_sqrt__DOT____Vlvbound4;
+                            = vlTOPp->FPHUB_sqrt__DOT____Vlvbound5;
                         __Vdlyvset__FPHUB_sqrt__DOT__W2__v2 = 1U;
                         __Vdlyvdim0__FPHUB_sqrt__DOT__W2__v2 
                             = (0x1fU & ((IData)(1U) 
@@ -241,20 +283,20 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                     }
                     vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k = 0U;
                     while (VL_LTES_III(1,32,32, vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k, 
-                                       ((IData)(1U) 
+                                       ((IData)(2U) 
                                         + vlTOPp->FPHUB_sqrt__DOT__j))) {
-                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound5 
-                            = ((0x1cU >= (0x1fU & ((IData)(0x19U) 
+                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound6 
+                            = ((0x1cU >= (0x1fU & ((IData)(0x1cU) 
                                                    - vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k))) 
                                & (((0x1eU >= (0x1fU 
                                               & vlTOPp->FPHUB_sqrt__DOT__j))
                                     ? vlTOPp->FPHUB_sqrt__DOT__F1
                                    [(0x1fU & vlTOPp->FPHUB_sqrt__DOT__j)]
                                     : 0U) >> (0x1fU 
-                                              & ((IData)(0x19U) 
+                                              & ((IData)(0x1cU) 
                                                  - vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k))));
                         if (VL_LIKELY(((0x1cU >= (0x1fU 
-                                                  & ((IData)(0x19U) 
+                                                  & ((IData)(0x1cU) 
                                                      - vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k))) 
                                        & (0x1eU >= 
                                           (0x1fU & 
@@ -265,27 +307,27 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                             + vlTOPp->FPHUB_sqrt__DOT__j))] 
                                 = (((~ ((IData)(1U) 
                                         << (0x1fU & 
-                                            ((IData)(0x19U) 
+                                            ((IData)(0x1cU) 
                                              - vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k)))) 
                                     & vlTOPp->FPHUB_sqrt__DOT__F1
                                     [(0x1fU & ((IData)(1U) 
                                                + vlTOPp->FPHUB_sqrt__DOT__j))]) 
-                                   | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound5) 
-                                      << (0x1fU & ((IData)(0x19U) 
+                                   | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound6) 
+                                      << (0x1fU & ((IData)(0x1cU) 
                                                    - vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k))));
                         }
-                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound6 
-                            = ((0x1cU >= (0x1fU & ((IData)(0x19U) 
+                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound7 
+                            = ((0x1cU >= (0x1fU & ((IData)(0x1cU) 
                                                    - vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k))) 
                                & (((0x1eU >= (0x1fU 
                                               & vlTOPp->FPHUB_sqrt__DOT__j))
                                     ? vlTOPp->FPHUB_sqrt__DOT__F_1
                                    [(0x1fU & vlTOPp->FPHUB_sqrt__DOT__j)]
                                     : 0U) >> (0x1fU 
-                                              & ((IData)(0x19U) 
+                                              & ((IData)(0x1cU) 
                                                  - vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k))));
                         if (VL_LIKELY(((0x1cU >= (0x1fU 
-                                                  & ((IData)(0x19U) 
+                                                  & ((IData)(0x1cU) 
                                                      - vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k))) 
                                        & (0x1eU >= 
                                           (0x1fU & 
@@ -296,89 +338,65 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                              + vlTOPp->FPHUB_sqrt__DOT__j))] 
                                 = (((~ ((IData)(1U) 
                                         << (0x1fU & 
-                                            ((IData)(0x19U) 
+                                            ((IData)(0x1cU) 
                                              - vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k)))) 
                                     & vlTOPp->FPHUB_sqrt__DOT__F_1
                                     [(0x1fU & ((IData)(1U) 
                                                + vlTOPp->FPHUB_sqrt__DOT__j))]) 
-                                   | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound6) 
-                                      << (0x1fU & ((IData)(0x19U) 
+                                   | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound7) 
+                                      << (0x1fU & ((IData)(0x1cU) 
                                                    - vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k))));
                         }
                         vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k 
                             = ((IData)(1U) + vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k);
                     }
-                    vlTOPp->FPHUB_sqrt__DOT____Vlvbound7 = 7U;
-                    if (((0x1cU >= (0x1fU & ((((IData)(0x17U) 
-                                               - vlTOPp->FPHUB_sqrt__DOT__j) 
-                                              - (IData)(2U)) 
-                                             - (IData)(2U)))) 
+                    vlTOPp->FPHUB_sqrt__DOT____Vlvbound8 = 7U;
+                    if (((0x1cU >= (0x1fU & (((IData)(0x1cU) 
+                                              - vlTOPp->FPHUB_sqrt__DOT__j) 
+                                             - (IData)(5U)))) 
                          & (0x1eU >= (0x1fU & ((IData)(1U) 
                                                + vlTOPp->FPHUB_sqrt__DOT__j))))) {
                         vlTOPp->FPHUB_sqrt__DOT__F1[(0x1fU 
                                                      & ((IData)(1U) 
                                                         + vlTOPp->FPHUB_sqrt__DOT__j))] 
                             = (((~ ((IData)(7U) << 
-                                    (0x1fU & ((((IData)(0x17U) 
-                                                - vlTOPp->FPHUB_sqrt__DOT__j) 
-                                               - (IData)(2U)) 
-                                              - (IData)(2U))))) 
+                                    (0x1fU & (((IData)(0x1cU) 
+                                               - vlTOPp->FPHUB_sqrt__DOT__j) 
+                                              - (IData)(5U))))) 
                                 & vlTOPp->FPHUB_sqrt__DOT__F1
                                 [(0x1fU & ((IData)(1U) 
                                            + vlTOPp->FPHUB_sqrt__DOT__j))]) 
-                               | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound7) 
-                                  << (0x1fU & ((((IData)(0x17U) 
-                                                 - vlTOPp->FPHUB_sqrt__DOT__j) 
-                                                - (IData)(2U)) 
-                                               - (IData)(2U)))));
+                               | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound8) 
+                                  << (0x1fU & (((IData)(0x1cU) 
+                                                - vlTOPp->FPHUB_sqrt__DOT__j) 
+                                               - (IData)(5U)))));
                     }
-                    vlTOPp->FPHUB_sqrt__DOT____Vlvbound8 = 7U;
-                    if (((0x1cU >= (0x1fU & ((((IData)(0x17U) 
-                                               - vlTOPp->FPHUB_sqrt__DOT__j) 
-                                              - (IData)(2U)) 
-                                             - (IData)(2U)))) 
+                    vlTOPp->FPHUB_sqrt__DOT____Vlvbound9 = 7U;
+                    if (((0x1cU >= (0x1fU & (((IData)(0x1cU) 
+                                              - vlTOPp->FPHUB_sqrt__DOT__j) 
+                                             - (IData)(5U)))) 
                          & (0x1eU >= (0x1fU & ((IData)(1U) 
                                                + vlTOPp->FPHUB_sqrt__DOT__j))))) {
                         vlTOPp->FPHUB_sqrt__DOT__F_1[(0x1fU 
                                                       & ((IData)(1U) 
                                                          + vlTOPp->FPHUB_sqrt__DOT__j))] 
                             = (((~ ((IData)(7U) << 
-                                    (0x1fU & ((((IData)(0x17U) 
-                                                - vlTOPp->FPHUB_sqrt__DOT__j) 
-                                               - (IData)(2U)) 
-                                              - (IData)(2U))))) 
+                                    (0x1fU & (((IData)(0x1cU) 
+                                               - vlTOPp->FPHUB_sqrt__DOT__j) 
+                                              - (IData)(5U))))) 
                                 & vlTOPp->FPHUB_sqrt__DOT__F_1
                                 [(0x1fU & ((IData)(1U) 
                                            + vlTOPp->FPHUB_sqrt__DOT__j))]) 
-                               | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound8) 
-                                  << (0x1fU & ((((IData)(0x17U) 
-                                                 - vlTOPp->FPHUB_sqrt__DOT__j) 
-                                                - (IData)(2U)) 
-                                               - (IData)(2U)))));
+                               | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound9) 
+                                  << (0x1fU & (((IData)(0x1cU) 
+                                                - vlTOPp->FPHUB_sqrt__DOT__j) 
+                                               - (IData)(5U)))));
                     }
                     vlTOPp->FPHUB_sqrt__DOT__unnamedblk2__DOT__k = 0U;
                     while (VL_LTES_III(1,32,32, vlTOPp->FPHUB_sqrt__DOT__unnamedblk2__DOT__k, 
-                                       (((IData)(0x17U) 
+                                       (((IData)(0x1cU) 
                                          - vlTOPp->FPHUB_sqrt__DOT__j) 
-                                        - (IData)(3U)))) {
-                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound9 = 0U;
-                        if (VL_LIKELY(((0x1cU >= (0x1fU 
-                                                  & vlTOPp->FPHUB_sqrt__DOT__unnamedblk2__DOT__k)) 
-                                       & (0x1eU >= 
-                                          (0x1fU & 
-                                           ((IData)(1U) 
-                                            + vlTOPp->FPHUB_sqrt__DOT__j)))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__F1[(0x1fU 
-                                                         & ((IData)(1U) 
-                                                            + vlTOPp->FPHUB_sqrt__DOT__j))] 
-                                = (((~ ((IData)(1U) 
-                                        << (0x1fU & vlTOPp->FPHUB_sqrt__DOT__unnamedblk2__DOT__k))) 
-                                    & vlTOPp->FPHUB_sqrt__DOT__F1
-                                    [(0x1fU & ((IData)(1U) 
-                                               + vlTOPp->FPHUB_sqrt__DOT__j))]) 
-                                   | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound9) 
-                                      << (0x1fU & vlTOPp->FPHUB_sqrt__DOT__unnamedblk2__DOT__k)));
-                        }
+                                        - (IData)(6U)))) {
                         vlTOPp->FPHUB_sqrt__DOT____Vlvbound10 = 0U;
                         if (VL_LIKELY(((0x1cU >= (0x1fU 
                                                   & vlTOPp->FPHUB_sqrt__DOT__unnamedblk2__DOT__k)) 
@@ -386,6 +404,24 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                           (0x1fU & 
                                            ((IData)(1U) 
                                             + vlTOPp->FPHUB_sqrt__DOT__j)))))) {
+                            vlTOPp->FPHUB_sqrt__DOT__F1[(0x1fU 
+                                                         & ((IData)(1U) 
+                                                            + vlTOPp->FPHUB_sqrt__DOT__j))] 
+                                = (((~ ((IData)(1U) 
+                                        << (0x1fU & vlTOPp->FPHUB_sqrt__DOT__unnamedblk2__DOT__k))) 
+                                    & vlTOPp->FPHUB_sqrt__DOT__F1
+                                    [(0x1fU & ((IData)(1U) 
+                                               + vlTOPp->FPHUB_sqrt__DOT__j))]) 
+                                   | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound10) 
+                                      << (0x1fU & vlTOPp->FPHUB_sqrt__DOT__unnamedblk2__DOT__k)));
+                        }
+                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound11 = 0U;
+                        if (VL_LIKELY(((0x1cU >= (0x1fU 
+                                                  & vlTOPp->FPHUB_sqrt__DOT__unnamedblk2__DOT__k)) 
+                                       & (0x1eU >= 
+                                          (0x1fU & 
+                                           ((IData)(1U) 
+                                            + vlTOPp->FPHUB_sqrt__DOT__j)))))) {
                             vlTOPp->FPHUB_sqrt__DOT__F_1[(0x1fU 
                                                           & ((IData)(1U) 
                                                              + vlTOPp->FPHUB_sqrt__DOT__j))] 
@@ -394,19 +430,27 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                     & vlTOPp->FPHUB_sqrt__DOT__F_1
                                     [(0x1fU & ((IData)(1U) 
                                                + vlTOPp->FPHUB_sqrt__DOT__j))]) 
-                                   | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound10) 
+                                   | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound11) 
                                       << (0x1fU & vlTOPp->FPHUB_sqrt__DOT__unnamedblk2__DOT__k)));
                         }
                         vlTOPp->FPHUB_sqrt__DOT__unnamedblk2__DOT__k 
                             = ((IData)(1U) + vlTOPp->FPHUB_sqrt__DOT__unnamedblk2__DOT__k);
                     }
                 } else {
-                    if ((8U > (0xfU & (((0x1eU >= (0x1fU 
-                                                   & vlTOPp->FPHUB_sqrt__DOT__j))
-                                         ? vlTOPp->FPHUB_sqrt__DOT__W2
-                                        [(0x1fU & vlTOPp->FPHUB_sqrt__DOT__j)]
-                                         : 0U) >> 0x19U)))) {
-                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound11 = 1U;
+                    if ((8U > (0xfU & ((((0x1eU >= 
+                                          (0x1fU & vlTOPp->FPHUB_sqrt__DOT__j))
+                                          ? vlTOPp->FPHUB_sqrt__DOT__W2
+                                         [(0x1fU & vlTOPp->FPHUB_sqrt__DOT__j)]
+                                          : 0U) >> 0x19U) 
+                                       + (((0x1eU >= 
+                                            (0x1fU 
+                                             & vlTOPp->FPHUB_sqrt__DOT__j))
+                                            ? vlTOPp->FPHUB_sqrt__DOT__WC
+                                           [(0x1fU 
+                                             & vlTOPp->FPHUB_sqrt__DOT__j)]
+                                            : 0U) >> 0x19U))))) {
+                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound12 = 1U;
+                        vlTOPp->FPHUB_sqrt__DOT__chivato = 1U;
                         if ((0x3eU >= (0x3fU & ((IData)(0x3eU) 
                                                 - ((IData)(3U) 
                                                    + 
@@ -419,14 +463,14 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                      + 
                                                      VL_MULS_III(6,32,32, (IData)(2U), vlTOPp->FPHUB_sqrt__DOT__j)))))) 
                                     & __Vdly__FPHUB_sqrt__DOT__S) 
-                                   | ((QData)((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound11)) 
+                                   | ((QData)((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound12)) 
                                       << (0x3fU & ((IData)(0x3eU) 
                                                    - 
                                                    ((IData)(3U) 
                                                     + 
                                                     VL_MULS_III(6,32,32, (IData)(2U), vlTOPp->FPHUB_sqrt__DOT__j))))));
                         }
-                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound12 
+                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound13 
                             = (0x1fffffffU & (((((0x1eU 
                                                   >= 
                                                   (0x1fU 
@@ -459,13 +503,13 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                         if ((0x1eU >= (0x1fU & ((IData)(1U) 
                                                 + vlTOPp->FPHUB_sqrt__DOT__j)))) {
                             __Vdlyvval__FPHUB_sqrt__DOT__W__v3 
-                                = vlTOPp->FPHUB_sqrt__DOT____Vlvbound12;
+                                = vlTOPp->FPHUB_sqrt__DOT____Vlvbound13;
                             __Vdlyvset__FPHUB_sqrt__DOT__W__v3 = 1U;
                             __Vdlyvdim0__FPHUB_sqrt__DOT__W__v3 
                                 = (0x1fU & ((IData)(1U) 
                                             + vlTOPp->FPHUB_sqrt__DOT__j));
                         }
-                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound13 
+                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound14 
                             = (0x1fffffffU & ((((((0x1eU 
                                                    >= 
                                                    (0x1fU 
@@ -476,7 +520,7 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                   (0x1fU 
                                                    & vlTOPp->FPHUB_sqrt__DOT__j)]
                                                    : 0U) 
-                                                 << 2U) 
+                                                 << 3U) 
                                                 & (((0x1eU 
                                                      >= 
                                                      (0x1fU 
@@ -487,7 +531,7 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                     (0x1fU 
                                                      & vlTOPp->FPHUB_sqrt__DOT__j)]
                                                      : 0U) 
-                                                   << 1U)) 
+                                                   << 2U)) 
                                                | ((((0x1eU 
                                                      >= 
                                                      (0x1fU 
@@ -498,7 +542,7 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                     (0x1fU 
                                                      & vlTOPp->FPHUB_sqrt__DOT__j)]
                                                      : 0U) 
-                                                   << 2U) 
+                                                   << 3U) 
                                                   & (((0x1eU 
                                                        >= 
                                                        (0x1fU 
@@ -509,7 +553,7 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                       (0x1fU 
                                                        & vlTOPp->FPHUB_sqrt__DOT__j)]
                                                        : 0U) 
-                                                     << 1U))) 
+                                                     << 2U))) 
                                               | ((((0x1eU 
                                                     >= 
                                                     (0x1fU 
@@ -530,17 +574,17 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                      (0x1fU 
                                                       & vlTOPp->FPHUB_sqrt__DOT__j)]
                                                       : 0U)) 
-                                                 << 1U)));
+                                                 << 2U)));
                         if ((0x1eU >= (0x1fU & ((IData)(1U) 
                                                 + vlTOPp->FPHUB_sqrt__DOT__j)))) {
                             __Vdlyvval__FPHUB_sqrt__DOT__WC__v3 
-                                = vlTOPp->FPHUB_sqrt__DOT____Vlvbound13;
+                                = vlTOPp->FPHUB_sqrt__DOT____Vlvbound14;
                             __Vdlyvset__FPHUB_sqrt__DOT__WC__v3 = 1U;
                             __Vdlyvdim0__FPHUB_sqrt__DOT__WC__v3 
                                 = (0x1fU & ((IData)(1U) 
                                             + vlTOPp->FPHUB_sqrt__DOT__j));
                         }
-                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound14 
+                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound15 
                             = (0x1fffffffU & (((((0x1eU 
                                                   >= 
                                                   (0x1fU 
@@ -577,7 +621,7 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                         if ((0x1eU >= (0x1fU & ((IData)(1U) 
                                                 + vlTOPp->FPHUB_sqrt__DOT__j)))) {
                             __Vdlyvval__FPHUB_sqrt__DOT__W2__v3 
-                                = vlTOPp->FPHUB_sqrt__DOT____Vlvbound14;
+                                = vlTOPp->FPHUB_sqrt__DOT____Vlvbound15;
                             __Vdlyvset__FPHUB_sqrt__DOT__W2__v3 = 1U;
                             __Vdlyvdim0__FPHUB_sqrt__DOT__W2__v3 
                                 = (0x1fU & ((IData)(1U) 
@@ -585,22 +629,22 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                         }
                         vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k = 0U;
                         while (VL_LTES_III(1,32,32, vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k, 
-                                           ((IData)(1U) 
+                                           ((IData)(2U) 
                                             + vlTOPp->FPHUB_sqrt__DOT__j))) {
-                            vlTOPp->FPHUB_sqrt__DOT____Vlvbound15 
+                            vlTOPp->FPHUB_sqrt__DOT____Vlvbound16 
                                 = ((0x1cU >= (0x1fU 
-                                              & ((IData)(0x19U) 
+                                              & ((IData)(0x1cU) 
                                                  - vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k))) 
                                    & (((0x1eU >= (0x1fU 
                                                   & vlTOPp->FPHUB_sqrt__DOT__j))
                                         ? vlTOPp->FPHUB_sqrt__DOT__F1
                                        [(0x1fU & vlTOPp->FPHUB_sqrt__DOT__j)]
                                         : 0U) >> (0x1fU 
-                                                  & ((IData)(0x19U) 
+                                                  & ((IData)(0x1cU) 
                                                      - vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k))));
                             if (VL_LIKELY(((0x1cU >= 
                                             (0x1fU 
-                                             & ((IData)(0x19U) 
+                                             & ((IData)(0x1cU) 
                                                 - vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k))) 
                                            & (0x1eU 
                                               >= (0x1fU 
@@ -611,20 +655,20 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                                 + vlTOPp->FPHUB_sqrt__DOT__j))] 
                                     = (((~ ((IData)(1U) 
                                             << (0x1fU 
-                                                & ((IData)(0x19U) 
+                                                & ((IData)(0x1cU) 
                                                    - vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k)))) 
                                         & vlTOPp->FPHUB_sqrt__DOT__F1
                                         [(0x1fU & ((IData)(1U) 
                                                    + vlTOPp->FPHUB_sqrt__DOT__j))]) 
-                                       | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound15) 
+                                       | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound16) 
                                           << (0x1fU 
-                                              & ((IData)(0x19U) 
+                                              & ((IData)(0x1cU) 
                                                  - vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k))));
                             }
-                            vlTOPp->FPHUB_sqrt__DOT____Vlvbound16 
+                            vlTOPp->FPHUB_sqrt__DOT____Vlvbound17 
                                 = (1U & (~ ((0x1cU 
                                              >= (0x1fU 
-                                                 & ((IData)(0x19U) 
+                                                 & ((IData)(0x1cU) 
                                                     - vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k))) 
                                             & (((0x1eU 
                                                  >= 
@@ -636,11 +680,11 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                   & vlTOPp->FPHUB_sqrt__DOT__j)]
                                                  : 0U) 
                                                >> (0x1fU 
-                                                   & ((IData)(0x19U) 
+                                                   & ((IData)(0x1cU) 
                                                       - vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k))))));
                             if (VL_LIKELY(((0x1cU >= 
                                             (0x1fU 
-                                             & ((IData)(0x19U) 
+                                             & ((IData)(0x1cU) 
                                                 - vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k))) 
                                            & (0x1eU 
                                               >= (0x1fU 
@@ -651,24 +695,23 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                                  + vlTOPp->FPHUB_sqrt__DOT__j))] 
                                     = (((~ ((IData)(1U) 
                                             << (0x1fU 
-                                                & ((IData)(0x19U) 
+                                                & ((IData)(0x1cU) 
                                                    - vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k)))) 
                                         & vlTOPp->FPHUB_sqrt__DOT__F_1
                                         [(0x1fU & ((IData)(1U) 
                                                    + vlTOPp->FPHUB_sqrt__DOT__j))]) 
-                                       | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound16) 
+                                       | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound17) 
                                           << (0x1fU 
-                                              & ((IData)(0x19U) 
+                                              & ((IData)(0x1cU) 
                                                  - vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k))));
                             }
                             vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k 
                                 = ((IData)(1U) + vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k);
                         }
-                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound17 = 3U;
-                        if (((0x1cU >= (0x1fU & ((((IData)(0x17U) 
-                                                   - vlTOPp->FPHUB_sqrt__DOT__j) 
-                                                  - (IData)(2U)) 
-                                                 - (IData)(2U)))) 
+                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound18 = 3U;
+                        if (((0x1cU >= (0x1fU & (((IData)(0x1cU) 
+                                                  - vlTOPp->FPHUB_sqrt__DOT__j) 
+                                                 - (IData)(5U)))) 
                              & (0x1eU >= (0x1fU & ((IData)(1U) 
                                                    + vlTOPp->FPHUB_sqrt__DOT__j))))) {
                             vlTOPp->FPHUB_sqrt__DOT__F1[(0x1fU 
@@ -676,25 +719,22 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                             + vlTOPp->FPHUB_sqrt__DOT__j))] 
                                 = (((~ ((IData)(7U) 
                                         << (0x1fU & 
-                                            ((((IData)(0x17U) 
-                                               - vlTOPp->FPHUB_sqrt__DOT__j) 
-                                              - (IData)(2U)) 
-                                             - (IData)(2U))))) 
+                                            (((IData)(0x1cU) 
+                                              - vlTOPp->FPHUB_sqrt__DOT__j) 
+                                             - (IData)(5U))))) 
                                     & vlTOPp->FPHUB_sqrt__DOT__F1
                                     [(0x1fU & ((IData)(1U) 
                                                + vlTOPp->FPHUB_sqrt__DOT__j))]) 
-                                   | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound17) 
+                                   | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound18) 
                                       << (0x1fU & (
-                                                   (((IData)(0x17U) 
-                                                     - vlTOPp->FPHUB_sqrt__DOT__j) 
-                                                    - (IData)(2U)) 
-                                                   - (IData)(2U)))));
+                                                   ((IData)(0x1cU) 
+                                                    - vlTOPp->FPHUB_sqrt__DOT__j) 
+                                                   - (IData)(5U)))));
                         }
-                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound18 = 3U;
-                        if (((0x1cU >= (0x1fU & ((((IData)(0x17U) 
-                                                   - vlTOPp->FPHUB_sqrt__DOT__j) 
-                                                  - (IData)(2U)) 
-                                                 - (IData)(2U)))) 
+                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound19 = 3U;
+                        if (((0x1cU >= (0x1fU & (((IData)(0x1cU) 
+                                                  - vlTOPp->FPHUB_sqrt__DOT__j) 
+                                                 - (IData)(5U)))) 
                              & (0x1eU >= (0x1fU & ((IData)(1U) 
                                                    + vlTOPp->FPHUB_sqrt__DOT__j))))) {
                             vlTOPp->FPHUB_sqrt__DOT__F_1[(0x1fU 
@@ -702,26 +742,24 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                              + vlTOPp->FPHUB_sqrt__DOT__j))] 
                                 = (((~ ((IData)(7U) 
                                         << (0x1fU & 
-                                            ((((IData)(0x17U) 
-                                               - vlTOPp->FPHUB_sqrt__DOT__j) 
-                                              - (IData)(2U)) 
-                                             - (IData)(2U))))) 
+                                            (((IData)(0x1cU) 
+                                              - vlTOPp->FPHUB_sqrt__DOT__j) 
+                                             - (IData)(5U))))) 
                                     & vlTOPp->FPHUB_sqrt__DOT__F_1
                                     [(0x1fU & ((IData)(1U) 
                                                + vlTOPp->FPHUB_sqrt__DOT__j))]) 
-                                   | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound18) 
+                                   | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound19) 
                                       << (0x1fU & (
-                                                   (((IData)(0x17U) 
-                                                     - vlTOPp->FPHUB_sqrt__DOT__j) 
-                                                    - (IData)(2U)) 
-                                                   - (IData)(2U)))));
+                                                   ((IData)(0x1cU) 
+                                                    - vlTOPp->FPHUB_sqrt__DOT__j) 
+                                                   - (IData)(5U)))));
                         }
                         vlTOPp->FPHUB_sqrt__DOT__unnamedblk4__DOT__k = 0U;
                         while (VL_LTES_III(1,32,32, vlTOPp->FPHUB_sqrt__DOT__unnamedblk4__DOT__k, 
-                                           (((IData)(0x17U) 
+                                           (((IData)(0x1cU) 
                                              - vlTOPp->FPHUB_sqrt__DOT__j) 
-                                            - (IData)(3U)))) {
-                            vlTOPp->FPHUB_sqrt__DOT____Vlvbound19 = 0U;
+                                            - (IData)(6U)))) {
+                            vlTOPp->FPHUB_sqrt__DOT____Vlvbound20 = 0U;
                             if (VL_LIKELY(((0x1cU >= 
                                             (0x1fU 
                                              & vlTOPp->FPHUB_sqrt__DOT__unnamedblk4__DOT__k)) 
@@ -738,11 +776,11 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                         & vlTOPp->FPHUB_sqrt__DOT__F1
                                         [(0x1fU & ((IData)(1U) 
                                                    + vlTOPp->FPHUB_sqrt__DOT__j))]) 
-                                       | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound19) 
+                                       | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound20) 
                                           << (0x1fU 
                                               & vlTOPp->FPHUB_sqrt__DOT__unnamedblk4__DOT__k)));
                             }
-                            vlTOPp->FPHUB_sqrt__DOT____Vlvbound20 = 0U;
+                            vlTOPp->FPHUB_sqrt__DOT____Vlvbound21 = 0U;
                             if (VL_LIKELY(((0x1cU >= 
                                             (0x1fU 
                                              & vlTOPp->FPHUB_sqrt__DOT__unnamedblk4__DOT__k)) 
@@ -759,7 +797,7 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                         & vlTOPp->FPHUB_sqrt__DOT__F_1
                                         [(0x1fU & ((IData)(1U) 
                                                    + vlTOPp->FPHUB_sqrt__DOT__j))]) 
-                                       | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound20) 
+                                       | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound21) 
                                           << (0x1fU 
                                               & vlTOPp->FPHUB_sqrt__DOT__unnamedblk4__DOT__k)));
                             }
@@ -767,7 +805,7 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                 = ((IData)(1U) + vlTOPp->FPHUB_sqrt__DOT__unnamedblk4__DOT__k);
                         }
                     } else {
-                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound21 = 3U;
+                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound22 = 3U;
                         if ((0x3eU >= (0x3fU & ((IData)(0x3eU) 
                                                 - ((IData)(3U) 
                                                    + 
@@ -780,14 +818,14 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                      + 
                                                      VL_MULS_III(6,32,32, (IData)(2U), vlTOPp->FPHUB_sqrt__DOT__j)))))) 
                                     & __Vdly__FPHUB_sqrt__DOT__S) 
-                                   | ((QData)((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound21)) 
+                                   | ((QData)((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound22)) 
                                       << (0x3fU & ((IData)(0x3eU) 
                                                    - 
                                                    ((IData)(3U) 
                                                     + 
                                                     VL_MULS_III(6,32,32, (IData)(2U), vlTOPp->FPHUB_sqrt__DOT__j))))));
                         }
-                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound22 
+                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound23 
                             = (0x1fffffffU & (((((0x1eU 
                                                   >= 
                                                   (0x1fU 
@@ -820,13 +858,13 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                         if ((0x1eU >= (0x1fU & ((IData)(1U) 
                                                 + vlTOPp->FPHUB_sqrt__DOT__j)))) {
                             __Vdlyvval__FPHUB_sqrt__DOT__W__v4 
-                                = vlTOPp->FPHUB_sqrt__DOT____Vlvbound22;
+                                = vlTOPp->FPHUB_sqrt__DOT____Vlvbound23;
                             __Vdlyvset__FPHUB_sqrt__DOT__W__v4 = 1U;
                             __Vdlyvdim0__FPHUB_sqrt__DOT__W__v4 
                                 = (0x1fU & ((IData)(1U) 
                                             + vlTOPp->FPHUB_sqrt__DOT__j));
                         }
-                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound23 
+                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound24 
                             = (0x1fffffffU & ((((((0x1eU 
                                                    >= 
                                                    (0x1fU 
@@ -837,7 +875,7 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                   (0x1fU 
                                                    & vlTOPp->FPHUB_sqrt__DOT__j)]
                                                    : 0U) 
-                                                 << 2U) 
+                                                 << 3U) 
                                                 & (((0x1eU 
                                                      >= 
                                                      (0x1fU 
@@ -848,7 +886,7 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                     (0x1fU 
                                                      & vlTOPp->FPHUB_sqrt__DOT__j)]
                                                      : 0U) 
-                                                   << 1U)) 
+                                                   << 2U)) 
                                                | ((((0x1eU 
                                                      >= 
                                                      (0x1fU 
@@ -859,7 +897,7 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                     (0x1fU 
                                                      & vlTOPp->FPHUB_sqrt__DOT__j)]
                                                      : 0U) 
-                                                   << 2U) 
+                                                   << 3U) 
                                                   & (((0x1eU 
                                                        >= 
                                                        (0x1fU 
@@ -870,7 +908,7 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                       (0x1fU 
                                                        & vlTOPp->FPHUB_sqrt__DOT__j)]
                                                        : 0U) 
-                                                     << 1U))) 
+                                                     << 2U))) 
                                               | ((((0x1eU 
                                                     >= 
                                                     (0x1fU 
@@ -891,17 +929,17 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                      (0x1fU 
                                                       & vlTOPp->FPHUB_sqrt__DOT__j)]
                                                       : 0U)) 
-                                                 << 1U)));
+                                                 << 2U)));
                         if ((0x1eU >= (0x1fU & ((IData)(1U) 
                                                 + vlTOPp->FPHUB_sqrt__DOT__j)))) {
                             __Vdlyvval__FPHUB_sqrt__DOT__WC__v4 
-                                = vlTOPp->FPHUB_sqrt__DOT____Vlvbound23;
+                                = vlTOPp->FPHUB_sqrt__DOT____Vlvbound24;
                             __Vdlyvset__FPHUB_sqrt__DOT__WC__v4 = 1U;
                             __Vdlyvdim0__FPHUB_sqrt__DOT__WC__v4 
                                 = (0x1fU & ((IData)(1U) 
                                             + vlTOPp->FPHUB_sqrt__DOT__j));
                         }
-                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound24 
+                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound25 
                             = (0x1fffffffU & (((((0x1eU 
                                                   >= 
                                                   (0x1fU 
@@ -938,7 +976,7 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                         if ((0x1eU >= (0x1fU & ((IData)(1U) 
                                                 + vlTOPp->FPHUB_sqrt__DOT__j)))) {
                             __Vdlyvval__FPHUB_sqrt__DOT__W2__v4 
-                                = vlTOPp->FPHUB_sqrt__DOT____Vlvbound24;
+                                = vlTOPp->FPHUB_sqrt__DOT____Vlvbound25;
                             __Vdlyvset__FPHUB_sqrt__DOT__W2__v4 = 1U;
                             __Vdlyvdim0__FPHUB_sqrt__DOT__W2__v4 
                                 = (0x1fU & ((IData)(1U) 
@@ -946,12 +984,12 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                         }
                         vlTOPp->FPHUB_sqrt__DOT__unnamedblk5__DOT__k = 0U;
                         while (VL_LTES_III(1,32,32, vlTOPp->FPHUB_sqrt__DOT__unnamedblk5__DOT__k, 
-                                           ((IData)(1U) 
+                                           ((IData)(2U) 
                                             + vlTOPp->FPHUB_sqrt__DOT__j))) {
-                            vlTOPp->FPHUB_sqrt__DOT____Vlvbound25 
+                            vlTOPp->FPHUB_sqrt__DOT____Vlvbound26 
                                 = (1U & (~ ((0x1cU 
                                              >= (0x1fU 
-                                                 & ((IData)(0x19U) 
+                                                 & ((IData)(0x1cU) 
                                                     - vlTOPp->FPHUB_sqrt__DOT__unnamedblk5__DOT__k))) 
                                             & (((0x1eU 
                                                  >= 
@@ -963,11 +1001,11 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                   & vlTOPp->FPHUB_sqrt__DOT__j)]
                                                  : 0U) 
                                                >> (0x1fU 
-                                                   & ((IData)(0x19U) 
+                                                   & ((IData)(0x1cU) 
                                                       - vlTOPp->FPHUB_sqrt__DOT__unnamedblk5__DOT__k))))));
                             if (VL_LIKELY(((0x1cU >= 
                                             (0x1fU 
-                                             & ((IData)(0x19U) 
+                                             & ((IData)(0x1cU) 
                                                 - vlTOPp->FPHUB_sqrt__DOT__unnamedblk5__DOT__k))) 
                                            & (0x1eU 
                                               >= (0x1fU 
@@ -978,30 +1016,30 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                                 + vlTOPp->FPHUB_sqrt__DOT__j))] 
                                     = (((~ ((IData)(1U) 
                                             << (0x1fU 
-                                                & ((IData)(0x19U) 
+                                                & ((IData)(0x1cU) 
                                                    - vlTOPp->FPHUB_sqrt__DOT__unnamedblk5__DOT__k)))) 
                                         & vlTOPp->FPHUB_sqrt__DOT__F1
                                         [(0x1fU & ((IData)(1U) 
                                                    + vlTOPp->FPHUB_sqrt__DOT__j))]) 
-                                       | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound25) 
+                                       | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound26) 
                                           << (0x1fU 
-                                              & ((IData)(0x19U) 
+                                              & ((IData)(0x1cU) 
                                                  - vlTOPp->FPHUB_sqrt__DOT__unnamedblk5__DOT__k))));
                             }
-                            vlTOPp->FPHUB_sqrt__DOT____Vlvbound26 
+                            vlTOPp->FPHUB_sqrt__DOT____Vlvbound27 
                                 = ((0x1cU >= (0x1fU 
-                                              & ((IData)(0x19U) 
+                                              & ((IData)(0x1cU) 
                                                  - vlTOPp->FPHUB_sqrt__DOT__unnamedblk5__DOT__k))) 
                                    & (((0x1eU >= (0x1fU 
                                                   & vlTOPp->FPHUB_sqrt__DOT__j))
                                         ? vlTOPp->FPHUB_sqrt__DOT__F_1
                                        [(0x1fU & vlTOPp->FPHUB_sqrt__DOT__j)]
                                         : 0U) >> (0x1fU 
-                                                  & ((IData)(0x19U) 
+                                                  & ((IData)(0x1cU) 
                                                      - vlTOPp->FPHUB_sqrt__DOT__unnamedblk5__DOT__k))));
                             if (VL_LIKELY(((0x1cU >= 
                                             (0x1fU 
-                                             & ((IData)(0x19U) 
+                                             & ((IData)(0x1cU) 
                                                 - vlTOPp->FPHUB_sqrt__DOT__unnamedblk5__DOT__k))) 
                                            & (0x1eU 
                                               >= (0x1fU 
@@ -1012,24 +1050,23 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                                  + vlTOPp->FPHUB_sqrt__DOT__j))] 
                                     = (((~ ((IData)(1U) 
                                             << (0x1fU 
-                                                & ((IData)(0x19U) 
+                                                & ((IData)(0x1cU) 
                                                    - vlTOPp->FPHUB_sqrt__DOT__unnamedblk5__DOT__k)))) 
                                         & vlTOPp->FPHUB_sqrt__DOT__F_1
                                         [(0x1fU & ((IData)(1U) 
                                                    + vlTOPp->FPHUB_sqrt__DOT__j))]) 
-                                       | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound26) 
+                                       | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound27) 
                                           << (0x1fU 
-                                              & ((IData)(0x19U) 
+                                              & ((IData)(0x1cU) 
                                                  - vlTOPp->FPHUB_sqrt__DOT__unnamedblk5__DOT__k))));
                             }
                             vlTOPp->FPHUB_sqrt__DOT__unnamedblk5__DOT__k 
                                 = ((IData)(1U) + vlTOPp->FPHUB_sqrt__DOT__unnamedblk5__DOT__k);
                         }
-                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound27 = 3U;
-                        if (((0x1cU >= (0x1fU & ((((IData)(0x17U) 
-                                                   - vlTOPp->FPHUB_sqrt__DOT__j) 
-                                                  - (IData)(2U)) 
-                                                 - (IData)(2U)))) 
+                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound28 = 3U;
+                        if (((0x1cU >= (0x1fU & (((IData)(0x1cU) 
+                                                  - vlTOPp->FPHUB_sqrt__DOT__j) 
+                                                 - (IData)(5U)))) 
                              & (0x1eU >= (0x1fU & ((IData)(1U) 
                                                    + vlTOPp->FPHUB_sqrt__DOT__j))))) {
                             vlTOPp->FPHUB_sqrt__DOT__F1[(0x1fU 
@@ -1037,25 +1074,22 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                             + vlTOPp->FPHUB_sqrt__DOT__j))] 
                                 = (((~ ((IData)(7U) 
                                         << (0x1fU & 
-                                            ((((IData)(0x17U) 
-                                               - vlTOPp->FPHUB_sqrt__DOT__j) 
-                                              - (IData)(2U)) 
-                                             - (IData)(2U))))) 
+                                            (((IData)(0x1cU) 
+                                              - vlTOPp->FPHUB_sqrt__DOT__j) 
+                                             - (IData)(5U))))) 
                                     & vlTOPp->FPHUB_sqrt__DOT__F1
                                     [(0x1fU & ((IData)(1U) 
                                                + vlTOPp->FPHUB_sqrt__DOT__j))]) 
-                                   | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound27) 
+                                   | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound28) 
                                       << (0x1fU & (
-                                                   (((IData)(0x17U) 
-                                                     - vlTOPp->FPHUB_sqrt__DOT__j) 
-                                                    - (IData)(2U)) 
-                                                   - (IData)(2U)))));
+                                                   ((IData)(0x1cU) 
+                                                    - vlTOPp->FPHUB_sqrt__DOT__j) 
+                                                   - (IData)(5U)))));
                         }
-                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound28 = 3U;
-                        if (((0x1cU >= (0x1fU & ((((IData)(0x17U) 
-                                                   - vlTOPp->FPHUB_sqrt__DOT__j) 
-                                                  - (IData)(2U)) 
-                                                 - (IData)(2U)))) 
+                        vlTOPp->FPHUB_sqrt__DOT____Vlvbound29 = 3U;
+                        if (((0x1cU >= (0x1fU & (((IData)(0x1cU) 
+                                                  - vlTOPp->FPHUB_sqrt__DOT__j) 
+                                                 - (IData)(5U)))) 
                              & (0x1eU >= (0x1fU & ((IData)(1U) 
                                                    + vlTOPp->FPHUB_sqrt__DOT__j))))) {
                             vlTOPp->FPHUB_sqrt__DOT__F_1[(0x1fU 
@@ -1063,46 +1097,23 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                              + vlTOPp->FPHUB_sqrt__DOT__j))] 
                                 = (((~ ((IData)(7U) 
                                         << (0x1fU & 
-                                            ((((IData)(0x17U) 
-                                               - vlTOPp->FPHUB_sqrt__DOT__j) 
-                                              - (IData)(2U)) 
-                                             - (IData)(2U))))) 
+                                            (((IData)(0x1cU) 
+                                              - vlTOPp->FPHUB_sqrt__DOT__j) 
+                                             - (IData)(5U))))) 
                                     & vlTOPp->FPHUB_sqrt__DOT__F_1
                                     [(0x1fU & ((IData)(1U) 
                                                + vlTOPp->FPHUB_sqrt__DOT__j))]) 
-                                   | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound28) 
+                                   | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound29) 
                                       << (0x1fU & (
-                                                   (((IData)(0x17U) 
-                                                     - vlTOPp->FPHUB_sqrt__DOT__j) 
-                                                    - (IData)(2U)) 
-                                                   - (IData)(2U)))));
+                                                   ((IData)(0x1cU) 
+                                                    - vlTOPp->FPHUB_sqrt__DOT__j) 
+                                                   - (IData)(5U)))));
                         }
                         vlTOPp->FPHUB_sqrt__DOT__unnamedblk6__DOT__k = 0U;
                         while (VL_LTES_III(1,32,32, vlTOPp->FPHUB_sqrt__DOT__unnamedblk6__DOT__k, 
-                                           (((IData)(0x17U) 
+                                           (((IData)(0x1cU) 
                                              - vlTOPp->FPHUB_sqrt__DOT__j) 
-                                            - (IData)(3U)))) {
-                            vlTOPp->FPHUB_sqrt__DOT____Vlvbound29 = 0U;
-                            if (VL_LIKELY(((0x1cU >= 
-                                            (0x1fU 
-                                             & vlTOPp->FPHUB_sqrt__DOT__unnamedblk6__DOT__k)) 
-                                           & (0x1eU 
-                                              >= (0x1fU 
-                                                  & ((IData)(1U) 
-                                                     + vlTOPp->FPHUB_sqrt__DOT__j)))))) {
-                                vlTOPp->FPHUB_sqrt__DOT__F1[(0x1fU 
-                                                             & ((IData)(1U) 
-                                                                + vlTOPp->FPHUB_sqrt__DOT__j))] 
-                                    = (((~ ((IData)(1U) 
-                                            << (0x1fU 
-                                                & vlTOPp->FPHUB_sqrt__DOT__unnamedblk6__DOT__k))) 
-                                        & vlTOPp->FPHUB_sqrt__DOT__F1
-                                        [(0x1fU & ((IData)(1U) 
-                                                   + vlTOPp->FPHUB_sqrt__DOT__j))]) 
-                                       | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound29) 
-                                          << (0x1fU 
-                                              & vlTOPp->FPHUB_sqrt__DOT__unnamedblk6__DOT__k)));
-                            }
+                                            - (IData)(6U)))) {
                             vlTOPp->FPHUB_sqrt__DOT____Vlvbound30 = 0U;
                             if (VL_LIKELY(((0x1cU >= 
                                             (0x1fU 
@@ -1111,6 +1122,27 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                               >= (0x1fU 
                                                   & ((IData)(1U) 
                                                      + vlTOPp->FPHUB_sqrt__DOT__j)))))) {
+                                vlTOPp->FPHUB_sqrt__DOT__F1[(0x1fU 
+                                                             & ((IData)(1U) 
+                                                                + vlTOPp->FPHUB_sqrt__DOT__j))] 
+                                    = (((~ ((IData)(1U) 
+                                            << (0x1fU 
+                                                & vlTOPp->FPHUB_sqrt__DOT__unnamedblk6__DOT__k))) 
+                                        & vlTOPp->FPHUB_sqrt__DOT__F1
+                                        [(0x1fU & ((IData)(1U) 
+                                                   + vlTOPp->FPHUB_sqrt__DOT__j))]) 
+                                       | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound30) 
+                                          << (0x1fU 
+                                              & vlTOPp->FPHUB_sqrt__DOT__unnamedblk6__DOT__k)));
+                            }
+                            vlTOPp->FPHUB_sqrt__DOT____Vlvbound31 = 0U;
+                            if (VL_LIKELY(((0x1cU >= 
+                                            (0x1fU 
+                                             & vlTOPp->FPHUB_sqrt__DOT__unnamedblk6__DOT__k)) 
+                                           & (0x1eU 
+                                              >= (0x1fU 
+                                                  & ((IData)(1U) 
+                                                     + vlTOPp->FPHUB_sqrt__DOT__j)))))) {
                                 vlTOPp->FPHUB_sqrt__DOT__F_1[(0x1fU 
                                                               & ((IData)(1U) 
                                                                  + vlTOPp->FPHUB_sqrt__DOT__j))] 
@@ -1120,7 +1152,7 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                         & vlTOPp->FPHUB_sqrt__DOT__F_1
                                         [(0x1fU & ((IData)(1U) 
                                                    + vlTOPp->FPHUB_sqrt__DOT__j))]) 
-                                       | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound30) 
+                                       | ((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound31) 
                                           << (0x1fU 
                                               & vlTOPp->FPHUB_sqrt__DOT__unnamedblk6__DOT__k)));
                             }
@@ -1128,6 +1160,26 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                 = ((IData)(1U) + vlTOPp->FPHUB_sqrt__DOT__unnamedblk6__DOT__k);
                         }
                     }
+                }
+                vlTOPp->FPHUB_sqrt__DOT____Vlvbound32 = 0U;
+                if ((0x1eU >= (0x1fU & ((IData)(1U) 
+                                        + vlTOPp->FPHUB_sqrt__DOT__j)))) {
+                    __Vdlyvval__FPHUB_sqrt__DOT__F1__v0 
+                        = vlTOPp->FPHUB_sqrt__DOT____Vlvbound32;
+                    __Vdlyvset__FPHUB_sqrt__DOT__F1__v0 = 1U;
+                    __Vdlyvlsb__FPHUB_sqrt__DOT__F1__v0 = 0x1cU;
+                    __Vdlyvdim0__FPHUB_sqrt__DOT__F1__v0 
+                        = (0x1fU & ((IData)(1U) + vlTOPp->FPHUB_sqrt__DOT__j));
+                }
+                vlTOPp->FPHUB_sqrt__DOT____Vlvbound33 = 0U;
+                if ((0x1eU >= (0x1fU & ((IData)(1U) 
+                                        + vlTOPp->FPHUB_sqrt__DOT__j)))) {
+                    __Vdlyvval__FPHUB_sqrt__DOT__F_1__v0 
+                        = vlTOPp->FPHUB_sqrt__DOT____Vlvbound33;
+                    __Vdlyvset__FPHUB_sqrt__DOT__F_1__v0 = 1U;
+                    __Vdlyvlsb__FPHUB_sqrt__DOT__F_1__v0 = 0x1cU;
+                    __Vdlyvdim0__FPHUB_sqrt__DOT__F_1__v0 
+                        = (0x1fU & ((IData)(1U) + vlTOPp->FPHUB_sqrt__DOT__j));
                 }
             } else {
                 if (vlTOPp->computing) {
@@ -1628,10 +1680,29 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
         vlTOPp->res = 0U;
         vlTOPp->finish = 0U;
         __Vdly__computing = 0U;
+        vlTOPp->FPHUB_sqrt__DOT__chivato = 0U;
     }
     vlTOPp->FPHUB_sqrt__DOT__S = __Vdly__FPHUB_sqrt__DOT__S;
     vlTOPp->FPHUB_sqrt__DOT__j = __Vdly__FPHUB_sqrt__DOT__j;
     vlTOPp->computing = __Vdly__computing;
+    if (__Vdlyvset__FPHUB_sqrt__DOT__y_test__v0) {
+        vlTOPp->FPHUB_sqrt__DOT__y_test[__Vdlyvdim0__FPHUB_sqrt__DOT__y_test__v0] 
+            = __Vdlyvval__FPHUB_sqrt__DOT__y_test__v0;
+    }
+    if (__Vdlyvset__FPHUB_sqrt__DOT__F1__v0) {
+        vlTOPp->FPHUB_sqrt__DOT__F1[__Vdlyvdim0__FPHUB_sqrt__DOT__F1__v0] 
+            = (((~ ((IData)(1U) << (IData)(__Vdlyvlsb__FPHUB_sqrt__DOT__F1__v0))) 
+                & vlTOPp->FPHUB_sqrt__DOT__F1[__Vdlyvdim0__FPHUB_sqrt__DOT__F1__v0]) 
+               | ((IData)(__Vdlyvval__FPHUB_sqrt__DOT__F1__v0) 
+                  << (IData)(__Vdlyvlsb__FPHUB_sqrt__DOT__F1__v0)));
+    }
+    if (__Vdlyvset__FPHUB_sqrt__DOT__F_1__v0) {
+        vlTOPp->FPHUB_sqrt__DOT__F_1[__Vdlyvdim0__FPHUB_sqrt__DOT__F_1__v0] 
+            = (((~ ((IData)(1U) << (IData)(__Vdlyvlsb__FPHUB_sqrt__DOT__F_1__v0))) 
+                & vlTOPp->FPHUB_sqrt__DOT__F_1[__Vdlyvdim0__FPHUB_sqrt__DOT__F_1__v0]) 
+               | ((IData)(__Vdlyvval__FPHUB_sqrt__DOT__F_1__v0) 
+                  << (IData)(__Vdlyvlsb__FPHUB_sqrt__DOT__F_1__v0)));
+    }
     if (__Vdlyvset__FPHUB_sqrt__DOT__W__v0) {
         vlTOPp->FPHUB_sqrt__DOT__WC[0U] = 0U;
     }
