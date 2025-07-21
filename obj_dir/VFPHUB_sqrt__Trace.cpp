@@ -227,27 +227,69 @@ void VFPHUB_sqrt::traceChgSub0(void* userp, VerilatedVcd* tracep) {
             tracep->chgCData(oldp+195,(vlTOPp->FPHUB_sqrt__DOT__y_test[29]),4);
             tracep->chgCData(oldp+196,(vlTOPp->FPHUB_sqrt__DOT__y_test[30]),4);
             tracep->chgBit(oldp+197,(vlTOPp->FPHUB_sqrt__DOT__chivato));
-            tracep->chgIData(oldp+198,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k),32);
-            tracep->chgIData(oldp+199,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk2__DOT__k),32);
-            tracep->chgIData(oldp+200,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k),32);
-            tracep->chgIData(oldp+201,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk4__DOT__k),32);
-            tracep->chgIData(oldp+202,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk5__DOT__k),32);
-            tracep->chgIData(oldp+203,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk6__DOT__k),32);
-            tracep->chgIData(oldp+204,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk7__DOT__i),32);
+            tracep->chgIData(oldp+198,(vlTOPp->FPHUB_sqrt__DOT__quotient),32);
+            tracep->chgIData(oldp+199,(vlTOPp->FPHUB_sqrt__DOT__restored_quotient),32);
+            tracep->chgIData(oldp+200,(vlTOPp->FPHUB_sqrt__DOT__normalized),32);
+            tracep->chgIData(oldp+201,(vlTOPp->FPHUB_sqrt__DOT__leading_zeros),32);
+            tracep->chgIData(oldp+202,(vlTOPp->FPHUB_sqrt__DOT__res_mantissa),23);
+            tracep->chgIData(oldp+203,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k),32);
+            tracep->chgIData(oldp+204,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk2__DOT__k),32);
+            tracep->chgIData(oldp+205,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k),32);
+            tracep->chgIData(oldp+206,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk4__DOT__k),32);
+            tracep->chgIData(oldp+207,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk5__DOT__k),32);
+            tracep->chgIData(oldp+208,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk6__DOT__k),32);
+            tracep->chgIData(oldp+209,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk7__DOT__i),32);
+            tracep->chgIData(oldp+210,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk8__DOT__i),32);
         }
-        tracep->chgBit(oldp+205,(vlTOPp->clk));
-        tracep->chgBit(oldp+206,(vlTOPp->rst_l));
-        tracep->chgBit(oldp+207,(vlTOPp->start));
-        tracep->chgIData(oldp+208,(vlTOPp->x),32);
-        tracep->chgIData(oldp+209,(vlTOPp->res),32);
-        tracep->chgBit(oldp+210,(vlTOPp->finish));
-        tracep->chgBit(oldp+211,(vlTOPp->computing));
-        tracep->chgCData(oldp+212,((0xffU & (vlTOPp->x 
+        tracep->chgBit(oldp+211,(vlTOPp->clk));
+        tracep->chgBit(oldp+212,(vlTOPp->rst_l));
+        tracep->chgBit(oldp+213,(vlTOPp->start));
+        tracep->chgIData(oldp+214,(vlTOPp->x),32);
+        tracep->chgIData(oldp+215,(vlTOPp->res),32);
+        tracep->chgBit(oldp+216,(vlTOPp->finish));
+        tracep->chgBit(oldp+217,(vlTOPp->computing));
+        tracep->chgCData(oldp+218,((0xffU & (vlTOPp->x 
                                              >> 0x17U))),8);
-        tracep->chgIData(oldp+213,((0x7fffffU & vlTOPp->x)),23);
-        tracep->chgIData(oldp+214,((0x1000001U | (0xfffffeU 
+        tracep->chgCData(oldp+219,((0xffU & ((0x800000U 
+                                              & vlTOPp->x)
+                                              ? ((IData)(1U) 
+                                                 + 
+                                                 (0xffU 
                                                   & (vlTOPp->x 
-                                                     << 1U)))),29);
+                                                     >> 0x17U)))
+                                              : ((IData)(2U) 
+                                                 + 
+                                                 (0xffU 
+                                                  & (vlTOPp->x 
+                                                     >> 0x17U)))))),8);
+        tracep->chgIData(oldp+220,((0x7fffffU & vlTOPp->x)),23);
+        tracep->chgIData(oldp+221,((0x1000001U | (0xfffffeU 
+                                                  & (vlTOPp->x 
+                                                     << 1U)))),25);
+        tracep->chgIData(oldp+222,((0x1ffffffU & ((0x800000U 
+                                                   & vlTOPp->x)
+                                                   ? 
+                                                  (0x800000U 
+                                                   | (0x7fffffU 
+                                                      & vlTOPp->x))
+                                                   : 
+                                                  (0x400000U 
+                                                   | (0x3fffffU 
+                                                      & (vlTOPp->x 
+                                                         >> 1U)))))),25);
+        tracep->chgIData(oldp+223,((0x3fffffeU & ((
+                                                   (0x800000U 
+                                                    & vlTOPp->x)
+                                                    ? 
+                                                   (0x800000U 
+                                                    | (0x7fffffU 
+                                                       & vlTOPp->x))
+                                                    : 
+                                                   (0x400000U 
+                                                    | (0x3fffffU 
+                                                       & (vlTOPp->x 
+                                                          >> 1U)))) 
+                                                  << 1U))),29);
     }
 }
 

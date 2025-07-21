@@ -119,11 +119,7 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
     IData/*28:0*/ __Vdlyvval__FPHUB_sqrt__DOT__WC__v4;
     IData/*28:0*/ __Vdlyvval__FPHUB_sqrt__DOT__W2__v4;
     WData/*95:0*/ __Vtemp7[3];
-    QData/*62:0*/ __Vdly__FPHUB_sqrt__DOT__S;
     // Body
-    __Vdly__computing = vlTOPp->computing;
-    __Vdly__FPHUB_sqrt__DOT__j = vlTOPp->FPHUB_sqrt__DOT__j;
-    __Vdly__FPHUB_sqrt__DOT__S = vlTOPp->FPHUB_sqrt__DOT__S;
     __Vdlyvset__FPHUB_sqrt__DOT__y_test__v0 = 0U;
     __Vdlyvset__FPHUB_sqrt__DOT__F_1__v0 = 0U;
     __Vdlyvset__FPHUB_sqrt__DOT__F1__v0 = 0U;
@@ -133,6 +129,8 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
             vlTOPp->FPHUB_sqrt__DOT__y_test[1U] = 0U;
         }
     }
+    __Vdly__computing = vlTOPp->computing;
+    __Vdly__FPHUB_sqrt__DOT__j = vlTOPp->FPHUB_sqrt__DOT__j;
     __Vdlyvset__FPHUB_sqrt__DOT__WC__v2 = 0U;
     __Vdlyvset__FPHUB_sqrt__DOT__WC__v3 = 0U;
     __Vdlyvset__FPHUB_sqrt__DOT__WC__v4 = 0U;
@@ -149,46 +147,89 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
         if (vlTOPp->start) {
             vlTOPp->FPHUB_sqrt__DOT__F1[0U] = 0xf000000U;
             vlTOPp->FPHUB_sqrt__DOT__F_1[0U] = 0xf000000U;
-            __Vdly__FPHUB_sqrt__DOT__S = (0x1fffffffffffffffULL 
-                                          & __Vdly__FPHUB_sqrt__DOT__S);
-            __Vdlyvval__FPHUB_sqrt__DOT__W__v0 = (0x1000001U 
-                                                  | (0xfffffeU 
-                                                     & (vlTOPp->x 
-                                                        << 1U)));
+            vlTOPp->FPHUB_sqrt__DOT__S = (0x1fffffffffffffffULL 
+                                          & vlTOPp->FPHUB_sqrt__DOT__S);
+            __Vdlyvval__FPHUB_sqrt__DOT__W__v0 = (0x3fffffeU 
+                                                  & (((0x800000U 
+                                                       & vlTOPp->x)
+                                                       ? 
+                                                      (0x800000U 
+                                                       | (0x7fffffU 
+                                                          & vlTOPp->x))
+                                                       : 
+                                                      (0x400000U 
+                                                       | (0x3fffffU 
+                                                          & (vlTOPp->x 
+                                                             >> 1U)))) 
+                                                     << 1U));
             __Vdlyvset__FPHUB_sqrt__DOT__W__v0 = 1U;
             vlTOPp->FPHUB_sqrt__DOT__F1[1U] = 0xd800000U;
             vlTOPp->FPHUB_sqrt__DOT__F_1[1U] = 0x1800000U;
-            __Vdlyvval__FPHUB_sqrt__DOT__W2__v0 = (0x1fffffffU 
-                                                   & (0x2000002U 
-                                                      | (0x1fffffcU 
-                                                         & (vlTOPp->x 
-                                                            << 2U))));
+            __Vdlyvval__FPHUB_sqrt__DOT__W2__v0 = (0x7fffffcU 
+                                                   & (((0x800000U 
+                                                        & vlTOPp->x)
+                                                        ? 
+                                                       (0x800000U 
+                                                        | (0x7fffffU 
+                                                           & vlTOPp->x))
+                                                        : 
+                                                       (0x400000U 
+                                                        | (0x3fffffU 
+                                                           & (vlTOPp->x 
+                                                              >> 1U)))) 
+                                                      << 2U));
             __Vdlyvset__FPHUB_sqrt__DOT__W2__v0 = 1U;
             __Vdly__FPHUB_sqrt__DOT__j = 1U;
             __Vdly__computing = 1U;
-            __Vdly__FPHUB_sqrt__DOT__S = (0x800000000000000ULL 
+            vlTOPp->FPHUB_sqrt__DOT__S = (0x800000000000000ULL 
                                           | (0x67ffffffffffffffULL 
-                                             & __Vdly__FPHUB_sqrt__DOT__S));
+                                             & vlTOPp->FPHUB_sqrt__DOT__S));
             __Vdlyvval__FPHUB_sqrt__DOT__W__v1 = (0x1fffffffU 
                                                   & (0xf000000U 
                                                      ^ 
-                                                     (0x2000002U 
-                                                      | (0x1fffffcU 
-                                                         & (vlTOPp->x 
-                                                            << 2U)))));
+                                                     (0x7fffffcU 
+                                                      & (((0x800000U 
+                                                           & vlTOPp->x)
+                                                           ? 
+                                                          (0x800000U 
+                                                           | (0x7fffffU 
+                                                              & vlTOPp->x))
+                                                           : 
+                                                          (0x400000U 
+                                                           | (0x3fffffU 
+                                                              & (vlTOPp->x 
+                                                                 >> 1U)))) 
+                                                         << 2U))));
             __Vdlyvset__FPHUB_sqrt__DOT__W__v1 = 1U;
             __Vdlyvval__FPHUB_sqrt__DOT__WC__v1 = (0x1c000000U 
-                                                   & (0x8000008U 
-                                                      | (0x7fffff0U 
-                                                         & (vlTOPp->x 
-                                                            << 4U))));
+                                                   & (((0x800000U 
+                                                        & vlTOPp->x)
+                                                        ? 
+                                                       (0x800000U 
+                                                        | (0x7fffffU 
+                                                           & vlTOPp->x))
+                                                        : 
+                                                       (0x400000U 
+                                                        | (0x3fffffU 
+                                                           & (vlTOPp->x 
+                                                              >> 1U)))) 
+                                                      << 4U));
             __Vdlyvval__FPHUB_sqrt__DOT__W2__v1 = (0x1fffffffU 
                                                    & (0x1e000000U 
                                                       ^ 
-                                                      (0x4000004U 
-                                                       | (0x3fffff8U 
-                                                          & (vlTOPp->x 
-                                                             << 3U)))));
+                                                      (0xffffff8U 
+                                                       & (((0x800000U 
+                                                            & vlTOPp->x)
+                                                            ? 
+                                                           (0x800000U 
+                                                            | (0x7fffffU 
+                                                               & vlTOPp->x))
+                                                            : 
+                                                           (0x400000U 
+                                                            | (0x3fffffU 
+                                                               & (vlTOPp->x 
+                                                                  >> 1U)))) 
+                                                          << 3U))));
         } else {
             if (((IData)(vlTOPp->computing) & VL_GTS_III(1,32,32, 0x1fU, vlTOPp->FPHUB_sqrt__DOT__j))) {
                 __Vdly__FPHUB_sqrt__DOT__j = ((IData)(1U) 
@@ -224,13 +265,13 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                     if ((0x3eU >= (0x3fU & ((IData)(0x3eU) 
                                             - ((IData)(3U) 
                                                + VL_MULS_III(6,32,32, (IData)(2U), vlTOPp->FPHUB_sqrt__DOT__j)))))) {
-                        __Vdly__FPHUB_sqrt__DOT__S 
+                        vlTOPp->FPHUB_sqrt__DOT__S 
                             = (((~ (3ULL << (0x3fU 
                                              & ((IData)(0x3eU) 
                                                 - ((IData)(3U) 
                                                    + 
                                                    VL_MULS_III(6,32,32, (IData)(2U), vlTOPp->FPHUB_sqrt__DOT__j)))))) 
-                                & __Vdly__FPHUB_sqrt__DOT__S) 
+                                & vlTOPp->FPHUB_sqrt__DOT__S) 
                                | ((QData)((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound2)) 
                                   << (0x3fU & ((IData)(0x3eU) 
                                                - ((IData)(3U) 
@@ -455,14 +496,14 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                 - ((IData)(3U) 
                                                    + 
                                                    VL_MULS_III(6,32,32, (IData)(2U), vlTOPp->FPHUB_sqrt__DOT__j)))))) {
-                            __Vdly__FPHUB_sqrt__DOT__S 
+                            vlTOPp->FPHUB_sqrt__DOT__S 
                                 = (((~ (3ULL << (0x3fU 
                                                  & ((IData)(0x3eU) 
                                                     - 
                                                     ((IData)(3U) 
                                                      + 
                                                      VL_MULS_III(6,32,32, (IData)(2U), vlTOPp->FPHUB_sqrt__DOT__j)))))) 
-                                    & __Vdly__FPHUB_sqrt__DOT__S) 
+                                    & vlTOPp->FPHUB_sqrt__DOT__S) 
                                    | ((QData)((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound12)) 
                                       << (0x3fU & ((IData)(0x3eU) 
                                                    - 
@@ -810,14 +851,14 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                                                 - ((IData)(3U) 
                                                    + 
                                                    VL_MULS_III(6,32,32, (IData)(2U), vlTOPp->FPHUB_sqrt__DOT__j)))))) {
-                            __Vdly__FPHUB_sqrt__DOT__S 
+                            vlTOPp->FPHUB_sqrt__DOT__S 
                                 = (((~ (3ULL << (0x3fU 
                                                  & ((IData)(0x3eU) 
                                                     - 
                                                     ((IData)(3U) 
                                                      + 
                                                      VL_MULS_III(6,32,32, (IData)(2U), vlTOPp->FPHUB_sqrt__DOT__j)))))) 
-                                    & __Vdly__FPHUB_sqrt__DOT__S) 
+                                    & vlTOPp->FPHUB_sqrt__DOT__S) 
                                    | ((QData)((IData)(vlTOPp->FPHUB_sqrt__DOT____Vlvbound22)) 
                                       << (0x3fU & ((IData)(0x3eU) 
                                                    - 
@@ -1183,492 +1224,13 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                 }
             } else {
                 if (vlTOPp->computing) {
-                    VL_EXTEND_WQ(65,63, __Vtemp7, vlTOPp->FPHUB_sqrt__DOT__S);
-                    vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                        = __Vtemp7[0U];
-                    vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                        = __Vtemp7[1U];
-                    vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                        = __Vtemp7[2U];
-                    vlTOPp->FPHUB_sqrt__DOT__unnamedblk7__DOT__i = 0x21U;
-                    if ((3U == (3U & vlTOPp->FPHUB_sqrt__DOT__q[0U]))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (1U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & vlTOPp->FPHUB_sqrt__DOT__q[0U]))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (1U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    vlTOPp->finish = 1U;
-                    __Vdly__computing = 0U;
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       << 0x1eU) | 
-                                      (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                       >> 2U))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (2U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                           << 0x1eU) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                             >> 2U))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (2U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       << 0x1cU) | 
-                                      (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                       >> 4U))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (4U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                           << 0x1cU) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                             >> 4U))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (4U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       << 0x1aU) | 
-                                      (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                       >> 6U))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (8U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                           << 0x1aU) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                             >> 6U))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (8U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       << 0x18U) | 
-                                      (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                       >> 8U))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x10U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                           << 0x18U) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                             >> 8U))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x10U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       << 0x16U) | 
-                                      (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                       >> 0xaU))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x20U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                           << 0x16U) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                             >> 0xaU))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x20U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       << 0x14U) | 
-                                      (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                       >> 0xcU))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x40U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                           << 0x14U) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                             >> 0xcU))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x40U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       << 0x12U) | 
-                                      (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                       >> 0xeU))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x80U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                           << 0x12U) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                             >> 0xeU))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x80U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       << 0x10U) | 
-                                      (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                       >> 0x10U))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x100U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                           << 0x10U) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                             >> 0x10U))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x100U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       << 0xeU) | (
-                                                   vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                                   >> 0x12U))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x200U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                           << 0xeU) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                             >> 0x12U))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x200U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       << 0xcU) | (
-                                                   vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                                   >> 0x14U))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x400U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                           << 0xcU) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                             >> 0x14U))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x400U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       << 0xaU) | (
-                                                   vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                                   >> 0x16U))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x800U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                           << 0xaU) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                             >> 0x16U))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x800U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       << 8U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                                 >> 0x18U))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x1000U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                           << 8U) | 
-                                          (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                           >> 0x18U))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x1000U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       << 6U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                                 >> 0x1aU))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x2000U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                           << 6U) | 
-                                          (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                           >> 0x1aU))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x2000U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       << 4U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                                 >> 0x1cU))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x4000U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                           << 4U) | 
-                                          (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                           >> 0x1cU))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x4000U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       << 2U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                                 >> 0x1eU))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x8000U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                           << 2U) | 
-                                          (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
-                                           >> 0x1eU))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x8000U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & vlTOPp->FPHUB_sqrt__DOT__q[1U]))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x10000U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & vlTOPp->FPHUB_sqrt__DOT__q[1U]))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x10000U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                       << 0x1eU) | 
-                                      (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       >> 2U))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x20000U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                           << 0x1eU) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                             >> 2U))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x20000U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                       << 0x1cU) | 
-                                      (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       >> 4U))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x40000U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                           << 0x1cU) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                             >> 4U))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x40000U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                       << 0x1aU) | 
-                                      (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       >> 6U))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x80000U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                           << 0x1aU) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                             >> 6U))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x80000U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                       << 0x18U) | 
-                                      (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       >> 8U))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x100000U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                           << 0x18U) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                             >> 8U))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x100000U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                       << 0x16U) | 
-                                      (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       >> 0xaU))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x200000U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                           << 0x16U) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                             >> 0xaU))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x200000U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                       << 0x14U) | 
-                                      (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       >> 0xcU))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x400000U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                           << 0x14U) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                             >> 0xcU))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x400000U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                       << 0x12U) | 
-                                      (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       >> 0xeU))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x800000U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                           << 0x12U) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                             >> 0xeU))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x800000U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                       << 0x10U) | 
-                                      (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                       >> 0x10U))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x1000000U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                           << 0x10U) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                             >> 0x10U))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x1000000U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                       << 0xeU) | (
-                                                   vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                                   >> 0x12U))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x2000000U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                           << 0xeU) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                             >> 0x12U))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x2000000U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                       << 0xcU) | (
-                                                   vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                                   >> 0x14U))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x4000000U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                           << 0xcU) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                             >> 0x14U))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x4000000U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                       << 0xaU) | (
-                                                   vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                                   >> 0x16U))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x8000000U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                           << 0xaU) 
-                                          | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                             >> 0x16U))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x8000000U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                       << 8U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                                 >> 0x18U))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x10000000U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                           << 8U) | 
-                                          (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                           >> 0x18U))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x10000000U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                       << 6U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                                 >> 0x1aU))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x20000000U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                           << 6U) | 
-                                          (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                           >> 0x1aU))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x20000000U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                       << 4U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                                 >> 0x1cU))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x40000000U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                           << 4U) | 
-                                          (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                           >> 0x1cU))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x40000000U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                       << 2U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                                 >> 0x1eU))))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (0x80000000U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
-                                           << 2U) | 
-                                          (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
-                                           >> 0x1eU))))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (0x80000000U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
-                    if ((3U == (3U & vlTOPp->FPHUB_sqrt__DOT__q[2U]))) {
-                        vlTOPp->FPHUB_sqrt__DOT__neg 
-                            = (1U | vlTOPp->FPHUB_sqrt__DOT__neg);
-                    } else {
-                        if ((1U == (3U & vlTOPp->FPHUB_sqrt__DOT__q[2U]))) {
-                            vlTOPp->FPHUB_sqrt__DOT__posiv 
-                                = (1U | vlTOPp->FPHUB_sqrt__DOT__posiv);
-                        }
-                    }
                     vlTOPp->FPHUB_sqrt__DOT__root = 
                         (vlTOPp->FPHUB_sqrt__DOT__posiv 
                          - vlTOPp->FPHUB_sqrt__DOT__neg);
+                    vlTOPp->finish = 1U;
+                    __Vdly__computing = 0U;
                     vlTOPp->res = (((IData)(vlTOPp->FPHUB_sqrt__DOT__res_exponent) 
-                                    << 0x17U) | (0x7fffffU 
-                                                 & (vlTOPp->FPHUB_sqrt__DOT__root 
-                                                    >> 9U)));
+                                    << 0x17U) | vlTOPp->FPHUB_sqrt__DOT__res_mantissa);
                 } else {
                     vlTOPp->finish = 0U;
                     vlTOPp->res = 0U;
@@ -1682,9 +1244,6 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
         __Vdly__computing = 0U;
         vlTOPp->FPHUB_sqrt__DOT__chivato = 0U;
     }
-    vlTOPp->FPHUB_sqrt__DOT__S = __Vdly__FPHUB_sqrt__DOT__S;
-    vlTOPp->FPHUB_sqrt__DOT__j = __Vdly__FPHUB_sqrt__DOT__j;
-    vlTOPp->computing = __Vdly__computing;
     if (__Vdlyvset__FPHUB_sqrt__DOT__y_test__v0) {
         vlTOPp->FPHUB_sqrt__DOT__y_test[__Vdlyvdim0__FPHUB_sqrt__DOT__y_test__v0] 
             = __Vdlyvval__FPHUB_sqrt__DOT__y_test__v0;
@@ -1703,6 +1262,8 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
                | ((IData)(__Vdlyvval__FPHUB_sqrt__DOT__F_1__v0) 
                   << (IData)(__Vdlyvlsb__FPHUB_sqrt__DOT__F_1__v0)));
     }
+    vlTOPp->FPHUB_sqrt__DOT__j = __Vdly__FPHUB_sqrt__DOT__j;
+    vlTOPp->computing = __Vdly__computing;
     if (__Vdlyvset__FPHUB_sqrt__DOT__W__v0) {
         vlTOPp->FPHUB_sqrt__DOT__WC[0U] = 0U;
     }
@@ -1760,10 +1321,472 @@ VL_INLINE_OPT void VFPHUB_sqrt::_sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict v
     if (vlTOPp->rst_l) {
         if (vlTOPp->start) {
             vlTOPp->FPHUB_sqrt__DOT__res_exponent = 
-                (0x7fU & (vlTOPp->x >> 0x18U));
+                (0x7fU & (((0x800000U & vlTOPp->x) ? 
+                           ((IData)(1U) + (0xffU & 
+                                           (vlTOPp->x 
+                                            >> 0x17U)))
+                            : ((IData)(2U) + (0xffU 
+                                              & (vlTOPp->x 
+                                                 >> 0x17U)))) 
+                          >> 1U));
         }
     } else {
         vlTOPp->FPHUB_sqrt__DOT__res_exponent = 0U;
+    }
+    if (((IData)(vlTOPp->computing) & (0x1fU == vlTOPp->FPHUB_sqrt__DOT__j))) {
+        VL_EXTEND_WQ(65,63, __Vtemp7, vlTOPp->FPHUB_sqrt__DOT__S);
+        vlTOPp->FPHUB_sqrt__DOT__q[0U] = __Vtemp7[0U];
+        vlTOPp->FPHUB_sqrt__DOT__q[1U] = __Vtemp7[1U];
+        vlTOPp->FPHUB_sqrt__DOT__q[2U] = __Vtemp7[2U];
+        if ((3U == (3U & vlTOPp->FPHUB_sqrt__DOT__q[0U]))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (1U | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & vlTOPp->FPHUB_sqrt__DOT__q[0U]))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (1U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                           << 0x1eU) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                        >> 2U))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (2U | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                               << 0x1eU) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                            >> 2U))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (2U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                           << 0x1cU) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                        >> 4U))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (4U | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                               << 0x1cU) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                            >> 4U))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (4U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                           << 0x1aU) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                        >> 6U))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (8U | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                               << 0x1aU) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                            >> 6U))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (8U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                           << 0x18U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                        >> 8U))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x10U | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                               << 0x18U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                            >> 8U))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x10U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                           << 0x16U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                        >> 0xaU))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x20U | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                               << 0x16U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                            >> 0xaU))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x20U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                           << 0x14U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                        >> 0xcU))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x40U | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                               << 0x14U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                            >> 0xcU))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x40U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                           << 0x12U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                        >> 0xeU))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x80U | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                               << 0x12U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                            >> 0xeU))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x80U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                           << 0x10U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                        >> 0x10U))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x100U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                               << 0x10U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                            >> 0x10U))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x100U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                           << 0xeU) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                       >> 0x12U))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x200U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                               << 0xeU) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                           >> 0x12U))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x200U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                           << 0xcU) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                       >> 0x14U))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x400U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                               << 0xcU) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                           >> 0x14U))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x400U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                           << 0xaU) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                       >> 0x16U))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x800U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                               << 0xaU) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                           >> 0x16U))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x800U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                           << 8U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                     >> 0x18U))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x1000U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                               << 8U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                         >> 0x18U))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x1000U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                           << 6U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                     >> 0x1aU))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x2000U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                               << 6U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                         >> 0x1aU))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x2000U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                           << 4U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                     >> 0x1cU))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x4000U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                               << 4U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                         >> 0x1cU))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x4000U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                           << 2U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                     >> 0x1eU))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x8000U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                               << 2U) | (vlTOPp->FPHUB_sqrt__DOT__q[0U] 
+                                         >> 0x1eU))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x8000U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & vlTOPp->FPHUB_sqrt__DOT__q[1U]))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x10000U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & vlTOPp->FPHUB_sqrt__DOT__q[1U]))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x10000U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                           << 0x1eU) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                        >> 2U))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x20000U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                               << 0x1eU) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                            >> 2U))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x20000U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                           << 0x1cU) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                        >> 4U))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x40000U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                               << 0x1cU) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                            >> 4U))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x40000U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                           << 0x1aU) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                        >> 6U))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x80000U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                               << 0x1aU) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                            >> 6U))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x80000U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                           << 0x18U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                        >> 8U))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x100000U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                               << 0x18U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                            >> 8U))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x100000U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                           << 0x16U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                        >> 0xaU))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x200000U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                               << 0x16U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                            >> 0xaU))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x200000U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                           << 0x14U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                        >> 0xcU))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x400000U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                               << 0x14U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                            >> 0xcU))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x400000U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                           << 0x12U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                        >> 0xeU))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x800000U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                               << 0x12U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                            >> 0xeU))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x800000U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                           << 0x10U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                        >> 0x10U))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x1000000U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                               << 0x10U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                            >> 0x10U))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x1000000U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                           << 0xeU) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                       >> 0x12U))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x2000000U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                               << 0xeU) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                           >> 0x12U))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x2000000U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                           << 0xcU) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                       >> 0x14U))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x4000000U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                               << 0xcU) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                           >> 0x14U))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x4000000U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                           << 0xaU) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                       >> 0x16U))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x8000000U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                               << 0xaU) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                           >> 0x16U))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x8000000U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                           << 8U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                     >> 0x18U))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x10000000U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                               << 8U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                         >> 0x18U))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x10000000U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                           << 6U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                     >> 0x1aU))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x20000000U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                               << 6U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                         >> 0x1aU))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x20000000U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                           << 4U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                     >> 0x1cU))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x40000000U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                               << 4U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                         >> 0x1cU))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x40000000U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                           << 2U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                     >> 0x1eU))))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (0x80000000U 
+                                            | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & ((vlTOPp->FPHUB_sqrt__DOT__q[2U] 
+                               << 2U) | (vlTOPp->FPHUB_sqrt__DOT__q[1U] 
+                                         >> 0x1eU))))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (0x80000000U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        if ((3U == (3U & vlTOPp->FPHUB_sqrt__DOT__q[2U]))) {
+            vlTOPp->FPHUB_sqrt__DOT__neg = (1U | vlTOPp->FPHUB_sqrt__DOT__neg);
+        } else {
+            if ((1U == (3U & vlTOPp->FPHUB_sqrt__DOT__q[2U]))) {
+                vlTOPp->FPHUB_sqrt__DOT__posiv = (1U 
+                                                  | vlTOPp->FPHUB_sqrt__DOT__posiv);
+            }
+        }
+        vlTOPp->FPHUB_sqrt__DOT__unnamedblk7__DOT__i = 0x21U;
+        vlTOPp->FPHUB_sqrt__DOT__quotient = (((0x1eU 
+                                               >= (0x1fU 
+                                                   & vlTOPp->FPHUB_sqrt__DOT__j))
+                                               ? (0x10000000U 
+                                                  & vlTOPp->FPHUB_sqrt__DOT__W
+                                                  [
+                                                  (0x1fU 
+                                                   & vlTOPp->FPHUB_sqrt__DOT__j)])
+                                               : 0U)
+                                              ? ((vlTOPp->FPHUB_sqrt__DOT__posiv 
+                                                  - vlTOPp->FPHUB_sqrt__DOT__neg) 
+                                                 - (IData)(1U))
+                                              : (vlTOPp->FPHUB_sqrt__DOT__posiv 
+                                                 - vlTOPp->FPHUB_sqrt__DOT__neg));
+        vlTOPp->FPHUB_sqrt__DOT__restored_quotient 
+            = (vlTOPp->FPHUB_sqrt__DOT__quotient << 1U);
+        vlTOPp->FPHUB_sqrt__DOT__leading_zeros = 0U;
+        vlTOPp->FPHUB_sqrt__DOT__unnamedblk8__DOT__i = 0x1fU;
+        {
+            while (VL_LTES_III(1,32,32, 0U, vlTOPp->FPHUB_sqrt__DOT__unnamedblk8__DOT__i)) {
+                if ((1U & (vlTOPp->FPHUB_sqrt__DOT__restored_quotient 
+                           >> (0x1fU & vlTOPp->FPHUB_sqrt__DOT__unnamedblk8__DOT__i)))) {
+                    goto __Vlabel1;
+                }
+                vlTOPp->FPHUB_sqrt__DOT__leading_zeros 
+                    = ((IData)(1U) + vlTOPp->FPHUB_sqrt__DOT__leading_zeros);
+                vlTOPp->FPHUB_sqrt__DOT__unnamedblk8__DOT__i 
+                    = (vlTOPp->FPHUB_sqrt__DOT__unnamedblk8__DOT__i 
+                       - (IData)(1U));
+            }
+            __Vlabel1: ;
+        }
+        vlTOPp->FPHUB_sqrt__DOT__normalized = ((0x1fU 
+                                                >= vlTOPp->FPHUB_sqrt__DOT__leading_zeros)
+                                                ? (vlTOPp->FPHUB_sqrt__DOT__restored_quotient 
+                                                   << vlTOPp->FPHUB_sqrt__DOT__leading_zeros)
+                                                : 0U);
+        vlTOPp->FPHUB_sqrt__DOT__res_mantissa = (0x7fffffU 
+                                                 & (vlTOPp->FPHUB_sqrt__DOT__normalized 
+                                                    >> 8U));
     }
 }
 

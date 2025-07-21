@@ -31,14 +31,20 @@ module FPHUB_sqrt #(
 
     logic x_sign;
 
-    logic [7:0] x_exponent, res_exponent;
+    logic [7:0] x_exponent, scaled_exponent, res_exponent;
     assign x_exponent = x[30:23];
+    assign scaled_exponent = x_exponent[0] ? x_exponent + 1 : x_exponent + 2; 
 
     logic [22:0] x_mantissa;
     assign x_mantissa = x[22:0];
 
+    logic[24:0] intermidiate, x_scaled;
+    assign intermidiate = {1'b1, x_mantissa, 1'b1};
+    assign x_scaled = x_exponent[0] ? intermidiate >> 1 : intermidiate >> 2;
+
+
     logic [28:0] x_HUB;
-    assign x_HUB = {4'b0, 1'b1, x_mantissa, 1'b1}; // IEEE MSB, mantissa, HUB ILSB
+    assign x_HUB = {3'b000, x_scaled, 1'b0}; // IEEE MSB, mantissa, HUB ILSB
 
     int j;
 
@@ -69,7 +75,7 @@ module FPHUB_sqrt #(
 
         else begin
             if (start) begin
-                res_exponent <= x_exponent >> 1;         
+                res_exponent <= scaled_exponent >> 1;         
                 S[62:61]   <= 2'b00;
                 W[0]   <= x_HUB;
                 WC[0] <= '0;
@@ -176,6 +182,8 @@ module FPHUB_sqrt #(
 
                // WC[j+1][28:27] <= 2'b00; // test, dos bits MSB de WC siempre 0
             end else if (computing)begin // Terminación
+               
+               /*
                 q = {2'b00, S};
 
                  // Obtain the positions in which quotient q has a 1 or a -1
@@ -188,10 +196,13 @@ module FPHUB_sqrt #(
                     end
 
                 end
+                */
+
                 finish <= 1'b1;
                 computing <= 1'b0;
                 root = posiv - neg;
-                res <= {1'b0, res_exponent, root[T:E+1]};
+                res <= {1'b0, res_exponent, res_mantissa};
+                //res <= {1'b0, res_exponent, root[T:E+1]};
             end
             else begin
                 finish <= 1'b0;
@@ -199,6 +210,53 @@ module FPHUB_sqrt #(
             end
         end
 
+    end
+
+    logic[31:0] quotient, restored_quotient;
+    logic [T:0] normalized;
+    int leading_zeros;
+    logic [T-1:E] res_mantissa;
+
+    always_comb begin
+
+        if (computing && j == N) begin
+
+             q = {2'b00, S};
+
+                 // Obtain the positions in which quotient q has a 1 or a -1
+                for (int i = 0; i <= N+1; i++) begin
+                    if (q[2*i+1 -: 2] == 2'b11) begin
+                        neg[i] = 1; 
+                    end
+                    else if (q[2*i+1 -: 2] == 2'b01) begin
+                        posiv[i] = 1;
+                    end
+
+                end
+
+            // If final remainder is negative
+            if (W[j][28]) begin
+                quotient = (posiv - neg) -1'b1;
+            end else begin
+                quotient = posiv - neg;
+            end
+            
+            // Obtain the final quotient by multiplying by 2 
+            restored_quotient = quotient << 1;     
+
+            // Count leading zeros
+            leading_zeros = 0;    
+            for (int i = T; i >= 0; i--) begin
+                if (restored_quotient[i] == 1) break;
+                leading_zeros = leading_zeros + 1;
+            end
+                    
+            // Normalize the fixed-point value
+            normalized = restored_quotient << leading_zeros;
+                    
+            // Extract mantissa, drop the implicit 1
+            res_mantissa = normalized[T-1:E]; 
+        end
     end
 
 endmodule

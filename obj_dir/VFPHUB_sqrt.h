@@ -42,6 +42,11 @@ VL_MODULE(VFPHUB_sqrt) {
     IData/*31:0*/ FPHUB_sqrt__DOT__posiv;
     IData/*31:0*/ FPHUB_sqrt__DOT__neg;
     IData/*31:0*/ FPHUB_sqrt__DOT__root;
+    IData/*31:0*/ FPHUB_sqrt__DOT__quotient;
+    IData/*31:0*/ FPHUB_sqrt__DOT__restored_quotient;
+    IData/*31:0*/ FPHUB_sqrt__DOT__normalized;
+    IData/*31:0*/ FPHUB_sqrt__DOT__leading_zeros;
+    IData/*22:0*/ FPHUB_sqrt__DOT__res_mantissa;
     IData/*31:0*/ FPHUB_sqrt__DOT__unnamedblk1__DOT__k;
     IData/*31:0*/ FPHUB_sqrt__DOT__unnamedblk2__DOT__k;
     IData/*31:0*/ FPHUB_sqrt__DOT__unnamedblk3__DOT__k;
@@ -49,6 +54,7 @@ VL_MODULE(VFPHUB_sqrt) {
     IData/*31:0*/ FPHUB_sqrt__DOT__unnamedblk5__DOT__k;
     IData/*31:0*/ FPHUB_sqrt__DOT__unnamedblk6__DOT__k;
     IData/*31:0*/ FPHUB_sqrt__DOT__unnamedblk7__DOT__i;
+    IData/*31:0*/ FPHUB_sqrt__DOT__unnamedblk8__DOT__i;
     QData/*62:0*/ FPHUB_sqrt__DOT__S;
     IData/*28:0*/ FPHUB_sqrt__DOT__F1[31];
     IData/*28:0*/ FPHUB_sqrt__DOT__F_1[31];
@@ -141,6 +147,7 @@ VL_MODULE(VFPHUB_sqrt) {
     static void _eval_initial(VFPHUB_sqrt__Syms* __restrict vlSymsp) VL_ATTR_COLD;
     static void _eval_settle(VFPHUB_sqrt__Syms* __restrict vlSymsp) VL_ATTR_COLD;
     static void _sequent__TOP__1(VFPHUB_sqrt__Syms* __restrict vlSymsp);
+    static void _settle__TOP__2(VFPHUB_sqrt__Syms* __restrict vlSymsp) VL_ATTR_COLD;
   private:
     static void traceChgSub0(void* userp, VerilatedVcd* tracep);
     static void traceChgTop0(void* userp, VerilatedVcd* tracep);
