@@ -35,8 +35,8 @@ int main(int argc, char **argv) {
 
         if (main_time == 8) {
             top->start = 1;
-            top->x =   0x41b70000; // tras escalado, igual que libro (deberia)
-            //top->x = 0x72EC29F7; //csv
+            //top->x =   0x41b70000; // tras escalado, igual que libro (deberia)
+            top->x = 0x72EC29F7; //csv
             //top->x = 0x0BFB4855; // csv
             //top->x = 0x3f370000; // ejemplo del libro
             //top->x = 0x41100000; // 9

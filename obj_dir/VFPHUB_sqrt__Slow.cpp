@@ -34,6 +34,16 @@ void VFPHUB_sqrt::_settle__TOP__2(VFPHUB_sqrt__Syms* __restrict vlSymsp) {
     // Variables
     WData/*95:0*/ __Vtemp10[3];
     // Body
+    vlTOPp->FPHUB_sqrt__DOT__x_scaled = (0x1ffffffU 
+                                         & ((0x800000U 
+                                             & vlTOPp->x)
+                                             ? (0x800000U 
+                                                | (0x7fffffU 
+                                                   & vlTOPp->x))
+                                             : (0x400000U 
+                                                | (0x3fffffU 
+                                                   & (vlTOPp->x 
+                                                      >> 1U)))));
     if (((IData)(vlTOPp->computing) & (0x1fU == vlTOPp->FPHUB_sqrt__DOT__j))) {
         VL_EXTEND_WQ(65,63, __Vtemp10, vlTOPp->FPHUB_sqrt__DOT__S);
         vlTOPp->FPHUB_sqrt__DOT__q[0U] = __Vtemp10[0U];
@@ -541,8 +551,17 @@ void VFPHUB_sqrt::_ctor_var_reset() {
     for (int __Vi0=0; __Vi0<31; ++__Vi0) {
         FPHUB_sqrt__DOT__WC[__Vi0] = VL_RAND_RESET_I(29);
     }
+    FPHUB_sqrt__DOT__S_test = VL_RAND_RESET_Q(63);
+    FPHUB_sqrt__DOT__SD_test = VL_RAND_RESET_Q(63);
+    for (int __Vi0=0; __Vi0<31; ++__Vi0) {
+        FPHUB_sqrt__DOT__Fi_test[__Vi0] = VL_RAND_RESET_I(29);
+    }
+    for (int __Vi0=0; __Vi0<31; ++__Vi0) {
+        FPHUB_sqrt__DOT__W_test[__Vi0] = VL_RAND_RESET_I(29);
+    }
     FPHUB_sqrt__DOT__x_sign = VL_RAND_RESET_I(1);
     FPHUB_sqrt__DOT__res_exponent = VL_RAND_RESET_I(8);
+    FPHUB_sqrt__DOT__x_scaled = VL_RAND_RESET_I(25);
     FPHUB_sqrt__DOT__j = 0;
     VL_RAND_RESET_W(65, FPHUB_sqrt__DOT__q);
     FPHUB_sqrt__DOT__posiv = VL_RAND_RESET_I(32);

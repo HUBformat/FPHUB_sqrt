@@ -23,13 +23,20 @@ module FPHUB_sqrt #(
 );
 
     logic [62:0]   S ;
+    
     logic [28:0]  F1  [N];
     logic [28:0]  F_1 [N];
     logic [28:0]  W   [N];
     logic [28:0]  W2  [N];
     logic [28:0] WC    [N];
 
+    logic [62:0]   S_test ;
+    logic [62:0]   SD_test;
+    logic [28:0]   Fi_test [N];
+    logic [28:0]   W_test [N];
+
     logic x_sign;
+    
 
     logic [7:0] x_exponent, scaled_exponent, res_exponent;
     assign x_exponent = x[30:23];
@@ -59,6 +66,8 @@ module FPHUB_sqrt #(
     logic [31:0] root;
     logic [3:0] y_test [N];
     logic chivato;
+    logic [32:0] completo;
+    assign completo = {x_exponent, 1'b1, x_mantissa, 1'b1};
     
 
     always_ff @(posedge clk or negedge rst_l) begin
@@ -75,7 +84,7 @@ module FPHUB_sqrt #(
 
         else begin
             if (start) begin
-                res_exponent <= scaled_exponent >> 1;         
+                res_exponent <= x_exponent[0] ? ((x_exponent -1) >> 1) : (x_exponent >> 1);      
                 S[62:61]   <= 2'b00;
                 W[0]   <= x_HUB;
                 WC[0] <= '0;
@@ -93,6 +102,15 @@ module FPHUB_sqrt #(
                // q[N*2:N*2-4] = 5'b00001;
                 j <= 1;
                 computing <= 1'b1;
+
+                W_test[0] <= x_HUB;
+                W_test[1] <= (x_HUB << 1) ^ ({5'b01111, 24'd0});
+                S_test[62:61] <= 2'b00;
+                S_test[60:59] <= 2'b01;
+                SD_test[62:61] <= 2'b00;
+                SD_test[60:59] <= 2'b00; 
+                Fi_test[0] <= '0;
+  
             end 
             else if (computing && j < N) begin
                 j <= j + 1;
@@ -215,7 +233,7 @@ module FPHUB_sqrt #(
     logic[31:0] quotient, restored_quotient;
     logic [T:0] normalized;
     int leading_zeros;
-    logic [T-1:E] res_mantissa;
+    logic [22:0] res_mantissa;
 
     always_comb begin
 

@@ -37,6 +37,7 @@ VL_MODULE(VFPHUB_sqrt) {
     CData/*0:0*/ FPHUB_sqrt__DOT__x_sign;
     CData/*7:0*/ FPHUB_sqrt__DOT__res_exponent;
     CData/*0:0*/ FPHUB_sqrt__DOT__chivato;
+    IData/*24:0*/ FPHUB_sqrt__DOT__x_scaled;
     IData/*31:0*/ FPHUB_sqrt__DOT__j;
     WData/*64:0*/ FPHUB_sqrt__DOT__q[3];
     IData/*31:0*/ FPHUB_sqrt__DOT__posiv;
@@ -56,11 +57,15 @@ VL_MODULE(VFPHUB_sqrt) {
     IData/*31:0*/ FPHUB_sqrt__DOT__unnamedblk7__DOT__i;
     IData/*31:0*/ FPHUB_sqrt__DOT__unnamedblk8__DOT__i;
     QData/*62:0*/ FPHUB_sqrt__DOT__S;
+    QData/*62:0*/ FPHUB_sqrt__DOT__S_test;
+    QData/*62:0*/ FPHUB_sqrt__DOT__SD_test;
     IData/*28:0*/ FPHUB_sqrt__DOT__F1[31];
     IData/*28:0*/ FPHUB_sqrt__DOT__F_1[31];
     IData/*28:0*/ FPHUB_sqrt__DOT__W[31];
     IData/*28:0*/ FPHUB_sqrt__DOT__W2[31];
     IData/*28:0*/ FPHUB_sqrt__DOT__WC[31];
+    IData/*28:0*/ FPHUB_sqrt__DOT__Fi_test[31];
+    IData/*28:0*/ FPHUB_sqrt__DOT__W_test[31];
     CData/*3:0*/ FPHUB_sqrt__DOT__y_test[31];
     
     // LOCAL VARIABLES
@@ -136,6 +141,9 @@ VL_MODULE(VFPHUB_sqrt) {
   private:
     static QData _change_request(VFPHUB_sqrt__Syms* __restrict vlSymsp);
     static QData _change_request_1(VFPHUB_sqrt__Syms* __restrict vlSymsp);
+  public:
+    static void _combo__TOP__3(VFPHUB_sqrt__Syms* __restrict vlSymsp);
+  private:
     void _ctor_var_reset() VL_ATTR_COLD;
   public:
     static void _eval(VFPHUB_sqrt__Syms* __restrict vlSymsp);
