@@ -8,7 +8,7 @@ BUILD_DIR      = obj_dir
 VTOP_EXE       = $(BUILD_DIR)/V$(TOP_MODULE)
 
 # ==== COMPILATION FLAGS ====
-VERILATOR_FLAGS = -Wall -cc --trace -Wno-fatal
+VERILATOR_FLAGS = -Wall -cc --trace -Wno-fatal --unroll-count 128
 
 # ==== DEFAULT TARGET ====
 all: run

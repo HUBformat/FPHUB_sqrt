@@ -32,6 +32,8 @@ void VFPHUB_sqrt::_settle__TOP__2(VFPHUB_sqrt__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    VFPHUB_sqrt::_settle__TOP__2\n"); );
     VFPHUB_sqrt* const __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
+    vlTOPp->FPHUB_sqrt__DOT__posiv = 0U;
+    vlTOPp->FPHUB_sqrt__DOT__neg = 0U;
     if (((IData)(vlTOPp->computing) & (0x19U == vlTOPp->FPHUB_sqrt__DOT__j))) {
         if ((3U == vlTOPp->FPHUB_sqrt__DOT__S[0U])) {
             vlTOPp->FPHUB_sqrt__DOT__neg = (0x1000000U 
@@ -331,12 +333,8 @@ void VFPHUB_sqrt::_ctor_var_reset() {
     for (int __Vi0=0; __Vi0<25; ++__Vi0) {
         FPHUB_sqrt__DOT__S[__Vi0] = VL_RAND_RESET_I(2);
     }
-    for (int __Vi0=0; __Vi0<31; ++__Vi0) {
-        FPHUB_sqrt__DOT__F1[__Vi0] = VL_RAND_RESET_I(29);
-    }
-    for (int __Vi0=0; __Vi0<31; ++__Vi0) {
-        FPHUB_sqrt__DOT__F_1[__Vi0] = VL_RAND_RESET_I(29);
-    }
+    FPHUB_sqrt__DOT__F1 = VL_RAND_RESET_I(29);
+    FPHUB_sqrt__DOT__F_1 = VL_RAND_RESET_I(29);
     for (int __Vi0=0; __Vi0<31; ++__Vi0) {
         FPHUB_sqrt__DOT__W[__Vi0] = VL_RAND_RESET_I(29);
     }
@@ -358,6 +356,7 @@ void VFPHUB_sqrt::_ctor_var_reset() {
     }
     FPHUB_sqrt__DOT__chivato = VL_RAND_RESET_I(1);
     FPHUB_sqrt__DOT__f1_test = VL_RAND_RESET_I(3);
+    FPHUB_sqrt__DOT__negative = VL_RAND_RESET_I(1);
     FPHUB_sqrt__DOT__quotient = VL_RAND_RESET_I(32);
     FPHUB_sqrt__DOT__restored_quotient = VL_RAND_RESET_I(32);
     FPHUB_sqrt__DOT__normalized = VL_RAND_RESET_I(32);
@@ -388,21 +387,20 @@ void VFPHUB_sqrt::_ctor_var_reset() {
     FPHUB_sqrt__DOT____Vlvbound15 = VL_RAND_RESET_I(29);
     FPHUB_sqrt__DOT____Vlvbound16 = VL_RAND_RESET_I(1);
     FPHUB_sqrt__DOT____Vlvbound17 = VL_RAND_RESET_I(1);
-    FPHUB_sqrt__DOT____Vlvbound18 = VL_RAND_RESET_I(1);
+    FPHUB_sqrt__DOT____Vlvbound18 = VL_RAND_RESET_I(3);
     FPHUB_sqrt__DOT____Vlvbound19 = VL_RAND_RESET_I(3);
-    FPHUB_sqrt__DOT____Vlvbound20 = VL_RAND_RESET_I(3);
+    FPHUB_sqrt__DOT____Vlvbound20 = VL_RAND_RESET_I(1);
     FPHUB_sqrt__DOT____Vlvbound21 = VL_RAND_RESET_I(1);
-    FPHUB_sqrt__DOT____Vlvbound22 = VL_RAND_RESET_I(1);
-    FPHUB_sqrt__DOT____Vlvbound23 = VL_RAND_RESET_I(2);
+    FPHUB_sqrt__DOT____Vlvbound22 = VL_RAND_RESET_I(2);
+    FPHUB_sqrt__DOT____Vlvbound23 = VL_RAND_RESET_I(29);
     FPHUB_sqrt__DOT____Vlvbound24 = VL_RAND_RESET_I(29);
     FPHUB_sqrt__DOT____Vlvbound25 = VL_RAND_RESET_I(29);
-    FPHUB_sqrt__DOT____Vlvbound26 = VL_RAND_RESET_I(29);
+    FPHUB_sqrt__DOT____Vlvbound26 = VL_RAND_RESET_I(1);
     FPHUB_sqrt__DOT____Vlvbound27 = VL_RAND_RESET_I(1);
-    FPHUB_sqrt__DOT____Vlvbound28 = VL_RAND_RESET_I(1);
+    FPHUB_sqrt__DOT____Vlvbound28 = VL_RAND_RESET_I(3);
     FPHUB_sqrt__DOT____Vlvbound29 = VL_RAND_RESET_I(3);
-    FPHUB_sqrt__DOT____Vlvbound30 = VL_RAND_RESET_I(3);
+    FPHUB_sqrt__DOT____Vlvbound30 = VL_RAND_RESET_I(1);
     FPHUB_sqrt__DOT____Vlvbound31 = VL_RAND_RESET_I(1);
-    FPHUB_sqrt__DOT____Vlvbound32 = VL_RAND_RESET_I(1);
     for (int __Vi0=0; __Vi0<2; ++__Vi0) {
         __Vm_traceActivity[__Vi0] = VL_RAND_RESET_I(1);
     }

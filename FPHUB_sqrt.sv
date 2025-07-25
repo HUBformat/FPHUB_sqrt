@@ -23,8 +23,8 @@ module FPHUB_sqrt #(
 );
 
     logic [1:0]   S   [25];
-    logic [28:0]  F1  [N];
-    logic [28:0]  F_1 [N];
+    logic [28:0]  F1;  //[N];
+    logic [28:0]  F_1; //[N];
     logic [28:0]  W   [N];
     logic [28:0]  W2  [N];
     logic [28:0] WC    [N];
@@ -65,7 +65,8 @@ module FPHUB_sqrt #(
 
     logic[3:0] select_test;
     assign select_test = W2[j][28:25] + WC[j][28:25];
-    logic [2:0] f1_test;
+    logic [2:0] f1_test;   
+    logic negative;
     
 
     always_ff @(posedge clk or negedge rst_l) begin
@@ -77,31 +78,49 @@ module FPHUB_sqrt #(
             computing <= 1'b0;
             res_exponent <= '0;
             chivato <= 1'b0;
+            negative <= 1'b0;
         
         end
 
         else begin
-            if (start) begin
-                res_exponent <= scaled_exponent >> 1;;         
-                S[0]   <= 2'b00;
-                W[0]   <= x[23] ? {4'b0001, x[22:0], 2'b10} : {5'b00001, x[22:0], 1'b1}; // IEEE MSB, mantissa, HUB ILSB;
-                WC[0] <= '0;
-                F1[0]  = {4'b1111, 25'd0};
-                F_1[0] = {4'b1111, 25'd0};
-                F1[1]  = {5'b11011, 24'd0};
-                F_1[1] = {5'b00011, 24'd0};
-                S[1] <= 2'b01; // TODO: siempre 1?
-                W[1]  <=  x[23] ? ({4'b0001, x[22:0], 2'b10} << 1) ^ {4'b1111, 25'd0} : ({5'b00001, x[22:0], 1'b1} << 1) ^ {4'b1111, 25'd0}; //(x_HUB << 1) ^ ({5'b01111, 24'd0}); // xor
-                WC[1] <=  x[23] ? (({4'b0001, x[22:0], 2'b10} << 1) & {4'b1111, 25'd0}) << 1 : (({5'b00001, x[22:0], 1'b1} << 1) & {4'b1111, 25'd0}) << 1;
-                //WC[1] <= ((x_HUB << 1) & ({4'b1111, 25'd0})) << 2; 
-                W2[0] <= x_HUB << 1;
-                //W2[1] <= ((x_HUB << 1) ^ ({4'b1111, 25'd0})) << 1;
-                 W2[1] <=  x[23] ? (({4'b0001, x[22:0], 2'b10} << 1) ^ {4'b1111, 25'd0}) << 1 : (({5'b00001, x[22:0], 1'b1} << 1) ^ {4'b1111, 25'd0}) << 1;
-                y_test[0] = 4'b0000; 
-                y_test[1] = 4'b0000; 
-               // q[N*2:N*2-4] = 5'b00001;
-                j <= 1;
-                computing <= 1'b1;
+            if (finish) begin
+                finish <= 1'b0;
+                res <= '0;
+            end
+            else if (negative) begin
+                negative <= 1'b0;
+                computing <= 1'b0;
+                res <= 32'hFFFFFFFF; 
+                finish <= 1'b1;
+            end
+             if (!negative && start && !computing) begin
+                if (x[31]) begin
+                    //res <= 32'hFFFFFFFF;
+                    //finish <= 1'b1;
+                    computing <= 1'b1;
+                    negative <= 1'b1;
+                end else begin
+                    res_exponent <= scaled_exponent >> 1;;         
+                    S[0]   <= 2'b00;
+                    W[0]   <= x[23] ? {4'b0001, x[22:0], 2'b10} : {5'b00001, x[22:0], 1'b1}; // IEEE MSB, mantissa, HUB ILSB;
+                    WC[0] <= '0;
+                    //F1[0]  <= {4'b1111, 25'd0};
+                    //F_1[0] <= {4'b1111, 25'd0};
+                    F1  <= {5'b11011, 24'd0};
+                    F_1 <= {5'b00011, 24'd0};
+                    S[1] <= 2'b01; // TODO: siempre 1?
+                    W[1]  <=  x[23] ? ({4'b0001, x[22:0], 2'b10} << 1) ^ {4'b1111, 25'd0} : ({5'b00001, x[22:0], 1'b1} << 1) ^ {4'b1111, 25'd0}; //(x_HUB << 1) ^ ({5'b01111, 24'd0}); // xor
+                    WC[1] <=  x[23] ? (({4'b0001, x[22:0], 2'b10} << 1) & {4'b1111, 25'd0}) << 1 : (({5'b00001, x[22:0], 1'b1} << 1) & {4'b1111, 25'd0}) << 1;
+                    //WC[1] <= ((x_HUB << 1) & ({4'b1111, 25'd0})) << 2; 
+                    W2[0] <= x_HUB << 1;
+                    //W2[1] <= ((x_HUB << 1) ^ ({4'b1111, 25'd0})) << 1;
+                    W2[1] <=  x[23] ? (({4'b0001, x[22:0], 2'b10} << 1) ^ {4'b1111, 25'd0}) << 1 : (({5'b00001, x[22:0], 1'b1} << 1) ^ {4'b1111, 25'd0}) << 1;
+                    y_test[0] = 4'b0000; 
+                    y_test[1] = 4'b0000; 
+                // q[N*2:N*2-4] = 5'b00001;
+                    j <= 1;
+                    computing <= 1'b1;
+                end               
             end 
             else if (computing && j < 25) begin
                 j <= j + 1;
@@ -119,17 +138,17 @@ module FPHUB_sqrt #(
                     W2[j+1] <= (W[j] << 2); 
 
                     for (int k = 0; k <= j+1; k++) begin
-                        F1[j+1][23+5 - k] = F1[j][23+5 - k];
-                        F_1[j+1][23+5 - k] = F_1[j][23+5 - k];
+                        F1[23+5 - k] <= F1[23+5 - k];
+                        F_1[23+5 - k] <= F_1[23+5 - k];
                     end
 
                     // asegurar rango
-                    F1[j+1][28-j-4 +: 3] = 3'b111;
-                    F_1[j+1][28-j-4 +: 3] = 3'b111;
+                    F1[28-j-4 +: 3] <= 3'b111;
+                    F_1[28-j-4 +: 3] <= 3'b111;
 
                     for (int k = 0; k <= (28-j-5); k++) begin
-                        F1[j+1][k] = 1'b0;
-                        F_1[j+1][k] = 1'b0;
+                        F1[k] <= 1'b0;
+                        F_1[k] <= 1'b0;
                     end
                     
                 end
@@ -140,26 +159,26 @@ module FPHUB_sqrt #(
                     //S[2*N -(2*j +3) +: 2] <= 2'b01;
                     S[j+1] <= 2'b01;
 
-                    W[j+1] <= (W2[j]) ^ F1[j] ^ (WC[j] << 1); // TODO: revisar: W -> Compl2, F1 -> signed digit
+                    W[j+1] <= (W2[j]) ^ F1 ^ (WC[j] << 1); // TODO: revisar: W -> Compl2, F1 -> signed digit
                     //W[j+1][28] <= 1'b0;
-                    WC[j+1] <= (((W2[j]) & F1[j]) | (W[j] << 1 & (WC[j] << 1)) | (F1[j] & (WC[j] << 1))) << 1;
+                    WC[j+1] <= (((W2[j]) & F1) | (W[j] << 1 & (WC[j] << 1)) | (F1 & (WC[j] << 1))) << 1;
 
-                    W2[j+1] <=  ((W2[j] ) ^ F1[j] ^ (WC[j] << 1))  << 1; 
+                    W2[j+1] <=  ((W2[j] ) ^ F1 ^ (WC[j] << 1))  << 1; 
                     //f1_test <= F1[j][28:26];
 
                     for (int k = 0; k <= j+1; k++) begin // cambiado j+1 por j+2
-                        f1_test[2-k] <= F1[j][28 - k];
-                        F1[j+1][28 - k] = F1[j][28 - k];
-                        F_1[j+1][28 - k] = ~F1[j][28 - k]; //TODO: revisar
+                      //  f1_test[2-k] <= F1[j][28 - k];
+                        F1[28 - k] <= F1[28 - k];
+                        F_1[28 - k] <= ~F1[28 - k]; //TODO: revisar
                     end
 
                     // asegurar rango
-                    F1[j+1][28-j-4 +: 3] = 3'b011;
-                    F_1[j+1][28-j-4 +: 3] = 3'b011;
+                    F1[28-j-4 +: 3] <= 3'b011;
+                    F_1[28-j-4 +: 3] <= 3'b011;
 
                     for (int k = 0; k <= (28-j-5); k++) begin
-                        F1[j+1][k] = 1'b0;
-                        F_1[j+1][k] = 1'b0;
+                        F1[k] <= 1'b0;
+                        F_1[k] <= 1'b0;
                     end
 
                 end
@@ -168,25 +187,25 @@ module FPHUB_sqrt #(
                     //S[2*N -(2*j +3) +: 2] <= 2'b11;
                     S[j+1] <= 2'b11;
 
-                    W[j+1] <= (W2[j]) ^ F_1[j] ^ (WC[j] << 1); // TODO: revisar: W -> Compl2, F1 -> signed digit
+                    W[j+1] <= (W2[j]) ^ F_1 ^ (WC[j] << 1); // TODO: revisar: W -> Compl2, F1 -> signed digit
                   //  W[j+1][28] <= 1'b0;
-                    WC[j+1] <= (((W2[j]) & F_1[j]) | (W[j] << 1 & (WC[j] << 1)) | (F_1[j] & (WC[j] << 1))) << 1;
+                    WC[j+1] <= (((W2[j]) & F_1) | (W[j] << 1 & (WC[j] << 1)) | (F_1 & (WC[j] << 1))) << 1;
 
 
-                    W2[j+1] <=  ((W2[j]) ^ F_1[j] ^ (WC[j] << 1)) << 1;
+                    W2[j+1] <=  ((W2[j]) ^ F_1 ^ (WC[j] << 1)) << 1;
 
                     for (int k = 0; k <= j+1; k++) begin
-                        F1[j+1][23+5 - k] = ~F_1[j][23+5 - k];
-                        F_1[j+1][23+5 - k] = F_1[j][23+5 - k];
+                        F1[23+5 - k] <= ~F_1[23+5 - k];
+                        F_1[23+5 - k] <= F_1[23+5 - k];
                     end
 
                     // asegurar rango
-                    F1[j+1][28-j-4 +: 3] = 3'b011;
-                    F_1[j+1][28-j-4 +: 3] = 3'b011;
+                    F1[28-j-4 +: 3] <= 3'b011;
+                    F_1[28-j-4 +: 3] <= 3'b011;
 
                     for (int k = 0; k <= (28-j-5); k++) begin
-                        F1[j+1][k] = 1'b0;
-                        F_1[j+1][k] = 1'b0;
+                        F1[k] <= 1'b0;
+                        F_1[k] <= 1'b0;
                     end
                 end
 
@@ -195,7 +214,7 @@ module FPHUB_sqrt #(
 
 
                // WC[j+1][28:27] <= 2'b00; // test, dos bits MSB de WC siempre 0
-            end else if (computing)begin // Terminación
+            end else if (computing && !negative)begin // Terminación
                
                /*
                 q = {2'b00, S};
@@ -214,11 +233,11 @@ module FPHUB_sqrt #(
 
                 finish <= 1'b1;
                 computing <= 1'b0;
-                root = posiv - neg;
+                //root = posiv - neg;
                 res <= {1'b0, res_exponent, res_mantissa};
                 //res <= {1'b0, res_exponent, root[T:E+1]};
             end
-            else begin
+            else if (!negative) begin
                 finish <= 1'b0;
                 res <= '0;
             end
@@ -232,6 +251,9 @@ module FPHUB_sqrt #(
     logic [22:0] res_mantissa;
 
     always_comb begin
+
+        posiv = '0;
+        neg = '0;
 
         if (computing && j == 25) begin
 
