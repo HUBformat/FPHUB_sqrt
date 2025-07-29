@@ -48,9 +48,11 @@ VL_MODULE(VFPHUB_sqrt) {
     IData/*31:0*/ FPHUB_sqrt__DOT__root;
     IData/*31:0*/ FPHUB_sqrt__DOT__quotient;
     IData/*31:0*/ FPHUB_sqrt__DOT__restored_quotient;
-    IData/*31:0*/ FPHUB_sqrt__DOT__normalized;
+    IData/*28:0*/ FPHUB_sqrt__DOT__normalized;
     IData/*31:0*/ FPHUB_sqrt__DOT__leading_zeros;
     IData/*22:0*/ FPHUB_sqrt__DOT__res_mantissa;
+    IData/*28:0*/ FPHUB_sqrt__DOT__f1_fly;
+    IData/*28:0*/ FPHUB_sqrt__DOT__SN2;
     IData/*31:0*/ FPHUB_sqrt__DOT__unnamedblk1__DOT__k;
     IData/*31:0*/ FPHUB_sqrt__DOT__unnamedblk2__DOT__k;
     IData/*31:0*/ FPHUB_sqrt__DOT__unnamedblk3__DOT__k;

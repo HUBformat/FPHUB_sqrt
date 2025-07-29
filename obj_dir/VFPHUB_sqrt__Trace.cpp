@@ -213,11 +213,11 @@ void VFPHUB_sqrt::traceChgSub0(void* userp, VerilatedVcd* tracep) {
                                                      : 0U) 
                                                    >> 0x19U)))),4);
             tracep->chgBit(oldp+158,(vlTOPp->FPHUB_sqrt__DOT__negative));
-            tracep->chgIData(oldp+159,(vlTOPp->FPHUB_sqrt__DOT__quotient),32);
-            tracep->chgIData(oldp+160,(vlTOPp->FPHUB_sqrt__DOT__restored_quotient),32);
-            tracep->chgIData(oldp+161,(vlTOPp->FPHUB_sqrt__DOT__normalized),32);
-            tracep->chgIData(oldp+162,(vlTOPp->FPHUB_sqrt__DOT__leading_zeros),32);
-            tracep->chgIData(oldp+163,(vlTOPp->FPHUB_sqrt__DOT__res_mantissa),23);
+            tracep->chgIData(oldp+159,(vlTOPp->FPHUB_sqrt__DOT__normalized),29);
+            tracep->chgIData(oldp+160,(vlTOPp->FPHUB_sqrt__DOT__leading_zeros),32);
+            tracep->chgIData(oldp+161,(vlTOPp->FPHUB_sqrt__DOT__res_mantissa),23);
+            tracep->chgIData(oldp+162,(vlTOPp->FPHUB_sqrt__DOT__f1_fly),29);
+            tracep->chgIData(oldp+163,(vlTOPp->FPHUB_sqrt__DOT__SN2),29);
             tracep->chgIData(oldp+164,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k),32);
             tracep->chgIData(oldp+165,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk2__DOT__k),32);
             tracep->chgIData(oldp+166,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k),32);
@@ -241,10 +241,11 @@ void VFPHUB_sqrt::traceChgSub0(void* userp, VerilatedVcd* tracep) {
                                               ? ((0xffU 
                                                   & (vlTOPp->x 
                                                      >> 0x17U)) 
-                                                 - (IData)(1U))
-                                              : (0xffU 
-                                                 & (vlTOPp->x 
-                                                    >> 0x17U))))),8);
+                                                 - (IData)(0x81U))
+                                              : ((0xffU 
+                                                  & (vlTOPp->x 
+                                                     >> 0x17U)) 
+                                                 - (IData)(0x80U))))),8);
         tracep->chgIData(oldp+181,((0x7fffffU & vlTOPp->x)),23);
         tracep->chgIData(oldp+182,((0x1000001U | (0xfffffeU 
                                                   & (vlTOPp->x 

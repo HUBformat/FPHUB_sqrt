@@ -33,7 +33,7 @@ module FPHUB_sqrt #(
 
     logic [7:0] x_exponent, scaled_exponent, res_exponent;
     assign x_exponent = x[30:23];
-    assign scaled_exponent = x_exponent[0] ? x_exponent - 1 : x_exponent; 
+    assign scaled_exponent = x_exponent[0] ? x_exponent - 129 : x_exponent - 128 ; 
 
     logic [22:0] x_mantissa;
     assign x_mantissa = x[22:0];
@@ -100,7 +100,7 @@ module FPHUB_sqrt #(
                     computing <= 1'b1;
                     negative <= 1'b1;
                 end else begin
-                    res_exponent <= scaled_exponent >> 1;;         
+                    res_exponent <= scaled_exponent >> 1 | {x_exponent[7], 7'b0};
                     S[0]   <= 2'b00;
                     W[0]   <= x[23] ? {4'b0001, x[22:0], 2'b10} : {5'b00001, x[22:0], 1'b1}; // IEEE MSB, mantissa, HUB ILSB;
                     WC[0] <= '0;
@@ -122,7 +122,7 @@ module FPHUB_sqrt #(
                     computing <= 1'b1;
                 end               
             end 
-            else if (computing && j < 25) begin
+            else if (computing && j < 24) begin
                 j <= j + 1;
                 y_test[j+1] <= W[j][28:25] + WC[j][28:25]; 
 
@@ -246,16 +246,18 @@ module FPHUB_sqrt #(
     end
 
     logic[31:0] quotient, restored_quotient;
-    logic [T:0] normalized;
+    logic [28:0] normalized;
     int leading_zeros;
     logic [22:0] res_mantissa;
+    logic [28:0] f1_fly;
+    logic [28:0] SN2;
 
     always_comb begin
 
         posiv = '0;
         neg = '0;
 
-        if (computing && j == 25) begin
+        if (computing && j == 24) begin
 
              //q = {2'b00, S};
 
@@ -271,12 +273,14 @@ module FPHUB_sqrt #(
 
                 end
                 */
-                for (int i = 0; i < 25; i++) begin
+
+                /*
+                for (int i = 0; i < 24; i++) begin
                     if (S[i] == 2'b11) begin
-                        neg[24-i] = 1; 
+                        neg[23-i] = 1; 
                     end
                     else if (S[i] == 2'b01) begin
-                        posiv[24-i] = 1;
+                        posiv[23-i] = 1;
                     end
 
                 end
@@ -304,6 +308,35 @@ module FPHUB_sqrt #(
                     
             // Extract mantissa, drop the implicit 1
             res_mantissa = normalized[T-1:E]; 
+            */
+            f1_fly = (~F1 >> 1);
+
+             if (W[j][28]) begin
+                leading_zeros = 0;
+
+                for (int i = 28; i >= 0; i--) begin
+                    if (F_1[i] == 1) break;
+                    leading_zeros = leading_zeros + 1;
+                end
+
+                normalized = F_1 << leading_zeros;
+                res_mantissa = normalized[27:5]; // Mantissa without implicit 1
+
+            end else begin
+                
+                SN2 = ~F1;
+                leading_zeros  = 0;
+
+                 for (int i = 28; i >= 0; i--) begin
+                    if (f1_fly[i] == 1) break;
+                    leading_zeros = leading_zeros + 1;
+                end
+
+                normalized = f1_fly << leading_zeros;
+                res_mantissa = normalized[27:5]; // Mantissa without implicit 1
+                
+            end
+
         end
     end
 

@@ -101,11 +101,13 @@ void VFPHUB_sqrt::traceInitSub0(void* userp, VerilatedVcd* tracep) {
         tracep->declBus(c+158,"FPHUB_sqrt select_test", false,-1, 3,0);
         tracep->declBus(c+199,"FPHUB_sqrt f1_test", false,-1, 2,0);
         tracep->declBit(c+159,"FPHUB_sqrt negative", false,-1);
-        tracep->declBus(c+160,"FPHUB_sqrt quotient", false,-1, 31,0);
-        tracep->declBus(c+161,"FPHUB_sqrt restored_quotient", false,-1, 31,0);
-        tracep->declBus(c+162,"FPHUB_sqrt normalized", false,-1, 31,0);
-        tracep->declBus(c+163,"FPHUB_sqrt leading_zeros", false,-1, 31,0);
-        tracep->declBus(c+164,"FPHUB_sqrt res_mantissa", false,-1, 22,0);
+        tracep->declBus(c+200,"FPHUB_sqrt quotient", false,-1, 31,0);
+        tracep->declBus(c+201,"FPHUB_sqrt restored_quotient", false,-1, 31,0);
+        tracep->declBus(c+160,"FPHUB_sqrt normalized", false,-1, 28,0);
+        tracep->declBus(c+161,"FPHUB_sqrt leading_zeros", false,-1, 31,0);
+        tracep->declBus(c+162,"FPHUB_sqrt res_mantissa", false,-1, 22,0);
+        tracep->declBus(c+163,"FPHUB_sqrt f1_fly", false,-1, 28,0);
+        tracep->declBus(c+164,"FPHUB_sqrt SN2", false,-1, 28,0);
         tracep->declBus(c+165,"FPHUB_sqrt unnamedblk1 k", false,-1, 31,0);
         tracep->declBus(c+166,"FPHUB_sqrt unnamedblk2 k", false,-1, 31,0);
         tracep->declBus(c+167,"FPHUB_sqrt unnamedblk3 k", false,-1, 31,0);
@@ -326,11 +328,11 @@ void VFPHUB_sqrt::traceFullSub0(void* userp, VerilatedVcd* tracep) {
                                                   : 0U) 
                                                 >> 0x19U)))),4);
         tracep->fullBit(oldp+159,(vlTOPp->FPHUB_sqrt__DOT__negative));
-        tracep->fullIData(oldp+160,(vlTOPp->FPHUB_sqrt__DOT__quotient),32);
-        tracep->fullIData(oldp+161,(vlTOPp->FPHUB_sqrt__DOT__restored_quotient),32);
-        tracep->fullIData(oldp+162,(vlTOPp->FPHUB_sqrt__DOT__normalized),32);
-        tracep->fullIData(oldp+163,(vlTOPp->FPHUB_sqrt__DOT__leading_zeros),32);
-        tracep->fullIData(oldp+164,(vlTOPp->FPHUB_sqrt__DOT__res_mantissa),23);
+        tracep->fullIData(oldp+160,(vlTOPp->FPHUB_sqrt__DOT__normalized),29);
+        tracep->fullIData(oldp+161,(vlTOPp->FPHUB_sqrt__DOT__leading_zeros),32);
+        tracep->fullIData(oldp+162,(vlTOPp->FPHUB_sqrt__DOT__res_mantissa),23);
+        tracep->fullIData(oldp+163,(vlTOPp->FPHUB_sqrt__DOT__f1_fly),29);
+        tracep->fullIData(oldp+164,(vlTOPp->FPHUB_sqrt__DOT__SN2),29);
         tracep->fullIData(oldp+165,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk1__DOT__k),32);
         tracep->fullIData(oldp+166,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk2__DOT__k),32);
         tracep->fullIData(oldp+167,(vlTOPp->FPHUB_sqrt__DOT__unnamedblk3__DOT__k),32);
@@ -353,10 +355,11 @@ void VFPHUB_sqrt::traceFullSub0(void* userp, VerilatedVcd* tracep) {
                                                ? ((0xffU 
                                                    & (vlTOPp->x 
                                                       >> 0x17U)) 
-                                                  - (IData)(1U))
-                                               : (0xffU 
-                                                  & (vlTOPp->x 
-                                                     >> 0x17U))))),8);
+                                                  - (IData)(0x81U))
+                                               : ((0xffU 
+                                                   & (vlTOPp->x 
+                                                      >> 0x17U)) 
+                                                  - (IData)(0x80U))))),8);
         tracep->fullIData(oldp+182,((0x7fffffU & vlTOPp->x)),23);
         tracep->fullIData(oldp+183,((0x1000001U | (0xfffffeU 
                                                    & (vlTOPp->x 
@@ -394,5 +397,7 @@ void VFPHUB_sqrt::traceFullSub0(void* userp, VerilatedVcd* tracep) {
         tracep->fullWData(oldp+195,(vlTOPp->FPHUB_sqrt__DOT__q),65);
         tracep->fullIData(oldp+198,(vlTOPp->FPHUB_sqrt__DOT__root),32);
         tracep->fullCData(oldp+199,(vlTOPp->FPHUB_sqrt__DOT__f1_test),3);
+        tracep->fullIData(oldp+200,(vlTOPp->FPHUB_sqrt__DOT__quotient),32);
+        tracep->fullIData(oldp+201,(vlTOPp->FPHUB_sqrt__DOT__restored_quotient),32);
     }
 }
