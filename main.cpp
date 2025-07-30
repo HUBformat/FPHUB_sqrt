@@ -90,13 +90,21 @@ int main(int argc, char **argv) {
 
                 
 
-                if ((actual & 0x0FFFFFFF) != (expected & 0x0FFFFFFF)){
+                if (actual  != expected){
                     std::cout << "FAIL: ";
                     std::cout << "Test " << test_index + 1 << ": "
                           << "Input = 0x" << std::hex << tests[test_index].x
                           << ", Expected = 0x" << expected
                           << ", Got = 0x" << actual << std::endl;
+                          
+                } /*else {
+                    std::cout << "PASS: ";
+                    std::cout << "Test " << test_index + 1 << ": "
+                          << "Input = 0x" << std::hex << tests[test_index].x
+                          << ", Expected = 0x" << expected
+                          << ", Got = 0x" << actual << std::endl;
                 }
+                */
                     
 
                // std::cout << std::endl;
