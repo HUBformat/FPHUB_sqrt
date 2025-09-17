@@ -20,7 +20,8 @@ module FPHUB_sqrt #(
     input  logic [T:0]      x,                  
     output logic [T:0]      res,      
     output logic            finish,       
-    output logic            computing
+    output logic            computing,
+    output logic            special_case
 );
 
     logic [FM:0]  F1;  //[N];
@@ -42,6 +43,7 @@ module FPHUB_sqrt #(
     logic negative;
     logic inf;
     logic zero;
+    assign special_case = negative | inf | zero;
     
     always_ff @(posedge clk or negedge rst_l) begin
 
