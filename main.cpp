@@ -49,10 +49,13 @@ int main(int argc, char **argv) {
     top->trace(tfp, 99);
     tfp->open("wave.vcd");
 
-    std::vector<TestVector> tests = read_csv("hub_float_sqrt_exp4_mant6.csv");
+    std::vector<TestVector> tests = read_csv("input.csv");
 
     vluint64_t main_time = 0;
     int test_index = 0;
+    int pass_count = 0;
+    int fail_count = 0;
+
     bool start_issued = false;
     bool waiting_for_finish = false;
 
@@ -61,9 +64,7 @@ int main(int argc, char **argv) {
     top->start = 0;
     top->x = 0;
 
-    const vluint64_t MAX_SIM_TIME = 100000;  // Extend simulation time
-
-    while (!Verilated::gotFinish() /*&& main_time < MAX_SIM_TIME*/) {
+    while (!Verilated::gotFinish()) {
         // Toggle clock
         if ((main_time % 2) == 0)
             top->clk = !top->clk;
@@ -73,7 +74,7 @@ int main(int argc, char **argv) {
             top->rst_l = 1;
 
         // Apply new input if not waiting
-        if (top->rst_l && test_index < tests.size()) {
+        if (top->rst_l && test_index < (int)tests.size()) {
             if (!waiting_for_finish && !start_issued && top->clk) {
                 top->x = tests[test_index].x;
                 top->start = 1;
@@ -86,29 +87,35 @@ int main(int argc, char **argv) {
             } else if (waiting_for_finish && top->finish) {
                 // Check result
                 uint32_t expected = tests[test_index].expected_res;
-                uint32_t actual = top->res;                
+                uint32_t actual = top->res;
 
                 if (!(actual == expected || actual == expected + 1 || actual == expected - 1)) {
                     std::cout << "FAIL: ";
                     std::cout << "Test " << test_index + 1 << ": "
-                          << "Input = 0x" << std::hex << tests[test_index].x
-                          << ", Expected = 0x" << expected
-                          << ", Got = 0x" << actual << std::endl;
-                          
-                } /*else {
+                              << "Input = 0x" << std::hex << tests[test_index].x
+                              << ", Expected = 0x" << expected
+                              << ", Got = 0x" << actual << std::endl;
+                    fail_count++;
+                } else {
                     std::cout << "PASS: ";
                     std::cout << "Test " << test_index + 1 << ": "
-                          << "Input = 0x" << std::hex << tests[test_index].x
-                          << ", Expected = 0x" << expected
-                          << ", Got = 0x" << actual << std::endl;
-                }*/
-                
-                    
-
-               // std::cout << std::endl;
+                              << "Input = 0x" << std::hex << tests[test_index].x
+                              << ", Expected = 0x" << expected
+                              << ", Got = 0x" << actual << std::endl;
+                    pass_count++;
+                }
 
                 test_index++;
                 waiting_for_finish = false;
+
+                // end simulation
+                if (test_index >= (int)tests.size()) {
+                    std::cout << "\nSimulation finished!" << std::endl;
+                    std::cout << "Passed: " << pass_count << std::endl;
+                    std::cout << "Failed: " << fail_count << std::endl;
+                    break;  // exit loop
+                }
+
             }
         }
 

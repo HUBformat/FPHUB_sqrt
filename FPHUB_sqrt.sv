@@ -1,18 +1,40 @@
+/*Title: Main module FPHUB Square Root
+
+  Floating-point Square Root by Digit Recurrence for HUB format.
+*/
+
+/* Module: FPHUB_divider
+ 
+  Summary:
+      Implements a floating-point, radix-2, square root unit by digit recurrence for HUB format
+
+  Parameters:
+      M - Width of the mantissa (23 by default).
+      E - Width of the exponent (8 by default).
+      N - Number of iterations of the algorithm.
+      FM - Width of the extended mantissa.
+      T - Total width of the floating-point number, without the sign.
+      EXP_BIAS - Exponent bias for the given exponent width.
+      EXP_BIAS_LOW - Exponent bias minus one.
+ 
+  Ports:
+      clk - System clock.
+      rst_l - reset signal (active low).
+      start - Initiates the operation.
+      x - Operand in HUB floating-point format.
+      res - Result of the floating-point division.
+      finish - Indicates the operation is complete.
+      computing - Indicates the operation is in progress.
+      is_special_case - Flag indicating if a special case was detected.
+ */
 module FPHUB_sqrt #(
     parameter int   M = 23,
     parameter int   E = 8,
-    parameter int   N = M+2, // Number of iterations
-    parameter int   FM = M+5, // 000 + 1 IEEE + mantissa + 1 ILSB + extra 0
+    localparam int   N = M+2,
+    localparam int   FM = M+5,
     localparam int  T = M+E,
     localparam int  EXP_BIAS = 1 << (E - 1),
-    localparam int  EXP_BIAS_LOW = EXP_BIAS -1,
-    localparam int  special_case = 7,
-    localparam int  sign_mantissa_bit = 1,
-    localparam int  one_implicit_bit = 1,
-    localparam int  ilsb_bit = 1,
-    localparam int  extra_int_bit = 1,
-    localparam int  extra_bit_x_gt_d = 1,
-    localparam int  extra_bits_mantissa = sign_mantissa_bit + one_implicit_bit + ilsb_bit + extra_int_bit + extra_bit_x_gt_d
+    localparam int  EXP_BIAS_LOW = EXP_BIAS -1
 )(
     input  logic            clk,        
     input  logic            rst_l,     
@@ -21,31 +43,73 @@ module FPHUB_sqrt #(
     output logic [T:0]      res,      
     output logic            finish,       
     output logic            computing,
-    output logic            special_case
+    output logic            is_special_case
 );
+    
+    /* Section: Intermediate Signals declaration
 
-    logic [FM:0]  F1;  //[N];
-    logic [FM:0]  F_1; //[N];
-    logic [FM:0]  W   [N];
-    logic [FM:0]  W2  [N];
-    logic [FM:0] WC    [N];
+    Creation and assignment of different intermediate signals to be used later during the algorithm.
+    
+    */
 
+    /* Variable: W
+        Signal containing the residual of the operation at each iteration.
+    */
+    logic [FM:0]  W;
 
-    logic [E-1:0] x_exponent, scaled_exponent, res_exponent;
+    /* Variable: W2
+        Signal containing 2*W at each iteration.
+    */
+    logic [FM:0]  W2;
+
+    /* Variable: WC
+        Signal containing the carry of the residual at each iteration.
+    */
+    logic [FM:0]  WC;
+    
+    /* Variable: F1, F_1
+        Signals used to copmute the on-the-fly conversion of the result.
+    */
+    logic [FM:0]  F1, F_1;
+
+    /* Variable: x_exponent
+        Exponent of the input operand.
+    */
+    logic [E-1:0] x_exponent;
     assign x_exponent = x[T-1:T-E];
+
+    /* Variable: scaled_exponent
+        Scaled exponent of the input operand.
+    */
+    logic[E-1:0] scaled_exponent;
     assign scaled_exponent = x_exponent[0] ? x_exponent - (EXP_BIAS+1) : x_exponent - EXP_BIAS ; 
 
-    logic [FM:0] x_HUB;
-    // 000 + 1 IEEE + mantissa + 1 ILSB + extra 0
-    assign x_HUB = x[T-E] ? {4'b0001, x[M-1:0], 2'b10} : {5'b00001, x[M-1:0], 1'b1}; // IEEE MSB, mantissa, HUB ILSB 
-
-    int j;
-    logic negative;
-    logic inf;
-    logic zero;
-    assign special_case = negative | inf | zero;
+    /* Variable: res_exponent
+        Exponent of the result.
+    */
+    logic[E-1:0] res_exponent;
     
+    
+    /* Variable: j
+        Iteration counter.
+    */
+    int j;
+
+    /* Variable: negative, inf, zero
+        Flags to indicate if the input is a negative number, infinity or zero.
+    */
+    logic negative, inf, zero;
+    assign is_special_case = negative | inf | zero;
+
+    
+   
+
     always_ff @(posedge clk or negedge rst_l) begin
+
+         /* Section: Initialization
+
+            Initialization of the signals to be used in the recurrence
+        */
 
         if(!rst_l) begin
             j <= '0;
@@ -64,6 +128,12 @@ module FPHUB_sqrt #(
                 finish <= 1'b0;
                 res <= '0;
             end
+
+            /* Section: special cases handling
+
+            Logic to handle special cases: negative numbers, infinity and zero.
+            */
+            
             else if (negative) begin
                 negative <= 1'b0;
                 computing <= 1'b0;
@@ -90,33 +160,39 @@ module FPHUB_sqrt #(
                 end else if (~|x[T:0]) begin
                     computing <= 1'b1;
                     zero <= 1'b1;
+
+                /* Section: Initial step of the algorithm
+
+                    Logic to perform the initial step of the digit recurrence algorithm.
+                */
                 end else begin
                     res_exponent <= scaled_exponent >> 1 | {x_exponent[E-1], {(E-1){1'b0}}}; 
-                    W[0]   <= x[T-E] ? {4'b0001, x[M-1:0], 2'b10} : {5'b00001, x[M-1:0], 1'b1}; // IEEE MSB, mantissa, HUB ILSB; 
-                    WC[0] <= '0;
 
                     F1  <= {5'b11011, {M+1{1'b0}}}; 
                     F_1 <= {5'b00011, {M+1{1'b0}}};
-                    W[1]  <=  x[T-E] ? ({4'b0001, x[M-1:0], 2'b10} << 1) ^ {4'b1111, {M+2{1'b0}}} : ({5'b00001, x[M-1:0], 1'b1} << 1) ^ {4'b1111, {M+2{1'b0}}};
-                    WC[1] <=  x[T-E] ? (({4'b0001, x[M-1:0], 2'b10} << 1) & {4'b1111, {M+2{1'b0}}}) << 1 : (({5'b00001, x[M-1:0], 1'b1} << 1) & {4'b1111, {M+2{1'b0}}}) << 1;
 
-                    W2[0] <= x_HUB << 1;
+                    W  <=  x[T-E] ? ({4'b0001, x[M-1:0], 2'b10} << 1) ^ {4'b1111, {M+2{1'b0}}} : ({5'b00001, x[M-1:0], 1'b1} << 1) ^ {4'b1111, {M+2{1'b0}}};
+                    W2 <=  x[T-E] ? (({4'b0001, x[M-1:0], 2'b10} << 1) ^ {4'b1111, {M+2{1'b0}}}) << 1 : (({5'b00001, x[M-1:0], 1'b1} << 1) ^ {4'b1111, {M+2{1'b0}}}) << 1;
 
-                    W2[1] <=  x[T-E] ? (({4'b0001, x[M-1:0], 2'b10} << 1) ^ {4'b1111, {M+2{1'b0}}}) << 1 : (({5'b00001, x[M-1:0], 1'b1} << 1) ^ {4'b1111, {M+2{1'b0}}}) << 1;
+                    WC <=  x[T-E] ? (({4'b0001, x[M-1:0], 2'b10} << 1) & {4'b1111, {M+2{1'b0}}}) << 1 : (({5'b00001, x[M-1:0], 1'b1} << 1) & {4'b1111, {M+2{1'b0}}}) << 1;
 
                     j <= 1;
                     computing <= 1'b1;
                 end               
             end 
-            else if (computing && j < N-1) begin
+
+            /* Section: Recurrence step of the algorithm
+
+                Logic to perform the main recurrence of the algorithm.
+            */
+            else if (computing && j < N-1) begin 
                 j <= j + 1;
 
-                if((W[j][FM:FM-3] + WC[j][FM:FM-3]) == 4'b1111) begin 
+                if((W[FM:FM-3] + WC[FM:FM-3]) == 4'b1111) begin  // If the 4 most significant bits of (W + WC) = -1
 
-                    W[j+1] <= (W[j] << 1); // +0 
-
-                    WC[j+1] <= (WC[j] << 1);
-                    W2[j+1] <= (W[j] << 2); 
+                    W <= (W << 1);
+                    WC <= (WC << 1);
+                    W2 <= (W << 2); 
 
                     for (int k = 0; k <= j+1; k++) begin
                         F1[FM-k] <= F1[FM-k];
@@ -133,12 +209,11 @@ module FPHUB_sqrt #(
                     
                 end
 
-                else if ((W[j][FM:FM-3] + WC[j][FM:FM-3]) < 4'b1000 ) begin
+                else if ((W[FM:FM-3] + WC[FM:FM-3]) < 4'b1000 ) begin // // If the 4 most significant bits of (W + WC) < -8
 
-                    W[j+1] <= (W2[j]) ^ F1 ^ (WC[j] << 1); 
-                    WC[j+1] <= (((W2[j]) & F1) | (W[j] << 1 & (WC[j] << 1)) | (F1 & (WC[j] << 1))) << 1;
-
-                    W2[j+1] <=  ((W2[j] ) ^ F1 ^ (WC[j] << 1))  << 1; 
+                    W <= (W2) ^ F1 ^ (WC << 1); 
+                    WC <= (((W2) & F1) | (W << 1 & (WC << 1)) | (F1 & (WC << 1))) << 1;
+                    W2 <=  ((W2 ) ^ F1 ^ (WC << 1))  << 1; 
 
                     for (int k = 0; k <= j+1; k++) begin 
                         F1[FM-k] <= F1[FM-k];
@@ -157,11 +232,9 @@ module FPHUB_sqrt #(
 
                 else begin
 
-                    W[j+1] <= (W2[j]) ^ F_1 ^ (WC[j] << 1); 
-                    WC[j+1] <= (((W2[j]) & F_1) | (W[j] << 1 & (WC[j] << 1)) | (F_1 & (WC[j] << 1))) << 1;
-
-
-                    W2[j+1] <=  ((W2[j]) ^ F_1 ^ (WC[j] << 1)) << 1;
+                    W <= (W2) ^ F_1 ^ (WC << 1); 
+                    WC <= (((W2) & F_1) | (W << 1 & (WC << 1)) | (F_1 & (WC << 1))) << 1;
+                    W2 <=  ((W2) ^ F_1 ^ (WC << 1)) << 1;
 
                     for (int k = 0; k <= j+1; k++) begin
                         F1[FM-k] <= ~F_1[FM-k];
@@ -177,7 +250,7 @@ module FPHUB_sqrt #(
                     end
                 end
 
-            end else if (computing && !negative && !inf && !zero)begin // Terminación
+            end else if (computing && !negative && !inf && !zero)begin  // Termination
 
                 finish <= 1'b1;
                 computing <= 1'b0;
@@ -193,9 +266,29 @@ module FPHUB_sqrt #(
 
     end
 
+    /* Section: On-the-fly conversion
+
+        Logic to perform the on-the-fly conversion of the result.
+    */
+
+    /* Variable: normalized
+        Normalized version of the result mantissa.
+    */
     logic [FM:0] normalized;
+
+    /* Variable: leading_zeros
+        Number of leading zeros in the normalized mantissa.
+    */
     int leading_zeros;
+
+    /* Variable: res_mantissa
+        Mantissa of the result.
+    */
     logic [M-1:0] res_mantissa;
+
+    /* Variable: f1_fly
+        Complement of F1 for on-the-fly conversion.
+    */
     logic [FM:0] f1_fly;
 
     always_comb begin
@@ -204,7 +297,7 @@ module FPHUB_sqrt #(
 
             f1_fly = (~F1 >> 1);
 
-             if (W[j][FM]) begin
+             if (W[FM]) begin
                 leading_zeros = 0;
 
                 for (int i = FM; i >= 0; i--) begin
@@ -225,7 +318,7 @@ module FPHUB_sqrt #(
                 end
 
                 normalized = f1_fly << leading_zeros;
-                res_mantissa = normalized[FM-1:FM-M]; // Mantissa without implicit 1
+                res_mantissa = normalized[FM-1:FM-M];
                 
             end
 
