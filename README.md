@@ -39,7 +39,7 @@ the output is a valid HUB-formatted floating-point number.
 
 ## Usage
 
-You can try this module in isolation by yourself my running the `make` command. This will launch the testbench contained in `m̀ain.cpp`, which reads from a .csv file the expected inputs and outputs, and compares them with the ones provided by the main module.
+You can try this module in isolation by yourself my running the `make` command. This will launch the testbench contained in `m̀ain.cpp`, which reads from a .csv file the expected inputs and outputs, and compares them with the ones provided by the main module. It also generates a `.vcd` trace file, which you can visualize with gtkwave or a similar program.
 
 To integrate the divider into your own project:
 
