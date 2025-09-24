@@ -3,7 +3,7 @@
   Floating-point Square Root by Digit Recurrence for HUB format.
 */
 
-/* Module: FPHUB_divider
+/* Module: FPHUB_sqrt
  
   Summary:
       Implements a floating-point, radix-2, square root unit by digit recurrence for HUB format
