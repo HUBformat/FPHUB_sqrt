@@ -194,17 +194,23 @@ module FPHUB_sqrt #(
                     WC <= (WC << 1);
                     W2 <= (W << 2); 
 
-                    for (int k = 0; k <= j+1; k++) begin
-                        F1[FM-k] <= F1[FM-k];
-                        F_1[FM-k] <= F_1[FM-k];
+                    for (int k = 0; k < N; k++) begin
+                        if (k <= j+1) begin
+                            F1[FM-k] <= F1[FM-k];
+                            F_1[FM-k] <= F_1[FM-k];
+                        end
+                        
                     end
 
                     F1[FM-j-4 +: 3] <= 3'b111;
                     F_1[FM-j-4 +: 3] <= 3'b111;
 
-                    for (int k = 0; k <= (FM-j-5); k++) begin
-                        F1[k] <= 1'b0;
-                        F_1[k] <= 1'b0;
+                    for (int k = 0; k < M; k++) begin
+                        if (k <= (FM-j-5)) begin
+                            F1[k] <= 1'b0;
+                            F_1[k] <= 1'b0;
+                        end
+                        
                     end
                     
                 end
@@ -215,17 +221,21 @@ module FPHUB_sqrt #(
                     WC <= (((W2) & F1) | (W << 1 & (WC << 1)) | (F1 & (WC << 1))) << 1;
                     W2 <=  ((W2 ) ^ F1 ^ (WC << 1))  << 1; 
 
-                    for (int k = 0; k <= j+1; k++) begin 
-                        F1[FM-k] <= F1[FM-k];
-                        F_1[FM-k] <= ~F1[FM-k]; 
+                    for (int k = 0; k < N; k++) begin 
+                        if (k <= j+1) begin
+                            F1[FM-k] <= F1[FM-k];
+                            F_1[FM-k] <= ~F1[FM-k]; 
+                        end                       
                     end
 
                     F1[FM-j-4 +: 3] <= 3'b011;
                     F_1[FM-j-4 +: 3] <= 3'b011;
 
-                    for (int k = 0; k <= (FM-j-5); k++) begin
-                        F1[k] <= 1'b0;
-                        F_1[k] <= 1'b0;
+                    for (int k = 0; k < M; k++) begin
+                        if (k <= (FM-j-5)) begin
+                            F1[k] <= 1'b0;
+                            F_1[k] <= 1'b0;
+                        end
                     end
 
                 end
@@ -236,17 +246,21 @@ module FPHUB_sqrt #(
                     WC <= (((W2) & F_1) | (W << 1 & (WC << 1)) | (F_1 & (WC << 1))) << 1;
                     W2 <=  ((W2) ^ F_1 ^ (WC << 1)) << 1;
 
-                    for (int k = 0; k <= j+1; k++) begin
-                        F1[FM-k] <= ~F_1[FM-k];
-                        F_1[FM-k] <= F_1[FM-k];
+                    for (int k = 0; k < N;  k++) begin
+                        if (k <= j+1) begin
+                            F1[FM-k] <= ~F_1[FM-k];
+                            F_1[FM-k] <= F_1[FM-k];
+                        end                      
                     end
 
                     F1[FM-j-4 +: 3] <= 3'b011;
                     F_1[FM-j-4 +: 3] <= 3'b011;
 
-                    for (int k = 0; k <= (FM-j-5); k++) begin
-                        F1[k] <= 1'b0;
-                        F_1[k] <= 1'b0;
+                    for (int k = 0; k < M; k++) begin
+                        if (k <= (FM-j-5)) begin
+                            F1[k] <= 1'b0;
+                            F_1[k] <= 1'b0;
+                        end
                     end
                 end
 
@@ -324,6 +338,10 @@ module FPHUB_sqrt #(
 
         end
     end
+
+endmodule
+
+
 
 endmodule
 
